@@ -73,7 +73,9 @@
                     for(int i=0; i <chaps.size();i++){
                 %>
                 <div class="list-chapter">
-                    <a href="#"><%=chaps.get(i).getName()%></a> 
+                    <a href="<%=request.getContextPath() %>/Control?page=chap-info&id=<%=chaps.get(i).getId()%>">
+                        <%=chaps.get(i).getName()%>
+                    </a>
                 </div>
                 <%}%>
         </div> 

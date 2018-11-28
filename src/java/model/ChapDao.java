@@ -19,15 +19,11 @@ import java.util.ArrayList;
 public class ChapDao {
     
     
-    public List<Chap> listChap() throws SQLException, ClassNotFoundException{
+    public List<Chap> listChap(String type,String typeValue) throws SQLException, ClassNotFoundException{
         Chap chap = new Chap();
         List<Chap> chaps = new ArrayList<>();
         Connection connection =null;
-        String query = "Select * from chap";
-        ResultSet rs = connect(query,connection);
-        if(rs!=null){
-            readResulset(rs,chap,chaps);
-        }
+        makeQuery(type, typeValue, connection, chaps, chap);
     return chaps;
 
     }

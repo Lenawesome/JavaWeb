@@ -38,7 +38,7 @@ public class InfoServlet extends HttpServlet {
             NovelDao novelDao = new NovelDao();
             ChapDao chapDao = new ChapDao();
             List<Novel> listNovelById = novelDao.listBy("id", id);
-            List<Chap> listChap = chapDao.listChap();
+            List<Chap> listChap = chapDao.listChap("novel_id",id);
             if(listNovelById!=null){
                 if(!listNovelById.isEmpty()){
                     request.setAttribute("listNovelById",listNovelById);

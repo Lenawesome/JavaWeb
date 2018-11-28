@@ -5,9 +5,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-    List<Novel> novels = (List<Novel>) request.getAttribute("listNovelById");
+    
     List<Chap> chaps = (List<Chap>) request.getAttribute("listChap");
-    if(novels!=null){
+    
 %>
 
 <!DOCTYPE html>
@@ -50,35 +50,16 @@
                     <button id="search-box-button" >Search</button>
                 </form>
             </div>
+            <%
+                
+                for(int i =0; i < chaps.size(); i++){
+                
+            %>
         </div>
-        <div id="novel-info">
-            <div class="title-list">Thông tin truyện</div>
-            <div class="section-1">
-                    <%
-                        
-                        for(int i = 0; i <novels.size(); i++){
-                        
-                    %>
-                <div class="item">
-                    <img src="<%=novels.get(i).getImgLink()%>" class="img-reponsive" alt="<%=novels.get(i).getName()%>">
-                    <div class="novel-name"> <%=novels.get(i).getName() %> </div>
-                    <div class="novel-author">Tác giả: <%=novels.get(i).getAuthor()%></div>
-                    <div class="novel-status">Tình trạng: <%=novels.get(i).getStatus()%></div>
-                    <div class="novel-status">Thể loại: <%=novels.get(i).getCategories()%></div>
-                </div>
-                <%}%>
-                <div class="info-right"></div>
-            </div>
-                <%
-                    for(int i=0; i <chaps.size();i++){
-                %>
-                <div class="list-chapter">
-                    <a href="<%=request.getContextPath() %>/Control?page=chap-info&id=<%=chaps.get(i).getId()%>">
-                        <%=chaps.get(i).getName()%>
-                    </a>
-                </div>
-                <%}%>
-        </div> 
+        <div class="chap-content">
+              <%=chaps.get(i).getContent()%>              
+        </div>
+        <%}%>
         <div id="footer">
             <div id="footer-data">
                 <a href="#top">@2018 By Team 5</a>
@@ -86,8 +67,4 @@
         </div>
     </body>
 </html>
-<%}
-else{
-    response.sendRedirect("error.jsp");
-}
-%>
+

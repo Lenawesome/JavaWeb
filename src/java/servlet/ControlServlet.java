@@ -32,12 +32,19 @@ public class ControlServlet extends HttpServlet {
                     request.getRequestDispatcher("register.jsp").forward(request, response);
                     break;
                 case "view-info":
-                    String id= request.getParameter("id");
-                    if(id!=null){
-                        request.setAttribute("id", request.getParameter("id"));
+                    String novelId= request.getParameter("id");
+                    if(novelId!=null){
+                        request.setAttribute("id", novelId);
                         request.getRequestDispatcher("thong-tin").forward(request, response);
                     }else{
                         response.sendRedirect("error.jsp");
+                    }
+                    break;
+                case "chap-info":
+                    String chapId = request.getParameter("id");
+                    if(chapId!=null){
+                        request.setAttribute("chapId", chapId);
+                        request.getRequestDispatcher("noi-dung-chuong").forward(request, response);
                     }
                     break;
                 case "category":
