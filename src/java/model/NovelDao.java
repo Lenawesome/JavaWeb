@@ -52,7 +52,7 @@ public class NovelDao {
 //        String query = "Select * from novel where status='Full'";
     
     public void makeQuery(String type,String typeValue,Connection connection,List<Novel> novels,Novel novel) throws ClassNotFoundException, SQLException{
-        String query = "Select * from novel where "+type+"='"+typeValue+"'";
+        String query = "Select * from novel where "+type+" ='"+typeValue.trim()+"'";
         ResultSet rs = connect(query,connection);
         if(rs!=null){
             readResulset(rs,novel,novels);
@@ -63,16 +63,16 @@ public class NovelDao {
             while(rs.next()){
                 novel = new Novel();
                 novel.setId(rs.getInt("id"));
-                novel.setImgLink(rs.getString("image"));
-                novel.setName(rs.getString("name"));
-                novel.setCategories(rs.getString("categories"));
+                novel.setImgLink(rs.getString("image").trim());
+                novel.setName(rs.getString("name").trim());
+                novel.setCategories(rs.getString("categories").trim());
                 if(rs.getString("description").isEmpty()){
                     novel.setDescription("Chưa có mô tả truyện cho truyện này");
                 }else{
-                    novel.setDescription(rs.getString("description"));
+                    novel.setDescription(rs.getString("description").trim());
                 }
-                novel.setAuthor(rs.getString("author"));
-                novel.setStatus(rs.getString("status"));
+                novel.setAuthor(rs.getString("author").trim());
+                novel.setStatus(rs.getString("status").trim());
                 novels.add(novel);
             }
         } catch (SQLException ex) {

@@ -59,31 +59,29 @@
                     %>
                     <div class="item">
                         <a href="<%=request.getContextPath() %>/Control?page=view-info&id=<%=novels.get(i).getId()%>">
-                            <img src=<%=novels.get(i).getImgLink()%> class="img-reponsive" alt="<%=novels.get(i).getName()%>">
+                            <img src=<%=novels.get(i).getImgLink()%> class="image" alt="<%=novels.get(i).getName()%>">
                             <div class="book-name"> <%=novels.get(i).getName() %> </div>
                         </a>
                     </div>
                     <%}%>
                 </div>
             </div>
-            <div id="main2-wraper">
+            <div id="section-2">
                 <div id="left">
-                    <div id="finished-book-list">
-                        <div class="title-list"><a href="">Truyện hoàn thành</a></div>
-                        <div class="list2">
-                                 <%
-                        List<Novel> novels2= (List<Novel>) request.getAttribute("finishedList");
-                        for(int i=0; i < 10;i++){
-                            
-                    %>
-                            <div class="item">
-                                <a href="<%=request.getContextPath() %>/Control?page=view-info&id=<%=novels2.get(i).getId()%>">
-                                    <img src=<%=novels2.get(i).getImgLink()%> class="img-reponsive" alt="<%=novels2.get(i).getName()%>">
-                                    <div class="book-name"> <%=novels2.get(i).getName() %> </div>
-                                </a>
-                            </div>
-                            <%}%>
+                    <div class="title-list"><a href="">Truyện hoàn thành</a></div>
+                    <div class="list2">
+                             <%
+                    List<Novel> novels2= (List<Novel>) request.getAttribute("finishedList");
+                    for(int i=0; i < 10;i++){
+
+                %>
+                        <div class="item">
+                            <a href="<%=request.getContextPath() %>/Control?page=view-info&id=<%=novels2.get(i).getId()%>">
+                                <img src=<%=novels2.get(i).getImgLink()%> class="image" alt="<%=novels2.get(i).getName()%>">
+                                <div class="book-name"> <%=novels2.get(i).getName() %> </div>
+                            </a>
                         </div>
+                        <%}%>
                     </div>
                 </div>
                 <div id="right">

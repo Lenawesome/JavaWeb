@@ -44,7 +44,7 @@
                 </form>
             </div>
         </div>
-            <div id="main2-wraper">
+            <div id="section-2">
                 <div id="left">
                     <div id="finished-book-list">
                         <div class="title-list"><a href="">Truyện <%=request.getAttribute("genre") %> </a></div>

@@ -50,16 +50,18 @@
                     <button id="search-box-button" >Search</button>
                 </form>
             </div>
+        </div>
+        <div id="main-content">
             <%
                 
                 for(int i =0; i < chaps.size(); i++){
                 
             %>
+            <div class="chap-content">
+                  <%=chaps.get(i).getContent()%>              
+            </div>
+            <%}%>
         </div>
-        <div class="chap-content">
-              <%=chaps.get(i).getContent()%>              
-        </div>
-        <%}%>
         <div id="footer">
             <div id="footer-data">
                 <a href="#top">@2018 By Team 5</a>

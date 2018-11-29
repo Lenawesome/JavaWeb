@@ -2,7 +2,7 @@
 <%@page import="model.Chap"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Novel"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 
 <%
     List<Novel> novels = (List<Novel>) request.getAttribute("listNovelById");
@@ -47,38 +47,65 @@
                         <option value="Tác giả">Tác giả</option>
                         <option value="Tên Truyện">Tên Truyện</option>
                     </select>
-                    <button id="search-box-button" >Search</button>
+                    <input id="submit-button" type="submit" value="Search" >
                 </form>
             </div>
         </div>
-        <div id="novel-info">
-            <div class="title-list">Thông tin truyện</div>
-            <div class="section-1">
-                    <%
-                        
-                        for(int i = 0; i <novels.size(); i++){
-                        
+        <div id="main-content">
+
+            <div id="section-2">
+                <div class="title-list"><a href="">Thông tin truyện</a></div>
+                <div id="left-2">
+                                 <%
+                        List<Novel> novels2= (List<Novel>) request.getAttribute("listNovelById");
+                        for(int i=0; i < novels2.size();i++){
+
                     %>
-                <div class="item">
-                    <img src="<%=novels.get(i).getImgLink()%>" class="img-reponsive" alt="<%=novels.get(i).getName()%>">
-                    <div class="novel-name"> <%=novels.get(i).getName() %> </div>
-                    <div class="novel-author">Tác giả: <%=novels.get(i).getAuthor()%></div>
-                    <div class="novel-status">Tình trạng: <%=novels.get(i).getStatus()%></div>
-                    <div class="novel-status">Thể loại: <%=novels.get(i).getCategories()%></div>
+                            <div class="novel">
+                                <img src=<%=novels2.get(i).getImgLink()%> class="image" alt="<%=novels2.get(i).getName()%>">
+                                <div class="novel-info"><b>Tác giả:</b> <%=novels.get(i).getAuthor()%></div>
+                                <div class="novel-info"><b>Tình trạng:</b> <%=novels.get(i).getStatus()%></div>
+                                <div class="novel-info"><b>Thể loại: </b><%=novels.get(i).getCategories()%></div>
+                            </div>
+                </div>
+                <div id="middle">
+                    <div class="novel-name"><%=novels.get(i).getName()%></div>
+                    <div id="novel-description">
+                        <%=novels.get(i).getDescription()%>
+                    </div>
                 </div>
                 <%}%>
-                <div class="info-right"></div>
+                <div id="right">
+                    <div class="title-list">Truyện cùng tác giả</div>
+                    <div class="related-novel">
+                        <%
+                            List<Novel> listNovelByAuthor = (List<Novel>)request.getAttribute("listNovelByAuthor");
+                            for(int j=0; j<listNovelByAuthor.size();j++){
+                        %>
+                        <a href="<%=request.getContextPath()%>/Control?page=view-info&id=<%=listNovelByAuthor.get(j).getId()%>">
+                            <%=listNovelByAuthor.get(j).getName()%><br>
+                        </a>
+                        <%}%>
+                    </div>
+                </div>
             </div>
-                <%
-                    for(int i=0; i <chaps.size();i++){
-                %>
-                <div class="list-chapter">
-                    <a href="<%=request.getContextPath() %>/Control?page=chap-info&id=<%=chaps.get(i).getId()%>">
-                        <%=chaps.get(i).getName()%>
+            <div class="section-3">
+                <div class="title-list">Danh sách chương</div>            
+                <div class="chap-list">
+                     <%
+                        List<Chap> listChaps = (List<Chap>)request.getAttribute("listChap");
+                        for(int j=0; j<listChaps.size();j++){
+                    %>
+                    <a href="<%=request.getContextPath()%>/Control?page=chap-info&id=<%=listChaps.get(j).getId()%>">
+                        <%=listChaps.get(j).getName()%><br>
                     </a>
-                </div>
-                <%}%>
-        </div> 
+                    <%}%>
+                </div>          
+            </div>            
+        </div>
+        
+        
+        
         <div id="footer">
             <div id="footer-data">
                 <a href="#top">@2018 By Team 5</a>
