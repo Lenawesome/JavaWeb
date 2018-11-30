@@ -17,7 +17,8 @@
         <title></title>
     </head>
     <body>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" type="text/css" href="css/chapContent.css">
     </head>
     <body>
         <div id="top">
@@ -51,7 +52,7 @@
                 </form>
             </div>
         </div>
-        <div id="main-content">
+        <div class="main-content">
             <%
                 
                 for(int i =0; i < chaps.size(); i++){

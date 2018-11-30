@@ -1,0 +1,12 @@
+.main-content{
+    width: 66%;
+    margin: 0 auto;
+    clear:left;
+}
+.chap-content{
+    text-align: justify;
+    font-size: 15px;
+    width: 75%;
+    margin: 0 auto;
+}
+

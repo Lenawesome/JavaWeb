@@ -1,0 +1,73 @@
+.main-content{
+    width: 60%;
+    margin: 0 auto;
+    clear:left;
+}
+
+.title-list{
+    color: #4e4e4e;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 15px;
+}
+.section-1{
+    clear: left;
+    padding-top: 10px;
+
+}
+.left{
+    width: 20%;
+    min-height: 200px;
+    float: left;
+}
+
+.novel {
+    width: 150px;
+    text-align: left;
+    margin-top: 26px;
+    margin-right: 10px;
+}
+.image {
+    margin-bottom: 10px;
+    width: 150px;
+    height: 206px;
+}
+.novel-info {
+    margin-bottom: 10px;
+}
+.middle{
+    width: 60%;
+    float: left;
+}
+.novel-name {
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.right {
+    margin-top: 20px;
+    width: 20%;
+    border: 1px solid #ddd;
+    color: #333;
+    min-height: 200px;
+    float: right;
+}
+.related-novel a{
+    text-decoration: none;
+    margin-bottom: 10px;
+    color:black;
+}
+.section-2{
+    clear: left;
+    min-height: 400px;
+}
+.chap-list a{
+    text-decoration: none;
+    color: black;
+    font-weight: normal;
+}
+
+.chap-list a:hover{
+    text-decoration: underline;
+}

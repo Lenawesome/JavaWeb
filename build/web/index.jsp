@@ -13,7 +13,8 @@
     <head>
         <title> Trang chủ </title>
         <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" type="text/css" href="css/home.css">
     </head>
     <body>
         <div id="top">
@@ -48,10 +49,10 @@
                 </form>
             </div>
         </div>
-        <div id="main-content">
-            <div id="section-1">
-                <div class="title-list"><a href="#">Truyện hot</a></div>
-                <div class="list">
+        <div class="main-content">
+            <div class="section-1">
+                <div class="title-list">Truyện hot</div>
+                
                      <%
                         List<Novel> novels = (List<Novel>)request.getAttribute("hotList");
                         for(int i=0; i < 10;i++){
@@ -64,12 +65,10 @@
                         </a>
                     </div>
                     <%}%>
-                </div>
             </div>
-            <div id="section-2">
-                <div id="left">
-                    <div class="title-list"><a href="">Truyện hoàn thành</a></div>
-                    <div class="list2">
+            <div class="section-2">
+                <div class="left">
+                    <div class="title-list">Truyện hoàn thành</div>
                              <%
                     List<Novel> novels2= (List<Novel>) request.getAttribute("finishedList");
                     for(int i=0; i < 10;i++){
@@ -82,9 +81,8 @@
                             </a>
                         </div>
                         <%}%>
-                    </div>
                 </div>
-                <div id="right">
+                <div class="right">
                     <div class="title-list">Thể loại</div>
                     <ul>
                         <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=kiem-hiep">Kiếm hiệp</a></li>

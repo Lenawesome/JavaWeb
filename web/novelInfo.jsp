@@ -17,7 +17,8 @@
         <title></title>
     </head>
     <body>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" type="text/css" href="css/novelInfo.css">
     </head>
     <body>
         <div id="top">
@@ -51,31 +52,30 @@
                 </form>
             </div>
         </div>
-        <div id="main-content">
+        <div class="main-content">
 
-            <div id="section-2">
-                <div class="title-list"><a href="">Thông tin truyện</a></div>
-                <div id="left-2">
-                                 <%
+            <div class="section-1">
+                <div class="title-list">Thông tin truyện</a></div>
+                <div class="left">
+                    <%
                         List<Novel> novels2= (List<Novel>) request.getAttribute("listNovelById");
                         for(int i=0; i < novels2.size();i++){
-
                     %>
-                            <div class="novel">
-                                <img src=<%=novels2.get(i).getImgLink()%> class="image" alt="<%=novels2.get(i).getName()%>">
-                                <div class="novel-info"><b>Tác giả:</b> <%=novels.get(i).getAuthor()%></div>
-                                <div class="novel-info"><b>Tình trạng:</b> <%=novels.get(i).getStatus()%></div>
-                                <div class="novel-info"><b>Thể loại: </b><%=novels.get(i).getCategories()%></div>
-                            </div>
+                    <div class="novel">
+                        <img src=<%=novels2.get(i).getImgLink()%> class="image" alt="<%=novels2.get(i).getName()%>">
+                        <div class="novel-info"><b>Tác giả:</b> <%=novels.get(i).getAuthor()%></div>
+                        <div class="novel-info"><b>Tình trạng:</b> <%=novels.get(i).getStatus()%></div>
+                        <div class="novel-info"><b>Thể loại: </b><%=novels.get(i).getCategories()%></div>
+                    </div>
                 </div>
-                <div id="middle">
+                <div class="middle">
                     <div class="novel-name"><%=novels.get(i).getName()%></div>
-                    <div id="novel-description">
+                    <div class="novel-description">
                         <%=novels.get(i).getDescription()%>
                     </div>
                 </div>
                 <%}%>
-                <div id="right">
+                <div class="right">
                     <div class="title-list">Truyện cùng tác giả</div>
                     <div class="related-novel">
                         <%
@@ -89,7 +89,7 @@
                     </div>
                 </div>
             </div>
-            <div class="section-3">
+            <div class="section-2">
                 <div class="title-list">Danh sách chương</div>            
                 <div class="chap-list">
                      <%

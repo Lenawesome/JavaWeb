@@ -9,7 +9,8 @@
     <head>
         <title> Trang chủ </title>
         <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" type="text/css" href="css/category.css">
     </head>
     <body>
         <div id="top">
@@ -57,7 +58,7 @@
                     %>
                     <div class="item">
                         <a href="<%=request.getContextPath() %>/Control?page=view-info&id=<%=novels.get(i).getId()%>">
-                            <img src=<%=novels.get(i).getImgLink()%> class="img-reponsive" alt="<%=novels.get(i).getName()%>">
+                            <img src=<%=novels.get(i).getImgLink()%> class="image" alt="<%=novels.get(i).getName()%>">
                             <div class="book-name"> <%=novels.get(i).getName() %> </div>
                         </a>
                     </div>

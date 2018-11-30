@@ -11,7 +11,7 @@
         <title></title>
     </head>
     <body>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
     <body>
         <div id="top">
