@@ -30,23 +30,93 @@ public class NovelDao {
     private static final String CONN_STRING=
             "jdbc:mysql://localhost:3306/readbookwebappdb";
     
-    public List<Novel> listNovel() throws ClassNotFoundException, SQLException {
+    public List<Novel> listNovel(){
+        List<Novel> novels = new ArrayList<>();
+        Connection connection =null;
+        Statement stmt = null;
+        try {
             Novel novel = new Novel();
-            List<Novel> novels = new ArrayList<>();
-            Connection connection =null;
+            ResultSet rs = null;
             String query = "Select * from novel";
-            ResultSet rs = connect(query,connection);
-            if(rs!=null){
-                readResulset(rs,novel,novels);
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager
+                    .getConnection("jdbc:mysql://localhost:3306/readbookwebappdb","lenawesome", "ngocanh123");
+            stmt = (Statement) connection.createStatement();
+            rs = stmt.executeQuery(query);
+            while(rs.next()){
+                novel = new Novel();
+                novel.setId(rs.getInt("id"));
+                novel.setImgLink(rs.getString("image").trim());
+                novel.setName(rs.getString("name").trim());
+                novel.setCategories(rs.getString("categories").trim());
+                if(rs.getString("description").isEmpty()){
+                    novel.setDescription("Chưa có mô tả truyện cho truyện này");
+                }else{
+                    novel.setDescription(rs.getString("description").trim());
+                }
+                novel.setAuthor(rs.getString("author").trim());
+                novel.setStatus(rs.getString("status").trim());
+                novels.add(novel);
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(ChapDao.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try{
+                if(connection!=null)
+                    connection.close();
+                if(stmt!=null)
+                     stmt.close();
+            }catch (SQLException ex) {
+                    Logger.getLogger(ChapDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         return novels;
     }
     
-    public List<Novel> listBy(String type,String typeValue) throws ClassNotFoundException, SQLException{
-        Novel novel = new Novel();
+    public List<Novel> listBy(String type,String typeValue) throws SQLException{
         List<Novel> novels = new ArrayList<>();
         Connection connection =null;
-        makeQuery(type, typeValue, connection, novels, novel);
+        Statement stmt = null;
+        try {
+            Novel novel = new Novel();
+            ResultSet rs = null;
+            String query = "Select * from novel where "+type+"='"+typeValue+"'";
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager
+                    .getConnection("jdbc:mysql://localhost:3306/readbookwebappdb","lenawesome", "ngocanh123");
+            stmt = (Statement) connection.createStatement();
+            rs = stmt.executeQuery(query);
+            while(rs.next()){
+                novel = new Novel();
+                novel.setId(rs.getInt("id"));
+                novel.setImgLink(rs.getString("image").trim());
+                novel.setName(rs.getString("name").trim());
+                novel.setCategories(rs.getString("categories").trim());
+                if(rs.getString("description").isEmpty()){
+                    novel.setDescription("Chưa có mô tả truyện cho truyện này");
+                }else{
+                    novel.setDescription(rs.getString("description").trim());
+                }
+                novel.setAuthor(rs.getString("author").trim());
+                novel.setStatus(rs.getString("status").trim());
+                novels.add(novel);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ChapDao.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try{
+                if(connection!=null)
+                    connection.close();
+                if(stmt!=null)
+                     stmt.close();
+            }catch (SQLException ex) {
+                    Logger.getLogger(ChapDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         return novels;
     }
 //        String query = "Select * from novel where status='Full'";
@@ -79,7 +149,7 @@ public class NovelDao {
             Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public ResultSet connect(String query,Connection connection) {
+    public ResultSet connect(String query,Connection connection) throws SQLException {
             Statement stmt = null;
             ResultSet rs = null;
         try {

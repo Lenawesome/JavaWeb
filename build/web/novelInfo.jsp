@@ -6,7 +6,7 @@
 
 <%
     List<Novel> novels = (List<Novel>) request.getAttribute("listNovelById");
-    List<Chap> chaps = (List<Chap>) request.getAttribute("listChap");
+    List<Chap> listChaps = (List<Chap>) request.getAttribute("listChap");
     if(novels!=null){
 %>
 
@@ -14,7 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
+        <title><%=novels.get(0).getName()%></title>
     </head>
     <body>
         <link rel="stylesheet" type="text/css" href="css/main.css">
@@ -58,11 +58,11 @@
                 <div class="title-list">Thông tin truyện</a></div>
                 <div class="left">
                     <%
-                        List<Novel> novels2= (List<Novel>) request.getAttribute("listNovelById");
-                        for(int i=0; i < novels2.size();i++){
+                        
+                        for(int i=0; i < novels.size();i++){
                     %>
                     <div class="novel">
-                        <img src=<%=novels2.get(i).getImgLink()%> class="image" alt="<%=novels2.get(i).getName()%>">
+                        <img src=<%=novels.get(i).getImgLink()%> class="image" alt="<%=novels.get(i).getName()%>">
                         <div class="novel-info"><b>Tác giả:</b> <%=novels.get(i).getAuthor()%></div>
                         <div class="novel-info"><b>Tình trạng:</b> <%=novels.get(i).getStatus()%></div>
                         <div class="novel-info"><b>Thể loại: </b><%=novels.get(i).getCategories()%></div>
@@ -93,7 +93,6 @@
                 <div class="title-list">Danh sách chương</div>            
                 <div class="chap-list">
                      <%
-                        List<Chap> listChaps = (List<Chap>)request.getAttribute("listChap");
                         for(int j=0; j<listChaps.size();j++){
                     %>
                     <a href="<%=request.getContextPath()%>/Control?page=chap-info&id=<%=listChaps.get(j).getId()%>">

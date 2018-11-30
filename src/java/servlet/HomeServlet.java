@@ -43,8 +43,6 @@ public class HomeServlet extends HttpServlet {
                 request.setAttribute("finishedList", finishedList);
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(HomeServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(HomeServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

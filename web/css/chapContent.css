@@ -8,5 +8,22 @@
     font-size: 15px;
     width: 75%;
     margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
+
+.chap-info,.button-group{
+    text-align: center;
+    font-weight: bold;
+    font-size: 17px;
+    margin-bottom: 20px;
+}
+
+.next-previous,.drop-down{
+    padding: 5px;
+    margin-bottom: 20px;
+}
+.novel-name{
+    margin-bottom: 15px;
+}

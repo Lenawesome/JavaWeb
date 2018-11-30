@@ -14,16 +14,27 @@ public class Chap {
     private int id_novel;
     private String name;
     private String content;
+    private int chap_numb;
 
-    public Chap() {
-    }
-
-    public Chap(int id, int id_novel, String name, String content) {
+    public Chap(int id, int id_novel, String name, String content, int chap_numb) {
         this.id = id;
         this.id_novel = id_novel;
         this.name = name;
         this.content = content;
+        this.chap_numb = chap_numb;
     }
+    public Chap() {
+    }
+
+    public int getChap_numb() {
+        return chap_numb;
+    }
+
+    public void setChap_numb(int chap_numb) {
+        this.chap_numb = chap_numb;
+    }
+
+  
 
     public int getId() {
         return id;

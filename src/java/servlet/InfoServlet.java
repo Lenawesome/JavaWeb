@@ -36,27 +36,26 @@ public class InfoServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             String id = (String)request.getAttribute("id");
+            
             NovelDao novelDao = new NovelDao();
             ChapDao chapDao = new ChapDao();
             List<Novel> listNovelById = novelDao.listBy("id", id);
             List<Novel> listNovel = novelDao.listNovel();
             List<Novel> listNovelByAuthor = new ArrayList<>();
+            List<Chap> listChap = chapDao.listChap("novel_id",id);
+           
             for(int i =0; i < listNovel.size();i++){
                 if(listNovel.get(i).getAuthor().equals(listNovelById.get(0).getAuthor())
                         && listNovel.get(i).getId()!=Integer.parseInt(id)){
                     listNovelByAuthor.add(listNovel.get(i));
                 }
             }
-            List<Chap> listChap = chapDao.listChap("novel_id",id);
                 if(!listNovelById.isEmpty()){
                     request.setAttribute("listNovelById",listNovelById);
                     request.setAttribute("listChap",listChap);
                     request.setAttribute("listNovelByAuthor", listNovelByAuthor);
                     request.getRequestDispatcher("novelInfo.jsp").forward(request, response);
-                    
                 }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(InfoServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(InfoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

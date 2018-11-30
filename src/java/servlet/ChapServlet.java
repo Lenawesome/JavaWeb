@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Chap;
 import model.ChapDao;
+import model.Novel;
+import model.NovelDao;
 
 /**
  *
@@ -32,16 +34,36 @@ public class ChapServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            String id = (String)request.getAttribute("chapId");
+            String chapId = (String)request.getAttribute("chapId");
+            String next = "off",previous="off";
             ChapDao chapDao = new ChapDao();
-            List<Chap> chaps = chapDao.listChap("id", id);
-            request.setAttribute("listChap", chaps);
+            NovelDao novelDao = new NovelDao();
+            List<Chap> chaps = chapDao.listChap("id", chapId);
+            List<Novel> novels = novelDao.listBy("id", ""+chaps.get(0).getId_novel());
+            List<Chap> listChap = chapDao.listChap("novel_id",""+chaps.get(0).getId_novel());
+           
+            if(chaps.get(0).getChap_numb()!=1){
+                previous="";
+            }
+            if(chaps.get(0).getChap_numb()!=listChap.size()){
+                next="";
+            }
+            for(int i =0;i <listChap.size();i++){
+                if(listChap.get(i).getChap_numb()==(chaps.get(0).getChap_numb())+1){
+                    request.setAttribute("nextChapId", listChap.get(i).getId());
+                }
+                if(listChap.get(i).getChap_numb()==(chaps.get(0).getChap_numb()-1))
+                    request.setAttribute("previousChapId", listChap.get(i).getId());
+            }
+            request.setAttribute("next", next);
+            request.setAttribute("previous", previous);
+            request.setAttribute("chap", chaps);
+            request.setAttribute("listChap", listChap);
+            request.setAttribute("listNovels", novels);
             request.getRequestDispatcher("chapContent.jsp").forward(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(ChapServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ChapServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
     }
 
    
