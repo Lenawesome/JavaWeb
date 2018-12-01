@@ -1,14 +1,16 @@
-#section-2,#section-1{
+#section-1{
     clear: left;
     padding-top: 10px;
-
+    width: 70%;
+    margin: 0 auto;
 }
 
-#section-2 #left {
-    width: 80%;
+#section-1 #left {
+    width: 70%;
     min-height: 200px;
     float: left;
 }
+
 .title-list{
     color: #4e4e4e;
     font-weight: bold;
@@ -24,9 +26,7 @@
 
 .list{
     width: 90%;
-    margin: 0 auto;
-    
-    
+    margin: 0 auto; 
 }
 
 .item{
@@ -45,33 +45,47 @@
     width: 150px;
     height: 206px;
 }
-
+.genre-description{
+    float:right;
+    width: 30%;
+    margin-bottom: 20px;
+    background: azure;
+    padding:15px;
+}
 #right {
-    margin-top: 20px;
-    width: 20%;
-    border: 1px solid #ddd;
+    width: 30%;
     color: #333;
-    min-height: 200px;
     float: right;
+    border: 1px solid #ddd;
+    background: azure;
 }
-#right ul{
-    
+.title-list{
+    margin-top: 10px;
+}
+.list ul{
+    display: block;
+    overflow: hidden;
+
 }
 
-#right ul li{
+.list ul li{
     list-style: none;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    margin: 5px;
     float: left;
-    margin: 10px;
 }
 
-#right ul li a{
+.list ul li a{
     text-decoration: none;
     color: black;
-    padding: 5px;
+    display: block;
 }
 
-#right ul li a:hover{
-    background: #bed2e7;
+.list ul li a:hover{
+    background-color: #bed2e7;
 }
 
 

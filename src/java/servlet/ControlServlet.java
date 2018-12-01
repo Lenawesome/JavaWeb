@@ -10,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Genre;
+import model.GenreDao;
 import model.Novel;
 import model.NovelDao;
 
@@ -21,8 +23,10 @@ public class ControlServlet extends HttpServlet {
             String page = request.getParameter("page");
             page = page.toLowerCase();
             
+            List<Genre> listGenre = GenreDao.listAllGenres();
             switch(page){
                 case "home":
+                    request.setAttribute("listGenre", listGenre);
                     request.getRequestDispatcher("home").forward(request, response);
                     break;
                 case "login":
@@ -35,6 +39,7 @@ public class ControlServlet extends HttpServlet {
                     String novelId= request.getParameter("id");
                     if(novelId!=null){
                         request.setAttribute("id", novelId);
+                        request.setAttribute("listGenre", listGenre);
                         request.getRequestDispatcher("thong-tin").forward(request, response);
                     }else{
                         response.sendRedirect("error.jsp");
@@ -44,11 +49,13 @@ public class ControlServlet extends HttpServlet {
                     String chapId = request.getParameter("id");
                     if(chapId!=null){
                         request.setAttribute("chapId", chapId);
+                        request.setAttribute("listGenre", listGenre);
                         request.getRequestDispatcher("noi-dung-chuong").forward(request, response);
                     }
                     break;
                 case "category":
-                    request.setAttribute("genre", request.getParameter("genre"));
+                    request.setAttribute("id", request.getParameter("id"));
+                    request.setAttribute("listGenre", listGenre);
                     request.getRequestDispatcher("the-loai").forward(request, response);
                     break;
                 case "search":

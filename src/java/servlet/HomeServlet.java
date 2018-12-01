@@ -32,7 +32,7 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
+
             NovelDao novelDao = new NovelDao();
             List<Novel> hotList = novelDao.listNovel();
             List<Novel> finishedList = novelDao.listBy("status","Full");
@@ -43,10 +43,7 @@ public class HomeServlet extends HttpServlet {
                 request.setAttribute("finishedList", finishedList);
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(HomeServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
     }
 
 
-}

@@ -13,16 +13,14 @@ public class Novel {
     private int id;
     private String name;
     private String imgLink;
-    private String categories;
     private String status;
     private String description;
     private String author;
 
-    public Novel(int id, String name, String imgLink, String categories, String status, String description, String author) {
+    public Novel(int id, String name, String imgLink, String status, String description, String author) {
         this.id = id;
         this.name = name;
         this.imgLink = imgLink;
-        this.categories = categories;
         this.status = status;
         this.description = description;
         this.author = author;
@@ -34,16 +32,6 @@ public class Novel {
 
     public void setAuthor(String author) {
         this.author = author;
-    }
-
-    
-
-    public String getCategories() {
-        return categories;
-    }
-
-    public void setCategories(String categories) {
-        this.categories = categories;
     }
 
     public String getStatus() {
@@ -61,9 +49,6 @@ public class Novel {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    
-
     public Novel() {
     }
 

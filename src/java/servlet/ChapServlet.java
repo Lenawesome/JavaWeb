@@ -33,7 +33,6 @@ public class ChapServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
             String chapId = (String)request.getAttribute("chapId");
             String next = "off",previous="off";
             ChapDao chapDao = new ChapDao();
@@ -61,10 +60,5 @@ public class ChapServlet extends HttpServlet {
             request.setAttribute("listChap", listChap);
             request.setAttribute("listNovels", novels);
             request.getRequestDispatcher("chapContent.jsp").forward(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(ChapServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }
-
-   
-}

@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Chap;
 import model.ChapDao;
+import model.Genre;
+import model.GenreDao;
 import model.Novel;
 import model.NovelDao;
 
@@ -34,14 +36,21 @@ public class InfoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
             String id = (String)request.getAttribute("id");
-            
             NovelDao novelDao = new NovelDao();
             ChapDao chapDao = new ChapDao();
             List<Novel> listNovelById = novelDao.listBy("id", id);
             List<Novel> listNovel = novelDao.listNovel();
             List<Novel> listNovelByAuthor = new ArrayList<>();
+            List<Genre> listGenre = GenreDao.listGenreByIdNovel(id);
+            List<Genre> listAllGenres = GenreDao.listAllGenres();
+            String strGenre = "";
+            for(int i =0; i<listGenre.size();i++){
+                if(i==listGenre.size()-1)
+                    strGenre+=listGenre.get(i).getName();
+                else
+                    strGenre+=(listGenre.get(i).getName()+",");
+            }
             List<Chap> listChap = chapDao.listChap("novel_id",id);
            
             for(int i =0; i < listNovel.size();i++){
@@ -54,11 +63,11 @@ public class InfoServlet extends HttpServlet {
                     request.setAttribute("listNovelById",listNovelById);
                     request.setAttribute("listChap",listChap);
                     request.setAttribute("listNovelByAuthor", listNovelByAuthor);
+                    request.setAttribute("listGenre", listGenre);
+                    request.setAttribute("listAllGenres", listAllGenres);
+                    request.setAttribute("strGenre", strGenre);
                     request.getRequestDispatcher("novelInfo.jsp").forward(request, response);
                 }
-        } catch (SQLException ex) {
-            Logger.getLogger(InfoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
 
-}
+    }

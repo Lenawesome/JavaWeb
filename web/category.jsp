@@ -1,9 +1,13 @@
 
 
+<%@page import="model.Genre"%>
 <%@page import="java.util.List"%>
 <%@page import="model.NovelDao"%>
 <%@page import="model.Novel"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    List<Genre> listGenre = (List<Genre>)request.getAttribute("listGenre");
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,11 +24,14 @@
                     <li>
                         <a href="#">Thể loại</a>
                         <ul>
-                            <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=kiem-hiep">Kiếm hiệp</a></li>
-                            
-                            <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=tien-hiep">Tiên hiệp</a></li>
-                            <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=hai-huoc">Hài hước</a></li>
-                            <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=truyen-ma">Truyện ma</a></li>
+                            <%
+                                for(int i = 0;i <listGenre.size();i++){
+                            %>
+                            <li><a href="<%=request.getContextPath()%>/Control?page=category&id=<%=listGenre.get(i).getId()%>">
+                                    <%=listGenre.get(i).getName()%>
+                                </a>
+                            </li>
+                            <%}%>
                         </ul>
                     </li>
                     <li>
@@ -35,9 +42,9 @@
                         </ul>
                     </li>
                 </ul>
-                <form class="search-form" action="search" method="get">
-                    <input required id="search-box-input" type="text" placeholder="Tìm truyện, tác giả...">
-                    <select id="dropdown-list">
+                <form class="search-form" action="/tim-kiem" method="get">
+                    <input name="search-input"required id="search-box-input" type="text" placeholder="Tìm truyện, tác giả...">
+                    <select name="option-input"id="dropdown-list">
                         <option value="Tác giả">Tác giả</option>
                         <option value="Tên Truyện">Tên Truyện</option>
                     </select>
@@ -45,16 +52,15 @@
                 </form>
             </div>
         </div>
-            <div id="section-2">
+        <div class="main-content"> 
+            <div id="section-1">
                 <div id="left">
-                    <div id="finished-book-list">
-                        <div class="title-list"><a href="">Truyện <%=request.getAttribute("genre") %> </a></div>
-                        
+                    <%List<Genre> genre = (List<Genre>) request.getAttribute("genre");%>
+                    <div class="title-list"><a href="">TRUYỆN <%=genre.get(0).getName().toUpperCase() %> </a></div>
                          <div class="list">
                      <%
-                        NovelDao novelDao = new NovelDao();
-                        List<Novel> novels = novelDao.listNovel();
-                        for(int i=0; i < 12;i++){
+                        List<Novel> novels = (List<Novel>)request.getAttribute("listNovel");
+                        for(int i=0; i < novels.size();i++){
                     %>
                     <div class="item">
                         <a href="<%=request.getContextPath() %>/Control?page=view-info&id=<%=novels.get(i).getId()%>">
@@ -64,16 +70,23 @@
                     </div>
                     <%}%>
                 </div>
-                    </div>
                 </div>
+                <div class="genre-description"><%=genre.get(0).getDescription()%></div>
                 <div id="right">
-                    <div class="title-list">Thể loại</div>
-                    <ul>
-                        <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=kiem-hiep">Kiếm hiệp</a></li>
-                        <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=tien-hiep">Tiên hiệp</a></li>
-                        <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=hai-huoc">Hài hước</a></li>
-                        <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=truyen-ma">Truyện ma</a></li>
-                    </ul>
+                    <div class="title-list">THỂ LOẠI TRUYỆN</div>
+                    <div class="list">
+                        <ul>
+                                                        <%
+                                    for(int i = 0;i <listGenre.size();i++){
+                                %>
+                                <li>
+                                    <a href="<%=request.getContextPath()%>/Control?page=category&id=<%=listGenre.get(i).getId()%>">
+                                        <%=listGenre.get(i).getName()%>
+                                    </a>
+                                </li>
+                                <%}%>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -84,31 +97,3 @@
         </div>
     </body>
 </html>
-
-<!--            <div id="main2-wraper">
-                <div id="left">
-                    <div id="finished-book-list">
-                        <div class="title-list"><a href="">Truyện <%=request.getAttribute("genre") %> </a></div>
-                        
-                        <div class="list">
-                            <div class="item-top-2">
-                                <a href="#">
-                                    <img src="./images/Linh Vũ Thiên Hạ.jpg" class="img-reponsive" alt="Linh Vũ Thiên Hạ">
-                                    <div class="book-name">Linh vũ thiên hạ</div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="right">
-                    <div class="title-list">Thể loại</div>
-                    <ul>
-                        <li><a href="#">Kiếm hiệp</a></li>
-                        <li><a href="#">Tiên hiệp</a></li>
-                        <li><a href="#">Hài hước</a></li>
-                        <li><a href="#">Truyện ma</a></li>
-                    </ul>
-                </div>
-            </div>-->
- 
-

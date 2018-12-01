@@ -1,4 +1,5 @@
 
+<%@page import="model.Genre"%>
 <%@page import="model.Chap"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Novel"%>
@@ -7,6 +8,10 @@
 <%
     List<Novel> novels = (List<Novel>) request.getAttribute("listNovelById");
     List<Chap> listChaps = (List<Chap>) request.getAttribute("listChap");
+    List<Genre> listGenre = (List<Genre>)request.getAttribute("listGenre");
+    List<Genre> listAllGenres = (List<Genre>)request.getAttribute("listAllGenres");
+    String strGenre = (String) request.getAttribute("strGenre");
+    
     if(novels!=null){
 %>
 
@@ -28,10 +33,14 @@
                     <li>
                         <a href="#">Thể loại</a>
                         <ul>
-                            <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=kiem-hiep">Kiếm hiệp</a></li>
-                            <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=tien-hiep">Tiên hiệp</a></li>
-                            <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=hai-huoc">Hài hước</a></li>
-                            <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=truyen-ma">Truyện ma</a></li>
+                            <%
+                                for(int i = 0;i <listAllGenres.size();i++){
+                            %>
+                            <li><a href="<%=request.getContextPath()%>/Control?page=category&id=<%=listAllGenres.get(i).getId()%>">
+                                    <%=listAllGenres.get(i).getName()%>
+                                </a>
+                            </li>
+                            <%}%>
                         </ul>
                     </li>
                     <li>
@@ -65,7 +74,8 @@
                         <img src=<%=novels.get(i).getImgLink()%> class="image" alt="<%=novels.get(i).getName()%>">
                         <div class="novel-info"><b>Tác giả:</b> <%=novels.get(i).getAuthor()%></div>
                         <div class="novel-info"><b>Tình trạng:</b> <%=novels.get(i).getStatus()%></div>
-                        <div class="novel-info"><b>Thể loại: </b><%=novels.get(i).getCategories()%></div>
+                        <div class="novel-info"><b>Thể loại: </b><%=strGenre%></div>
+                      
                     </div>
                 </div>
                 <div class="middle">

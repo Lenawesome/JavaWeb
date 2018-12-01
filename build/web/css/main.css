@@ -76,7 +76,9 @@ body {
     padding: 0 10px;
 }
 
-
+.main-content{
+    min-height: 700px;
+}
 
 #footer {
     width: 100%;

@@ -15,52 +15,36 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-
-
-
-
 /**
  *
  * @author MyPC
  */
-public class NovelDao {
-    private static final String USERNAME="lenawesome";
-    private static final String PASSWORD="ngocanh123";
-    private static final String CONN_STRING=
-            "jdbc:mysql://localhost:3306/readbookwebappdb";
+public class GenreDao {
     
-    public List<Novel> listNovel(){
-        List<Novel> novels = new ArrayList<>();
+    public static List<Genre> listAllGenres() {
+        List<Genre> genres = new ArrayList<>();
         Connection connection =null;
         Statement stmt = null;
         try {
-            Novel novel = new Novel();
+            Genre genre = new Genre();
             ResultSet rs = null;
-            String query = "Select * from novel";
+            String query = "Select * from genre";
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager
                     .getConnection("jdbc:mysql://localhost:3306/readbookwebappdb","lenawesome", "ngocanh123");
             stmt = (Statement) connection.createStatement();
             rs = stmt.executeQuery(query);
             while(rs.next()){
-                novel = new Novel();
-                novel.setId(rs.getInt("id"));
-                novel.setImgLink(rs.getString("image").trim());
-                novel.setName(rs.getString("name").trim());
-                if(rs.getString("description").isEmpty()){
-                    novel.setDescription("Chưa có mô tả truyện cho truyện này");
-                }else{
-                    novel.setDescription(rs.getString("description").trim());
-                }
-                novel.setAuthor(rs.getString("author").trim());
-                novel.setStatus(rs.getString("status").trim());
-                novels.add(novel);
+                genre = new Genre();
+                genre.setId(rs.getInt("id"));
+                genre.setName(rs.getString("name"));
+                genre.setDescription(rs.getString("description"));
+                genres.add(genre);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ChapDao.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ChapDao.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             try{
                 if(connection!=null)
@@ -71,40 +55,33 @@ public class NovelDao {
                     Logger.getLogger(ChapDao.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return novels;
+        return genres;
     }
-    
-    public List<Novel> listBy(String type,String typeValue){
-        List<Novel> novels = new ArrayList<>();
+     public static List<Genre> listGenreByIdNovel(String typeValue){
+        List<Genre> genres = new ArrayList<>();
         Connection connection =null;
         Statement stmt = null;
         try {
-            Novel novel = new Novel();
+            Genre genre = new Genre();
             ResultSet rs = null;
-            String query = "Select * from novel where "+type+"='"+typeValue+"'";
+            String query = "Select * from genre,novel_genre where"
+                    + " genre.id = novel_genre.genre_id and novel_genre.novel_id='"+typeValue+"'";
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager
                     .getConnection("jdbc:mysql://localhost:3306/readbookwebappdb","lenawesome", "ngocanh123");
             stmt = (Statement) connection.createStatement();
             rs = stmt.executeQuery(query);
             while(rs.next()){
-                novel = new Novel();
-                novel.setId(rs.getInt("id"));
-                novel.setImgLink(rs.getString("image").trim());
-                novel.setName(rs.getString("name").trim());
-                if(rs.getString("description").isEmpty()){
-                    novel.setDescription("Chưa có mô tả truyện cho truyện này");
-                }else{
-                    novel.setDescription(rs.getString("description").trim());
-                }
-                novel.setAuthor(rs.getString("author").trim());
-                novel.setStatus(rs.getString("status").trim());
-                novels.add(novel);
+                genre = new Genre();
+                genre.setId(rs.getInt("id"));
+                genre.setName(rs.getString("name"));
+                genre.setDescription(rs.getString("description"));
+                genres.add(genre);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ChapDao.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ChapDao.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             try{
                 if(connection!=null)
@@ -115,35 +92,27 @@ public class NovelDao {
                     Logger.getLogger(ChapDao.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return novels;
+        return genres;
     }
-      public static List<Novel> listNovelByGenreId(String genreId){
-        List<Novel> novels = new ArrayList<>();
+      public static List<Genre> listGenreByIdGenre(String typeValue){
+        List<Genre> genres = new ArrayList<>();
         Connection connection =null;
         Statement stmt = null;
         try {
-            Novel novel = new Novel();
+            Genre genre = new Genre();
             ResultSet rs = null;
-            String query = "Select * from novel,novel_genre where"
-                    + " novel.id = novel_genre.novel_id and novel_genre.genre_id='"+genreId+"'";
+            String query = "Select * from genre where id ='"+typeValue+"'";
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager
                     .getConnection("jdbc:mysql://localhost:3306/readbookwebappdb","lenawesome", "ngocanh123");
             stmt = (Statement) connection.createStatement();
             rs = stmt.executeQuery(query);
             while(rs.next()){
-                novel = new Novel();
-                novel.setId(rs.getInt("id"));
-                novel.setImgLink(rs.getString("image").trim());
-                novel.setName(rs.getString("name").trim());
-                if(rs.getString("description").isEmpty()){
-                    novel.setDescription("Chưa có mô tả truyện cho truyện này");
-                }else{
-                    novel.setDescription(rs.getString("description").trim());
-                }
-                novel.setAuthor(rs.getString("author").trim());
-                novel.setStatus(rs.getString("status").trim());
-                novels.add(novel);
+                genre = new Genre();
+                genre.setId(rs.getInt("id"));
+                genre.setName(rs.getString("name"));
+                genre.setDescription(rs.getString("description"));
+                genres.add(genre);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ChapDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -159,6 +128,6 @@ public class NovelDao {
                     Logger.getLogger(ChapDao.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return novels;
+        return genres;
     }
 }
