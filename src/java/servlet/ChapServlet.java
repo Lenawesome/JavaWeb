@@ -35,11 +35,9 @@ public class ChapServlet extends HttpServlet {
             throws ServletException, IOException {
             String chapId = (String)request.getAttribute("chapId");
             String next = "off",previous="off";
-            ChapDao chapDao = new ChapDao();
-            NovelDao novelDao = new NovelDao();
-            List<Chap> chaps = chapDao.listChap("id", chapId);
-            List<Novel> novels = novelDao.listBy("id", ""+chaps.get(0).getId_novel());
-            List<Chap> listChap = chapDao.listChap("novel_id",""+chaps.get(0).getId_novel());
+            List<Chap> chaps = ChapDao.listChap("id", chapId);
+            List<Novel> novels = NovelDao.listBy("id", ""+chaps.get(0).getId_novel());
+            List<Chap> listChap = ChapDao.listChap("novel_id",""+chaps.get(0).getId_novel());
            
             if(chaps.get(0).getChap_numb()!=1){
                 previous="";

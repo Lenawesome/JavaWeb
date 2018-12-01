@@ -63,16 +63,6 @@ public class ControlServlet extends HttpServlet {
                 default:
                     request.getRequestDispatcher("error.jsp").forward(request, response);
             }
-//        if(param.equals("login")){
-//            forward(request, response, "/login.jsp");
-//        }else if(param.equals("register")){
-//            forward(request, response, "/register.jsp");
-//        }else if(param.equals("logout")){
-//            forward(request, response, "/index.jsp");
-//        }else if(param.equals("book-info")){
-//            forward(request, response, "/index.jsp");
-//        }else if(param.equals("read")){
-//            forward(request, response, "/index.jsp");
-//        }
+
         } 
     }

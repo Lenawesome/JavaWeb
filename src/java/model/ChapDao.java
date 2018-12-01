@@ -21,14 +21,18 @@ import java.util.logging.Logger;
 public class ChapDao {
     
     
-    public List<Chap> listChap(String type,String typeValue){
+    public static List<Chap> listChap(String type,String typeValue){
         List<Chap> chaps = new ArrayList<>();
         Connection connection =null;
         Statement stmt = null;
+        Chap chap = null;
+        ResultSet rs = null;
+        String query = "Select * from chap where "+type+"='"+typeValue+"'";
+        makeQuerry(connection, stmt, rs, query, chap, chaps);
+        return chaps;
+    }
+    public static void makeQuerry(Connection connection, Statement stmt, ResultSet rs, String query, Chap chap,List<Chap> chaps){
         try {
-            Chap chap = new Chap();
-            ResultSet rs = null;
-            String query = "Select * from chap where "+type+"='"+typeValue+"'";
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager
                     .getConnection("jdbc:mysql://localhost:3306/readbookwebappdb","lenawesome", "ngocanh123");
@@ -61,6 +65,5 @@ public class ChapDao {
                     Logger.getLogger(ChapDao.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return chaps;
     }
 }

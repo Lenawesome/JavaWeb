@@ -1,4 +1,5 @@
 
+<%@page import="model.Genre"%>
 <%@page import="model.Chap"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Novel"%>
@@ -9,6 +10,7 @@
     List<Chap> listChap = (List<Chap>) request.getAttribute("listChap");
     List<Chap> chaps = (List<Chap>) request.getAttribute("chap");
     List<Novel> novels = (List<Novel>) request.getAttribute("listNovels");
+    List<Genre> listGenre = (List<Genre>)request.getAttribute("listGenre");
 %>
 
 <!DOCTYPE html>
@@ -51,11 +53,14 @@
                     <li>
                         <a href="#">Thể loại</a>
                         <ul>
-                            <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=kiem-hiep">Kiếm hiệp</a></li>
-                            
-                            <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=tien-hiep">Tiên hiệp</a></li>
-                            <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=hai-huoc">Hài hước</a></li>
-                            <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=truyen-ma">Truyện ma</a></li>
+                            <%
+                                for(int i = 0;i <listGenre.size();i++){
+                            %>
+                            <li><a href="<%=request.getContextPath()%>/Control?page=category&id=<%=listGenre.get(i).getId()%>">
+                                    <%=listGenre.get(i).getName()%>
+                                </a>
+                            </li>
+                            <%}%>
                         </ul>
                     </li>
                     <li>

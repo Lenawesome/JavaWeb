@@ -26,15 +26,6 @@
                     <li>
                         <a href="#">Thể loại</a>
                         <ul>
-<!--                            <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=kiem-hiep">Kiếm hiệp</a></li>
-                            <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=tien-hiep">Tiên hiệp</a></li>
-                            <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=hai-huoc">Hài hước</a></li>
-                            <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=kinh-di">Kinh Dị</a></li>
-                            
-                            <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=di-gioi">Dị Giới</a></li>
-                            <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=huyen-huyen">Huyền huyễn</a></li>
-                            <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=do-thi">Đô Thị</a></li>
-                            <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=truyen-ma">Ngôn Tình</a></li>-->
                             <%
                                 for(int i = 0;i <listGenre.size();i++){
                             %>
@@ -99,10 +90,15 @@
                 <div class="right">
                     <div class="title-list">Thể loại</div>
                     <ul>
-                        <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=kiem-hiep">Kiếm hiệp</a></li>
-                        <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=tien-hiep">Tiên hiệp</a></li>
-                        <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=hai-huoc">Hài hước</a></li>
-                        <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=truyen-ma">Truyện ma</a></li>
+                                                    <%
+                                for(int i = 0;i <listGenre.size();i++){
+                            %>
+                            <li>
+                                <a href="<%=request.getContextPath()%>/Control?page=category&id=<%=listGenre.get(i).getId()%>">
+                                    <%=listGenre.get(i).getName()%>
+                                </a>
+                            </li>
+                            <%}%>
                     </ul>
                 </div>
             </div>
