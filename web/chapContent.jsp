@@ -23,6 +23,20 @@
     </head>
     <script type="text/javascript">
         function disabled() {
+            var previous = "<%=(String)request.getAttribute("previous")%>";
+            var next = "<%=(String)request.getAttribute("next")%>";
+            var buttons = document.getElementsByClassName("previous");
+            var nextbuttons = document.getElementsByClassName("next");
+            if(previous==="off"){
+                for(var i=0;i<buttons.length;i++){
+                    buttons[i].disabled="true";
+                }
+            }
+            if(next==="off"){
+                for(var i=0;i<nextbuttons.length;i++){
+                    nextbuttons[i].disabled="true";
+                }
+            }
             var options = document.getElementsByClassName("<%=chaps.get(0).getName()%>");
             for(var i = 0; i< options.length;i++)
                    options[i].selected="true";
@@ -68,19 +82,9 @@
                 <div class="chap-name"><%=chaps.get(0).getName()%></div>
             </div>
             <div class="button-group" name="button-group">
-                <%
-                    if(request.getAttribute("previous").equals("off")){
-                %>
-                <input class="next-previous" disabled onclick="window.location.
+                <input class="previous" onclick="window.location.
                             href='<%=request.getContextPath()%>/Control?page=chap-info&id=<%=request.getAttribute("previousChapId")%>'"
                             type="button" value="Chương trước">
-                <%}else{
-                
-                %>
-                <input class="next-previous" onclick="window.location.
-                            href='<%=request.getContextPath()%>/Control?page=chap-info&id=<%=request.getAttribute("previousChapId")%>'"
-                            type="button" value="Chương trước">
-                <%}%>
                 <select  class="drop-down" onchange="location = this.value">
                     <%
                         for(int i=0; i < listChap.size();i++){
@@ -90,38 +94,18 @@
                     </option>
                     <%}%>
                 </select>
-                 <%
-                    if(request.getAttribute("next").equals("off")){
-                %>
-                <input class="next-previous" disabled onclick="window.location.
+                <input class="next" onclick="window.location.
                             href='<%=request.getContextPath()%>/Control?page=chap-info&id=<%=request.getAttribute("nextChapId")%>'"
                             type="button" value="Chương sau">
-                <%}else{
-                
-                %>
-                <input class="next-previous" onclick="window.location.
-                            href='<%=request.getContextPath()%>/Control?page=chap-info&id=<%=request.getAttribute("nextChapId")%>'"
-                            type="button" value="Chương sau">
-                <%}%>
             </div>
             <div class="chap-content">
                   <%=chaps.get(0).getContent()%>              
             </div>
-            <div class="button-group" name="button-group">
-                <%
-                    if(request.getAttribute("previous").equals("off")){
-                %>
-                <input class="next-previous" disabled onclick="window.location.
+                        <div class="button-group" name="button-group">
+                <input class="previous" onclick="window.location.
                             href='<%=request.getContextPath()%>/Control?page=chap-info&id=<%=request.getAttribute("previousChapId")%>'"
                             type="button" value="Chương trước">
-                <%}else{
-                
-                %>
-                <input class="next-previous" onclick="window.location.
-                            href='<%=request.getContextPath()%>/Control?page=chap-info&id=<%=request.getAttribute("previousChapId")%>'"
-                            type="button" value="Chương trước">
-                <%}%>
-                <select class="drop-down" onchange="location = this.value">
+                <select  class="drop-down" onchange="location = this.value">
                     <%
                         for(int i=0; i < listChap.size();i++){
                     %>
@@ -130,19 +114,9 @@
                     </option>
                     <%}%>
                 </select>
-                 <%
-                    if(request.getAttribute("next").equals("off")){
-                %>
-                <input class="next-previous" disabled onclick="window.location.
+                <input class="next" onclick="window.location.
                             href='<%=request.getContextPath()%>/Control?page=chap-info&id=<%=request.getAttribute("nextChapId")%>'"
                             type="button" value="Chương sau">
-                <%}else{
-                
-                %>
-                <input class="next-previous" onclick="window.location.
-                            href='<%=request.getContextPath()%>/Control?page=chap-info&id=<%=request.getAttribute("nextChapId")%>'"
-                            type="button" value="Chương sau">
-                <%}%>
             </div>
         </div>
         <div id="footer">
