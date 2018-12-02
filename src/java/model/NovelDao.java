@@ -7,6 +7,7 @@ package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -31,45 +32,116 @@ public class NovelDao {
             "jdbc:mysql://localhost:3306/readbookwebappdb";
     
     public static List<Novel> listNovel(){
-        List<Novel> novels = new ArrayList<>();
-        Connection connection =null;
-        Statement stmt = null;
-        String query = "Select * from novel";
         Novel novel = null;
-        ResultSet rs = null;
-        makeQuery(connection, stmt, novel, rs, query, novels);
+        List<Novel> novels = new ArrayList<>();
+        Connection connection =getConnection();
+        Statement stmt = null;
+        try {
+            stmt = connection.createStatement();
+            String query = "Select * from novel";
+            ResultSet rs = stmt.executeQuery(query);
+            makeQuery(novel, rs, novels);
+        } catch (SQLException ex) {
+            Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {            
+                connection.close();
+                stmt.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         return novels;
     }
     
     public static List<Novel> listBy(String type,String typeValue){
-        List<Novel> novels = new ArrayList<>();
-        Connection connection =null;
-        Statement stmt = null;
+        String query = "Select * from novel where "+type+"= ?";
         Novel novel = null;
-        ResultSet rs = null;
-        String query = "Select * from novel where "+type+"='"+typeValue+"'";
-        makeQuery(connection, stmt, novel, rs, query, novels);
+        List<Novel> novels = new ArrayList<>();
+        Connection connection =getConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement(query);
+            stmt.setString(1, typeValue);
+            ResultSet rs = stmt.executeQuery();
+            makeQuery(novel, rs, novels);
+        } catch (SQLException ex) {
+            Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+            connection.close();
+            stmt.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         return novels;
     }
-      public static List<Novel> listNovelByGenreId(String genreId){
-        List<Novel> novels = new ArrayList<>();
-        Connection connection =null;
-        Statement stmt = null;
-        Novel novel = null;
-        ResultSet rs = null;
+    
+    public static List<Novel> listNovelByGenreId(String genreId){
         String query = "Select * from novel,novel_genre where"
-                + " novel.id = novel_genre.novel_id and novel_genre.genre_id='"+genreId+"'";
-        makeQuery(connection, stmt, novel, rs, query, novels);
+                + " novel.id = novel_genre.novel_id and novel_genre.genre_id=?";
+        Novel novel = null;
+        List<Novel> novels = new ArrayList<>();
+        Connection connection =getConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement(query);
+            stmt.setString(1, genreId);
+            ResultSet rs = stmt.executeQuery();
+            makeQuery(novel, rs, novels);
+        } catch (SQLException ex) {
+            Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+                 try {
+                connection.close();
+                stmt.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         return novels;
     }
-
-    private static void makeQuery(Connection connection, Statement stmt, Novel novel, ResultSet rs, String query, List<Novel> novels) {
+    
+    public static List<Novel> listNovelBySearching(String type,String typeValue){
+        String query = "Select * from novel where "+type+" like N?";
+        List<Novel> novels = new ArrayList<>();
+        Novel novel = null;
+        Connection connection = getConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement(query);
+            stmt.setString(1, "%"+typeValue+"%");
+            ResultSet rs = stmt.executeQuery();
+            makeQuery( novel, rs, novels);
+        } catch (SQLException ex) {
+            Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+                 try {
+                connection.close();
+                stmt.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return novels;
+    }
+    
+    public static Connection getConnection(){
+        Connection connection = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager
                     .getConnection("jdbc:mysql://localhost:3306/readbookwebappdb","lenawesome", "ngocanh123");
-            stmt = (Statement) connection.createStatement();
-            rs = stmt.executeQuery(query);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return connection;
+    }
+    private static void makeQuery(Novel novel, ResultSet rs,List<Novel> novels) {
+        try {
             while(rs.next()){
                 novel = new Novel();
                 novel.setId(rs.getInt("id"));
@@ -86,18 +158,8 @@ public class NovelDao {
             }
         } catch (SQLException ex) {
             Logger.getLogger(ChapDao.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-            try{
-                if(connection!=null)
-                    connection.close();
-                if(stmt!=null)
-                     stmt.close();
-            }catch (SQLException ex) {
-                    Logger.getLogger(ChapDao.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
 
     }
+   
 }

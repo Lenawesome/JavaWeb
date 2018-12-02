@@ -7,6 +7,7 @@ package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -22,22 +23,30 @@ public class ChapDao {
     
     
     public static List<Chap> listChap(String type,String typeValue){
+        String query = "Select * from chap where "+type+"=?";
         List<Chap> chaps = new ArrayList<>();
-        Connection connection =null;
-        Statement stmt = null;
         Chap chap = null;
-        ResultSet rs = null;
-        String query = "Select * from chap where "+type+"='"+typeValue+"'";
-        makeQuerry(connection, stmt, rs, query, chap, chaps);
+        Connection connection = NovelDao.getConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement(query);
+            stmt.setString(1, typeValue);
+            ResultSet rs = stmt.executeQuery();
+            makeQuerry(rs,chap, chaps);
+        } catch (SQLException ex) {
+            Logger.getLogger(ChapDao.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+             try {
+            connection.close();
+            stmt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
         return chaps;
     }
-    public static void makeQuerry(Connection connection, Statement stmt, ResultSet rs, String query, Chap chap,List<Chap> chaps){
+    public static void makeQuerry(ResultSet rs,Chap chap,List<Chap> chaps){
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager
-                    .getConnection("jdbc:mysql://localhost:3306/readbookwebappdb","lenawesome", "ngocanh123");
-            stmt = (Statement) connection.createStatement();
-            rs = stmt.executeQuery(query);
             while(rs.next()){
                 chap = new Chap();
                 chap.setId(rs.getInt("id"));
@@ -53,17 +62,6 @@ public class ChapDao {
             }
         } catch (SQLException ex) {
             Logger.getLogger(ChapDao.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ChapDao.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-            try{
-                if(connection!=null)
-                    connection.close();
-                if(stmt!=null)
-                     stmt.close();
-            }catch (SQLException ex) {
-                    Logger.getLogger(ChapDao.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
     }
 }

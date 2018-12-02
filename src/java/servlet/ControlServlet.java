@@ -58,8 +58,6 @@ public class ControlServlet extends HttpServlet {
                     request.setAttribute("listGenre", listGenre);
                     request.getRequestDispatcher("the-loai").forward(request, response);
                     break;
-                case "search":
-                    break;
                 default:
                     request.getRequestDispatcher("error.jsp").forward(request, response);
             }

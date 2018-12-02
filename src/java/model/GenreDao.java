@@ -7,6 +7,7 @@ package model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -60,17 +61,18 @@ public class GenreDao {
      public static List<Genre> listGenreByIdNovel(String typeValue){
         List<Genre> genres = new ArrayList<>();
         Connection connection =null;
-        Statement stmt = null;
+        PreparedStatement stmt = null;
         try {
             Genre genre = new Genre();
             ResultSet rs = null;
             String query = "Select * from genre,novel_genre where"
-                    + " genre.id = novel_genre.genre_id and novel_genre.novel_id='"+typeValue+"'";
+                    + " genre.id = novel_genre.genre_id and novel_genre.novel_id= ?";
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager
                     .getConnection("jdbc:mysql://localhost:3306/readbookwebappdb","lenawesome", "ngocanh123");
-            stmt = (Statement) connection.createStatement();
-            rs = stmt.executeQuery(query);
+            stmt = connection.prepareStatement(query);
+            stmt.setString(1, typeValue);
+            rs = stmt.executeQuery();
             while(rs.next()){
                 genre = new Genre();
                 genre.setId(rs.getInt("id"));
@@ -97,16 +99,17 @@ public class GenreDao {
       public static List<Genre> listGenreByIdGenre(String typeValue){
         List<Genre> genres = new ArrayList<>();
         Connection connection =null;
-        Statement stmt = null;
+          PreparedStatement stmt = null;
         try {
             Genre genre = new Genre();
             ResultSet rs = null;
-            String query = "Select * from genre where id ='"+typeValue+"'";
+            String query = "Select * from genre where id = ?";
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager
                     .getConnection("jdbc:mysql://localhost:3306/readbookwebappdb","lenawesome", "ngocanh123");
-            stmt = (Statement) connection.createStatement();
-            rs = stmt.executeQuery(query);
+            stmt = connection.prepareStatement(query);
+            stmt.setString(1, typeValue);
+            rs = stmt.executeQuery();
             while(rs.next()){
                 genre = new Genre();
                 genre.setId(rs.getInt("id"));

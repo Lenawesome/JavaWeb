@@ -1,16 +1,18 @@
 
 
+<%@page import="model.Genre"%>
 <%@page import="java.util.List"%>
 <%@page import="model.NovelDao"%>
 <%@page import="model.Novel"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    List<Genre> listGenre = (List<Genre>)request.getAttribute("listGenre");
+%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
-    </head>
-    <body>
+        <title> Trang chủ </title>
+        <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
     <body>
@@ -21,10 +23,14 @@
                     <li>
                         <a href="#">Thể loại</a>
                         <ul>
-                            <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=kiem-hiep">Kiếm hiệp</a></li>
-                            <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=tien-hiep">Tiên hiệp</a></li>
-                            <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=hai-huoc">Hài hước</a></li>
-                            <li><a href="<%=request.getContextPath()%>/Control?page=category&genre=truyen-ma">Truyện ma</a></li>
+                            <%
+                                for(int i = 0;i <listGenre.size();i++){
+                            %>
+                            <li><a href="<%=request.getContextPath()%>/Control?page=category&id=<%=listGenre.get(i).getId()%>">
+                                    <%=listGenre.get(i).getName()%>
+                                </a>
+                            </li>
+                            <%}%>
                         </ul>
                     </li>
                     <li>
@@ -35,37 +41,31 @@
                         </ul>
                     </li>
                 </ul>
-                <form class="search-form">
-                    <input id="search-box-input" type="text" placeholder="Tìm truyện, tác giả...">
-                    <select id="dropdown-list">
+                <form class="search-form" action="/tim-kiem" method="get">
+                    <input name="search-input"required id="search-box-input" type="text" placeholder="Tìm truyện, tác giả...">
+                    <select name="option-input"id="dropdown-list">
                         <option value="Tác giả">Tác giả</option>
                         <option value="Tên Truyện">Tên Truyện</option>
                     </select>
-                    <button id="search-box-button" >Search</button>
+                    <input id="submit-button" type="submit" value="Search">
                 </form>
             </div>
         </div>
-        <div id="novel-info">
-            <div class="title-list">Thông tin truyện</div>
-            <div class="section-1">
-                <div class="list">
-                     <%
-                        NovelDao novelDao = new NovelDao();
-                        List<Novel> novels = novelDao.listNovel();
-                        if(novels.isEmpty()){
-                            out.print("Khong tim thay truyen");
-                        }else{
-                            for(int i=0; i < novels.size();i++){
+        
+            <div class="result-list">
+                 <%
+                        List<Novel> novels = (List<Novel>)request.getAttribute("resultList");
+                        for(int i=0; i < novels.size();i++){
                     %>
                     <div class="item">
                         <a href="<%=request.getContextPath() %>/Control?page=view-info&id=<%=novels.get(i).getId()%>">
-                            <img src=<%=novels.get(i).getImgLink()%> class="img-reponsive" alt="<%=novels.get(i).getName()%>">
+                            <img src=<%=novels.get(i).getImgLink()%> class="image" alt="<%=novels.get(i).getName()%>">
                             <div class="book-name"> <%=novels.get(i).getName() %> </div>
                         </a>
                     </div>
-                    <%}}%>
-                </div>
-        </div> 
+                    <%}%>
+            </div>
+       
         <div id="footer">
             <div id="footer-data">
                 <a href="#top">@2018 By Team 5</a>
