@@ -4,20 +4,34 @@
     Author     : MyPC
 --%>
 
+<%@page import="model.Genre"%>
+<%@page import="java.util.List"%>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+<%List<Genre> listGenre = (List<Genre>)request.getAttribute("listGenre");%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
-        <title>Trang đăng nhập</title>
+        <title> Đăng nhập </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" type="text/css" href="css/login.css">
+        
     </head>
-   
     <body>
         
-        <form action="them" method="post">
-            UserName: <input id="text" type="text" name="username" required>
-            Password: <input type="password" name="password" required>
-            <input type="submit" value="Submit">
-        </form>
+        <div class="main-content">
+            <div id="login-box">
+                <div id="form-container">
+                <div id="title">Đăng nhập</div>
+                    <form action="them" method="post">
+                        <input type="text" name="username" placeholder="Tên tài khoản: " required>
+                        <input type="password" name="password" placeholder="Mật khẩu" required>
+                        <input type="submit" value="Login">
+                        <a href="<%=request.getContextPath() %>/Control?page=register">Không có tài khoản?</a><br>
+                        <a href="<%=request.getContextPath() %>/Control?page=home">Quay lại trang chủ?</a>
+                    </form>                    
+                </div>
+            </div>
+        </div>
     </body>
 </html>
