@@ -22,7 +22,7 @@ public class ControlServlet extends HttpServlet {
             throws ServletException, IOException {
             String page = request.getParameter("page");
             page = page.toLowerCase();
-            
+            request.setCharacterEncoding("UTF-8");
             List<Genre> listGenre = GenreDao.listAllGenres();
             switch(page){
                 case "home":

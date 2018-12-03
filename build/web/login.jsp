@@ -4,7 +4,7 @@
     Author     : MyPC
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page  contentType="text/html; charset= UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,7 +12,8 @@
         <title>Trang đăng nhập</title>
     </head>
     <body>
-        <form action="Control" method="post">
+        <%request.setCharacterEncoding("UTF-8");%>
+        <form action="them" method="post">
             UserName: <input type="text" name="username" required>
             Password: <input type="password" name="password" required>
             <input type="submit" value="Submit">

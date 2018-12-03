@@ -1,9 +1,8 @@
 
 <%@page import="model.Genre"%>
 <%@page import="java.util.List"%>
-<%@page import="model.NovelDao"%>
 <%@page import="model.Novel"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
         <%
             List<Genre> listGenre = (List<Genre>)request.getAttribute("listGenre");
             if(request.getAttribute("hotList")==null || request.getAttribute("finishedList")==null){
@@ -14,7 +13,7 @@
 <html>
     <head>
         <title> Trang chủ </title>
-        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <link rel="stylesheet" type="text/css" href="css/home.css">
     </head>
@@ -47,8 +46,8 @@
                 <form class="search-form" action="tim-kiem" method="get">
                     <input name="search-input"required id="search-box-input" type="text" placeholder="Tìm truyện, tác giả...">
                     <select name="option-input"id="dropdown-list">
-                        <option value="author">Tác giả</option>
                         <option value="name">Tên Truyện</option>
+                        <option value="author">Tác giả</option>
                     </select>
                     <input id="submit-button" type="submit" value="Search">
                 </form>
@@ -88,18 +87,20 @@
                         <%}%>
                 </div>
                 <div class="right">
-                    <div class="title-list">Thể loại</div>
-                    <ul>
-                                                    <%
-                                for(int i = 0;i <listGenre.size();i++){
-                            %>
-                            <li>
-                                <a href="<%=request.getContextPath()%>/Control?page=category&id=<%=listGenre.get(i).getId()%>">
-                                    <%=listGenre.get(i).getName()%>
-                                </a>
-                            </li>
-                            <%}%>
-                    </ul>
+                    <div class="title-list">THỂ LOẠI TRUYỆN</div>
+                    <div class="list">
+                        <ul>
+                                                        <%
+                                    for(int i = 0;i <listGenre.size();i++){
+                                %>
+                                <li>
+                                    <a href="<%=request.getContextPath()%>/Control?page=category&id=<%=listGenre.get(i).getId()%>">
+                                        <%=listGenre.get(i).getName()%>
+                                    </a>
+                                </li>
+                                <%}%>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

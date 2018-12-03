@@ -5,9 +5,11 @@
  */
 package servlet;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,10 +32,22 @@ public class SearchServlet extends HttpServlet {
         List<Genre> listGenre = GenreDao.listAllGenres();
         String searchInput = request.getParameter("search-input");
         String optionInput = request.getParameter("option-input");
-        List<Novel> listNovelBySearching = NovelDao.listNovelBySearching(optionInput, searchInput);
-        if(listNovelBySearching.size()==0){
-            System.out.println("0");
+        List<Novel> listNovels = NovelDao.listNovel();
+        List<Novel> listNovelBySearching = new ArrayList<>();
+       
+        if(optionInput.equals("name")){
+            optionInput = "tên truyện";
+            for(int i = 0;i <listNovels.size();i++){
+                if(listNovels.get(i).getName().toLowerCase().contains(searchInput.toLowerCase())){
+                    listNovelBySearching.add(listNovels.get(i));
+                }
+            }
         }
+        else
+            optionInput = "tác giả";
+        request.setAttribute("searchInput", searchInput);
+        
+        request.setAttribute("optionInput", optionInput);
         request.setAttribute("resultList", listNovelBySearching);
         request.setAttribute("listGenre", listGenre);
         request.getRequestDispatcher("searchList.jsp").forward(request, response);

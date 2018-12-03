@@ -42,11 +42,11 @@
                         </ul>
                     </li>
                 </ul>
-                <form class="search-form" action="/tim-kiem" method="get">
+                <form class="search-form" action="tim-kiem" method="get">
                     <input name="search-input"required id="search-box-input" type="text" placeholder="Tìm truyện, tác giả...">
                     <select name="option-input"id="dropdown-list">
-                        <option value="Tác giả">Tác giả</option>
-                        <option value="Tên Truyện">Tên Truyện</option>
+                        <option value="author">Tác giả</option>
+                        <option value="name">Tên Truyện</option>
                     </select>
                     <input id="submit-button" type="submit" value="Search">
                 </form>
@@ -56,20 +56,20 @@
             <div id="section-1">
                 <div id="left">
                     <%List<Genre> genre = (List<Genre>) request.getAttribute("genre");%>
-                    <div class="title-list"><a href="">TRUYỆN <%=genre.get(0).getName().toUpperCase() %> </a></div>
-                         <div class="list">
-                     <%
-                        List<Novel> novels = (List<Novel>)request.getAttribute("listNovel");
-                        for(int i=0; i < novels.size();i++){
-                    %>
-                    <div class="item">
-                        <a href="<%=request.getContextPath() %>/Control?page=view-info&id=<%=novels.get(i).getId()%>">
-                            <img src=<%=novels.get(i).getImgLink()%> class="image" alt="<%=novels.get(i).getName()%>">
-                            <div class="book-name"> <%=novels.get(i).getName() %> </div>
-                        </a>
+                    <div class="title-list">TRUYỆN <%=genre.get(0).getName().toUpperCase() %> </a></div>
+                    <div class="list">
+                        <%
+                            List<Novel> novels = (List<Novel>)request.getAttribute("listNovel");
+                            for(int i=0; i < novels.size();i++){
+                        %>
+                        <div class="item">
+                            <a href="<%=request.getContextPath() %>/Control?page=view-info&id=<%=novels.get(i).getId()%>">
+                                <img src=<%=novels.get(i).getImgLink()%> class="image" alt="<%=novels.get(i).getName()%>">
+                                <div class="book-name"> <%=novels.get(i).getName() %> </div>
+                            </a>
+                        </div>
+                        <%}%>
                     </div>
-                    <%}%>
-                </div>
                 </div>
                 <div class="genre-description"><%=genre.get(0).getDescription()%></div>
                 <div id="right">

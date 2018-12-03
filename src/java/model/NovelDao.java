@@ -104,7 +104,7 @@ public class NovelDao {
     }
     
     public static List<Novel> listNovelBySearching(String type,String typeValue){
-        String query = "Select * from novel where "+type+" like N?";
+        String query = "Select * from novel where "+type+" like ?";
         List<Novel> novels = new ArrayList<>();
         Novel novel = null;
         Connection connection = getConnection();
@@ -140,7 +140,7 @@ public class NovelDao {
         }
         return connection;
     }
-    private static void makeQuery(Novel novel, ResultSet rs,List<Novel> novels) {
+    public static void makeQuery(Novel novel, ResultSet rs,List<Novel> novels) {
         try {
             while(rs.next()){
                 novel = new Novel();

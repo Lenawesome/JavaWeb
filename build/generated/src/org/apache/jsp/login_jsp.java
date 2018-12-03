@@ -41,23 +41,23 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("<!DOCTYPE html>\n");
-      out.write("<html>\n");
-      out.write("    <head>\n");
-      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>Trang đăng nhập</title>\n");
-      out.write("    </head>\n");
-      out.write("    <body>\n");
-      out.write("        <form action=\"Control\" method=\"post\">\n");
-      out.write("            UserName: <input type=\"text\" name=\"username\" required>\n");
-      out.write("            Password: <input type=\"password\" name=\"password\" required>\n");
-      out.write("            <input type=\"submit\" value=\"Submit\">\n");
-      out.write("        </form>\n");
-      out.write("    </body>\n");
-      out.write("</html>\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("<!DOCTYPE html>\r\n");
+      out.write("<html>\r\n");
+      out.write("    <head>\r\n");
+      out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
+      out.write("        <title>Trang đăng nhập</title>\r\n");
+      out.write("    </head>\r\n");
+      out.write("    <body>\r\n");
+      out.write("        <form action=\"them\" method=\"post\">\r\n");
+      out.write("            UserName: <input type=\"text\" name=\"username\" required>\r\n");
+      out.write("            Password: <input type=\"password\" name=\"password\" required>\r\n");
+      out.write("            <input type=\"submit\" value=\"Submit\">\r\n");
+      out.write("        </form>\r\n");
+      out.write("    </body>\r\n");
+      out.write("</html>\r\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

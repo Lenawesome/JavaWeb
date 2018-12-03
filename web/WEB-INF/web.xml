@@ -12,4 +12,14 @@
     <welcome-file-list>
         <welcome-file>welcome.jsp</welcome-file>
     </welcome-file-list>
+<filter>
+ <description>Force the request character encoding to UTF-8</description>
+ <filter-name>MyFilter</filter-name>
+ <filter-class>MyFilter</filter-class>
+ </filter>
+ <filter-mapping>
+ <filter-name>MyFilter</filter-name>
+ <url-pattern>/*</url-pattern>
+ <dispatcher>REQUEST</dispatcher>
+</filter-mapping>
 </web-app>
