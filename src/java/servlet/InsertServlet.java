@@ -33,11 +33,13 @@ public class InsertServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
         String name = request.getParameter("username");
+        System.out.println(name);
+        PrintWriter out = response.getWriter();
         
-        
-        
-        
+        out.print(request.getParameter("username"));
         AdminFunction.listBy("name", name);
     }
 

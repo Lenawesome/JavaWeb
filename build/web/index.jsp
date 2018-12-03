@@ -2,7 +2,7 @@
 <%@page import="model.Genre"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Novel"%>
-<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
         <%
             List<Genre> listGenre = (List<Genre>)request.getAttribute("listGenre");
             if(request.getAttribute("hotList")==null || request.getAttribute("finishedList")==null){

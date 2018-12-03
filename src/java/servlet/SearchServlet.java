@@ -33,18 +33,19 @@ public class SearchServlet extends HttpServlet {
         String searchInput = request.getParameter("search-input");
         String optionInput = request.getParameter("option-input");
         List<Novel> listNovels = NovelDao.listNovel();
-        List<Novel> listNovelBySearching = new ArrayList<>();
+        List<Novel> listNovelBySearching = NovelDao.listNovelBySearching(optionInput, searchInput);
        
         if(optionInput.equals("name")){
             optionInput = "tên truyện";
-            for(int i = 0;i <listNovels.size();i++){
-                if(listNovels.get(i).getName().toLowerCase().contains(searchInput.toLowerCase())){
-                    listNovelBySearching.add(listNovels.get(i));
-                }
-            }
+//            for(int i = 0;i <listNovels.size();i++){
+//                if(listNovels.get(i).getName().toLowerCase().contains(searchInput.toLowerCase())){
+//                    listNovelBySearching.add(listNovels.get(i));
+//                }
+//            }
         }
         else
             optionInput = "tác giả";
+        
         request.setAttribute("searchInput", searchInput);
         
         request.setAttribute("optionInput", optionInput);

@@ -132,7 +132,7 @@ public class NovelDao {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager
-                    .getConnection("jdbc:mysql://localhost:3306/readbookwebappdb","lenawesome", "ngocanh123");
+                    .getConnection("jdbc:mysql://localhost:3306/readbookwebappdb?setUnicode=true&characterEncoding=UTF-8","lenawesome", "ngocanh123");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
