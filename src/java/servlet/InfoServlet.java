@@ -38,7 +38,6 @@ public class InfoServlet extends HttpServlet {
             throws ServletException, IOException {
             String id = (String)request.getAttribute("id");
             List<Novel> listNovelById = NovelDao.listBy("id", id);
-            List<Novel> listNovel = NovelDao.listNovel();
             List<Novel> listNovelByAuthor = new ArrayList<>();
             List<Genre> listGenre = GenreDao.listGenreByIdNovel(id);
             List<Genre> listAllGenres = GenreDao.listAllGenres();
@@ -51,10 +50,10 @@ public class InfoServlet extends HttpServlet {
             }
             List<Chap> listChap = ChapDao.listChap("novel_id",id);
            
-            for(int i =0; i < listNovel.size();i++){
-                if(listNovel.get(i).getAuthor().equals(listNovelById.get(0).getAuthor())
-                        && listNovel.get(i).getId()!=Integer.parseInt(id)){
-                    listNovelByAuthor.add(listNovel.get(i));
+            listNovelByAuthor = NovelDao.listBy("author", listNovelById.get(0).getAuthor());
+            for(int i =0; i < listNovelByAuthor.size();i++){
+                if(listNovelByAuthor.get(i).getId()==Integer.parseInt(id)){
+                    listNovelByAuthor.remove(i);
                 }
             }
                 if(!listNovelById.isEmpty()){

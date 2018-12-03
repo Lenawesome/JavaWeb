@@ -27,12 +27,12 @@ import model.NovelDao;
 @WebServlet(name = "SearchServlet", urlPatterns = {"/tim-kiem"})
 public class SearchServlet extends HttpServlet {
      @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<Genre> listGenre = GenreDao.listAllGenres();
         String searchInput = request.getParameter("search-input");
         String optionInput = request.getParameter("option-input");
-        List<Novel> listNovels = NovelDao.listNovel();
+//        List<Novel> listNovels = NovelDao.listNovel();
         List<Novel> listNovelBySearching = NovelDao.listNovelBySearching(optionInput, searchInput);
        
         if(optionInput.equals("name")){

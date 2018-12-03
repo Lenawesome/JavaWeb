@@ -3,7 +3,7 @@
 <%@page import="model.Chap"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Novel"%>
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 
 <%
     List<Novel> novels = (List<Novel>) request.getAttribute("listNovelById");
@@ -51,13 +51,13 @@
                         </ul>
                     </li>
                 </ul>
-                <form class="search-form">
-                    <input id="search-box-input" type="text" placeholder="Tìm truyện, tác giả...">
-                    <select id="dropdown-list">
-                        <option value="Tác giả">Tác giả</option>
-                        <option value="Tên Truyện">Tên Truyện</option>
+                <form class="search-form" action="tim-kiem" method="post">
+                    <input name="search-input"required id="search-box-input" type="text" placeholder="Tìm truyện, tác giả...">
+                    <select name="option-input"id="dropdown-list">
+                        <option value="name">Tên Truyện</option>
+                        <option value="author">Tác giả</option>
                     </select>
-                    <input id="submit-button" type="submit" value="Search" >
+                    <input id="submit-button" type="submit" value="Search">
                 </form>
             </div>
         </div>

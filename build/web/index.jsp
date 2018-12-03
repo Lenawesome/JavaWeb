@@ -43,7 +43,7 @@
                         </ul>
                     </li>
                 </ul>
-                <form class="search-form" action="tim-kiem" method="get">
+                <form class="search-form" action="tim-kiem" method="post">
                     <input name="search-input"required id="search-box-input" type="text" placeholder="Tìm truyện, tác giả...">
                     <select name="option-input"id="dropdown-list">
                         <option value="name">Tên Truyện</option>

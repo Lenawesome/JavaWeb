@@ -105,6 +105,7 @@ public class NovelDao {
     
     public static List<Novel> listNovelBySearching(String type,String typeValue){
         String query = "Select * from novel where "+type+" like ?";
+//        String query = "Select * from novel where match("+type+") against (N?)";
         List<Novel> novels = new ArrayList<>();
         Novel novel = null;
         Connection connection = getConnection();
