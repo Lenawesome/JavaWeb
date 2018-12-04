@@ -36,8 +36,9 @@
                     <li>
                         <a href="#">Thành viên</a>
                         <ul>
-                            <li><a href="<%=request.getContextPath() %>/Control?page=login">Đăng nhập</a></li>
+                            <li id="login"><a href="<%=request.getContextPath() %>/Control?page=login">Đăng nhập</a></li>
                             <li><a href="<%=request.getContextPath() %>/Control?page=register">Đăng ký</a></li>
+                            <li id="logout"><a href="<%=request.getContextPath() %>/Control?page=logout">Đăng xuất</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -51,7 +52,6 @@
                     </form>
             </div>
         </div>
-                        <%=session.getAttribute("userName")%>
         <div class="main-content"> 
             <div id="section-1">
                 <div id="left">

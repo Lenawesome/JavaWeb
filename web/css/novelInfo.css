@@ -60,7 +60,26 @@
 }
 .section-2{
     clear: left;
-    min-height: 400px;
+}
+.section-3{
+    margin-top: 20px;
+}
+textarea{
+    width: 100%;
+    resize: none;
+}
+input[type="submit"]{
+   padding:5px;
+   width: 100px;
+}
+.comment-list{
+    margin-top: 20px;
+    border: 1px solid #150e88;
+    padding: 5px;
+}
+.time{
+    font-size: 12px;
+    font-style: italic;
 }
 .chap-list a{
     text-decoration: none;

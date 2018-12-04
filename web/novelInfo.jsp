@@ -1,4 +1,6 @@
 
+<%@page import="java.util.Date"%>
+<%@page import="model.Comment"%>
 <%@page import="model.Genre"%>
 <%@page import="model.Chap"%>
 <%@page import="java.util.List"%>
@@ -8,10 +10,9 @@
 <%
     List<Novel> novels = (List<Novel>) request.getAttribute("listNovelById");
     List<Chap> listChaps = (List<Chap>) request.getAttribute("listChap");
-    List<Genre> listGenre = (List<Genre>)request.getAttribute("listGenre");
     List<Genre> listAllGenres = (List<Genre>)request.getAttribute("listAllGenres");
     String strGenre = (String) request.getAttribute("strGenre");
-    
+    List<Comment> listComments = (List<Comment>) request.getAttribute("listComments");
     if(novels!=null){
 %>
 
@@ -46,8 +47,9 @@
                     <li>
                         <a href="#">Thành viên</a>
                         <ul>
-                            <li><a href="<%=request.getContextPath() %>/Control?page=login">Đăng nhập</a></li>
+                            <li id="login"><a href="<%=request.getContextPath() %>/Control?page=login">Đăng nhập</a></li>
                             <li><a href="<%=request.getContextPath() %>/Control?page=register">Đăng ký</a></li>
+                            <li id="logout"><a href="<%=request.getContextPath() %>/Control?page=logout">Đăng xuất</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -111,8 +113,27 @@
                     <%}%>
                 </div>          
             </div>            
+            <div class="section-3">
+                <div class="title-list">Bình luận truyện</div>
+                <div class="user-input">
+                    <form action="dang-binh-luan" method="post">
+                        <textarea required id="comment" name="comment" rows="2" placeholder="Thêm bình luận..."></textarea><br>
+                        <input type="hidden" name="idNovel" value="<%=novels.get(0).getId()%>">
+                        <input type="submit" value="Đăng">
+                    </form>
+                </div>
+                <div class="comment-list">
+                    <%
+                        for(int i=0; i <listComments.size();i++){
+                    %>
+                    <div class="comment">
+                        <div class="content"><%=listComments.get(i).getUserName()%>: <%=listComments.get(i).getContent()%></div>
+                        <div class="time"><%=listComments.get(i).getTime()%></div>
+                    </div>
+                    <%}%>
+                </div>
+            </div>
         </div>
-        
         
         
         <div id="footer">

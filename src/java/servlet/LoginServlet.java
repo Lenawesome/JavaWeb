@@ -34,10 +34,15 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         HttpSession session = request.getSession();
         if(UserDao.check(userName, password)){
-            session.setAttribute("userName", userName);
-            response.sendRedirect("Control?page=home");
-            
-            
+            if(session.getAttribute("novelId")!=null){
+                String id = (String)session.getAttribute("novelId");
+                session.removeAttribute("novelId");
+                session.setAttribute("userName", userName);
+                response.sendRedirect("Control?page=view-info&id="+id);
+            }else{
+                session.setAttribute("userName", userName);
+                response.sendRedirect("Control?page=home");
+            }
         }
     }
 

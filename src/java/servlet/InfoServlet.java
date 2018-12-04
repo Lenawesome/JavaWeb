@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Chap;
 import model.ChapDao;
+import model.Comment;
+import model.CommentDao;
 import model.Genre;
 import model.GenreDao;
 import model.Novel;
@@ -49,7 +51,7 @@ public class InfoServlet extends HttpServlet {
                     strGenre+=(listGenre.get(i).getName()+",");
             }
             List<Chap> listChap = ChapDao.listChap("novel_id",id);
-           
+            List<Comment> listComment = CommentDao.listCommentNovel(id);
             listNovelByAuthor = NovelDao.listBy("author", listNovelById.get(0).getAuthor());
             for(int i =0; i < listNovelByAuthor.size();i++){
                 if(listNovelByAuthor.get(i).getId()==Integer.parseInt(id)){
@@ -57,6 +59,7 @@ public class InfoServlet extends HttpServlet {
                 }
             }
                 if(!listNovelById.isEmpty()){
+                    request.setAttribute("listComments", listComment);
                     request.setAttribute("listNovelById",listNovelById);
                     request.setAttribute("listChap",listChap);
                     request.setAttribute("listNovelByAuthor", listNovelByAuthor);
