@@ -26,7 +26,7 @@ public class ChapDao {
         String query = "Select * from chap where "+type+"=?";
         List<Chap> chaps = new ArrayList<>();
         Chap chap = null;
-        Connection connection = NovelDao.getConnection();
+        Connection connection = ConnectionManagement.getConnection();
         PreparedStatement stmt = null;
         try {
             stmt = connection.prepareStatement(query);

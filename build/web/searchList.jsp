@@ -51,6 +51,7 @@
                     </form>
             </div>
         </div>
+                        <%=session.getAttribute("userName")%>
         <div class="main-content"> 
             <div id="section-1">
                 <div id="left">

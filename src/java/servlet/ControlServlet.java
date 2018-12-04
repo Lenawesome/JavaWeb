@@ -29,6 +29,9 @@ public class ControlServlet extends HttpServlet {
                     request.setAttribute("listGenre", listGenre);
                     request.getRequestDispatcher("home").forward(request, response);
                     break;
+                case "logout":
+                    request.getRequestDispatcher("logout").forward(request, response);
+                    break;
                 case "login":
                     request.setAttribute("listGenre", listGenre);
                     request.getRequestDispatcher("login.jsp").forward(request, response);

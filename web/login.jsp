@@ -23,7 +23,7 @@
             <div id="login-box">
                 <div id="form-container">
                 <div id="title">Đăng nhập</div>
-                    <form action="them" method="post">
+                    <form action="dang-nhap" method="post">
                         <input type="text" name="username" placeholder="Tên tài khoản: " required>
                         <input type="password" name="password" placeholder="Mật khẩu" required>
                         <input type="submit" value="Login">

@@ -34,7 +34,7 @@ public class NovelDao {
     public static List<Novel> listNovel(){
         Novel novel = null;
         List<Novel> novels = new ArrayList<>();
-        Connection connection =getConnection();
+        Connection connection = ConnectionManagement.getConnection();
         Statement stmt = null;
         try {
             stmt = connection.createStatement();
@@ -58,7 +58,7 @@ public class NovelDao {
         String query = "Select * from novel where "+type+"= ?";
         Novel novel = null;
         List<Novel> novels = new ArrayList<>();
-        Connection connection =getConnection();
+        Connection connection =ConnectionManagement.getConnection();
         PreparedStatement stmt = null;
         try {
             stmt = connection.prepareStatement(query);
@@ -83,7 +83,7 @@ public class NovelDao {
                 + " novel.id = novel_genre.novel_id and novel_genre.genre_id=?";
         Novel novel = null;
         List<Novel> novels = new ArrayList<>();
-        Connection connection =getConnection();
+        Connection connection = ConnectionManagement.getConnection();
         PreparedStatement stmt = null;
         try {
             stmt = connection.prepareStatement(query);
@@ -108,7 +108,7 @@ public class NovelDao {
 //        String query = "Select * from novel where match("+type+") against (N?)";
         List<Novel> novels = new ArrayList<>();
         Novel novel = null;
-        Connection connection = getConnection();
+        Connection connection = ConnectionManagement.getConnection();
         PreparedStatement stmt = null;
         try {
             stmt = connection.prepareStatement(query);
@@ -128,19 +128,7 @@ public class NovelDao {
         return novels;
     }
     
-    public static Connection getConnection(){
-        Connection connection = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager
-                    .getConnection("jdbc:mysql://localhost:3306/readbookwebappdb?setUnicode=true&characterEncoding=UTF-8","lenawesome", "ngocanh123");
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return connection;
-    }
+   
     public static void makeQuery(Novel novel, ResultSet rs,List<Novel> novels) {
         try {
             while(rs.next()){
