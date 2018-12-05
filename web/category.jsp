@@ -15,7 +15,22 @@
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <link rel="stylesheet" type="text/css" href="css/category.css">
+         <script type="text/javascript">
+            function disabled(){
+                var userName = "<%=(String)session.getAttribute("userName")%>";
+                var x = document.getElementById("login");
+                var y = document.getElementById("logout");
+                x.style.display = "block";
+                y.style.display = "none";
+                if(userName!=="null"){
+                    x.style.display = "none";
+                    y.style.display = "block";
+                }
+            }
+            window.onload = disabled;
+        </script>
     </head>
+    
     <body>
         <div id="top">
             <div id="mix-menu">
@@ -53,6 +68,11 @@
                 </form>
             </div>
         </div>
+                        <%
+                            if(session.getAttribute("userName")!=null){
+                        %>
+                        <div id="welcome">Xin chào <%=session.getAttribute("userName")%></div>
+                        <%}%>
         <div class="main-content"> 
             <div id="section-1">
                 <div id="left">

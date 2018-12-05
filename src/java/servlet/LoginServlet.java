@@ -43,6 +43,10 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("userName", userName);
                 response.sendRedirect("Control?page=home");
             }
+        }else{
+            session.setAttribute("isValid", "false");
+            response.sendRedirect("Control?page=login");
+            
         }
     }
 

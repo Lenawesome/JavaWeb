@@ -18,18 +18,8 @@
 }
 
 
-.item{
-    width: 150px;
-    margin: 5px;
-    
-    float:left;
-    text-align: center;
-}
 
-.item a{
-    text-decoration: none;
-    color: black; 
-}
+
 
 .image {
     margin-bottom: 10px;

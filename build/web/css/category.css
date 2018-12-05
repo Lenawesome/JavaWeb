@@ -29,17 +29,7 @@
     margin: 0 auto; 
 }
 
-.item{
-    width: 150px;
-    margin: 8px;
-    
-    float:left;
-    text-align: center;
-}
-.item a{
-    text-decoration: none;
-    color: black; 
-}
+
 .image {
     margin-bottom: 10px;
     width: 150px;

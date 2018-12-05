@@ -16,6 +16,20 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <link rel="stylesheet" type="text/css" href="css/home.css">
+         <script type="text/javascript">
+            function disabled(){
+                var userName = "<%=(String)session.getAttribute("userName")%>";
+                var x = document.getElementById("login");
+                var y = document.getElementById("logout");
+                x.style.display = "block";
+                y.style.display = "none";
+                if(userName!=="null"){
+                    x.style.display = "none";
+                    y.style.display = "block";
+                }
+            }
+            window.onload = disabled;
+        </script>
     </head>
     <body>
         <div id="top">
@@ -54,8 +68,11 @@
                 </form>
             </div>
         </div>
-                        
-                  <%=session.getAttribute("userName")%>
+                        <%
+                            if(session.getAttribute("userName")!=null){
+                        %>
+                        <div id="welcome">Xin chào <%=session.getAttribute("userName")%></div>
+                        <%}%>
         <div class="main-content">
             <div class="section-1">
                 <div class="title-list">Truyện hot</div>

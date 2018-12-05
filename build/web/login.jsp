@@ -22,6 +22,11 @@
         <div class="main-content">
             <div id="login-box">
                 <div id="form-container">
+                    <%if(session.getAttribute("isValid")!=null){
+                        if(session.getAttribute("isValid").equals("false")){
+                    %>
+                    <div id="caution">Sai tên tài khoản hoặc mật khẩu</div>
+                    <%}}%>
                 <div id="title">Đăng nhập</div>
                     <form action="dang-nhap" method="post">
                         <input type="text" name="username" placeholder="Tên tài khoản: " required>

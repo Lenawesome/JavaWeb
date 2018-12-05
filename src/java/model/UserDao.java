@@ -42,7 +42,7 @@ public class UserDao {
     }
     
     public static boolean check(String userName, String password){
-        String query = "Select * from user where userName = ? and password = ?";
+        String query = "Select * from user where name = ? and password = ?";
         Connection connection = ConnectionManagement.getConnection();
         PreparedStatement stmt = null;
         try {
@@ -50,8 +50,8 @@ public class UserDao {
             stmt.setString(1, userName);
             stmt.setString(2, password);
             ResultSet rs = stmt.executeQuery();
-            if(rs==null){
-                return false;
+            while(rs.next()){
+                return true;
             }
         } catch (SQLException ex) {
             Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -63,6 +63,6 @@ public class UserDao {
                 Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return true;
+        return false;
     }
 }

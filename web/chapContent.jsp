@@ -29,6 +29,15 @@
             var next = "<%=(String)request.getAttribute("next")%>";
             var buttons = document.getElementsByClassName("previous");
             var nextbuttons = document.getElementsByClassName("next");
+            var userName = "<%=(String)session.getAttribute("userName")%>";
+                var x = document.getElementById("login");
+                var y = document.getElementById("logout");
+                x.style.display = "block";
+                y.style.display = "none";
+                if(userName!=="null"){
+                    x.style.display = "none";
+                    y.style.display = "block";
+                }
             if(previous==="off"){
                 for(var i=0;i<buttons.length;i++){
                     buttons[i].disabled="true";
@@ -82,6 +91,11 @@
                 </form>
             </div>
         </div>
+                        <%
+                            if(session.getAttribute("userName")!=null){
+                        %>
+                        <div id="welcome">Xin chào <%=session.getAttribute("userName")%></div>
+                        <%}%>
         <div class="main-content">
             <div class="chap-info">
                 <div class="novel-name"><%=novels.get(0).getName()%></div>
