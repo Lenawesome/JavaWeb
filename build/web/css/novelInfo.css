@@ -36,7 +36,7 @@
     margin-bottom: 10px;
 }
 .middle{
-    width: 60%;
+    width: 55%;
     float: left;
 }
 .novel-name {
@@ -47,16 +47,25 @@
 }
 .right {
     margin-top: 20px;
-    width: 20%;
+    width: 25%;
     border: 1px solid #ddd;
     color: #333;
     min-height: 200px;
     float: right;
+    background: azure;
+}
+
+.related-novel{
+    padding: 5px;
 }
 .related-novel a{
     text-decoration: none;
-    margin-bottom: 10px;
+    display: block;
+    margin-bottom: 5px;
     color:black;
+}
+.related-novel a:hover{
+    color: blue;
 }
 .section-2{
     clear: left;
@@ -74,7 +83,6 @@ input[type="submit"]{
 }
 .comment-list{
     margin-top: 20px;
-    border: 1px solid #150e88;
     padding: 5px;
 }
 .time{

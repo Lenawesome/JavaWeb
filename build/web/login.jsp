@@ -8,6 +8,10 @@
 <%@page import="java.util.List"%>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%List<Genre> listGenre = (List<Genre>)request.getAttribute("listGenre");%>
+<%
+    if(session.getAttribute("userName")!=null)
+        response.sendRedirect("error.jsp");
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -31,7 +35,7 @@
                     <form action="dang-nhap" method="post">
                         <input type="text" name="username" placeholder="Tên tài khoản: " required>
                         <input type="password" name="password" placeholder="Mật khẩu" required>
-                        <input type="submit" value="Login">
+                        <input type="submit" value="Đăng nhập">
                         <a href="<%=request.getContextPath() %>/Control?page=register">Không có tài khoản?</a><br>
                         <a href="<%=request.getContextPath() %>/Control?page=home">Quay lại trang chủ?</a>
                     </form>                    
@@ -40,3 +44,6 @@
         </div>
     </body>
 </html>
+<%
+    session.removeAttribute("valid");
+%>

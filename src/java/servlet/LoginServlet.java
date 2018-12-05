@@ -33,20 +33,24 @@ public class LoginServlet extends HttpServlet {
         String userName = request.getParameter("username");
         String password = request.getParameter("password");
         HttpSession session = request.getSession();
-        if(UserDao.check(userName, password)){
-            if(session.getAttribute("novelId")!=null){
-                String id = (String)session.getAttribute("novelId");
-                session.removeAttribute("novelId");
-                session.setAttribute("userName", userName);
-                response.sendRedirect("Control?page=view-info&id="+id);
+        if(session.getAttribute("userName")==null){
+            if(UserDao.loginCheck(userName, password)){
+                if(session.getAttribute("novelId")!=null){
+                    String id = (String)session.getAttribute("novelId");
+                    session.removeAttribute("novelId");
+                    session.setAttribute("userName", userName);
+                    response.sendRedirect("Control?page=view-info&id="+id);
+                }else{
+                    session.setAttribute("userName", userName);
+                    response.sendRedirect("Control?page=home");
+                }
             }else{
-                session.setAttribute("userName", userName);
-                response.sendRedirect("Control?page=home");
+                session.setAttribute("isValid", "false");
+                response.sendRedirect("Control?page=login");
+
             }
         }else{
-            session.setAttribute("isValid", "false");
-            response.sendRedirect("Control?page=login");
-            
+            response.sendRedirect("error.jsp");
         }
     }
 
