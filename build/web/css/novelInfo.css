@@ -84,10 +84,12 @@ input[type="submit"]{
 .comment-list{
     margin-top: 20px;
     padding: 5px;
+    font-weight: bold;
 }
 .time{
     font-size: 12px;
     font-style: italic;
+    font-weight: normal;
 }
 .chap-list a{
     text-decoration: none;
