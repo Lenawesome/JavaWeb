@@ -1,0 +1,55 @@
+
+#form-container{
+    border: 1px solid black;
+    width: 420px;
+    padding: 70px 30px;
+    background: white;
+    margin: 0 auto;
+}
+#caution{
+    color:red;
+    text-align: center;
+    margin-bottom: 5px;
+}
+#title{
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 22px;
+}
+
+#form-container input{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#form-container input[type="text"]{
+    border: none;
+    border-bottom: 1px solid black;
+    height: 40px;
+    padding-left: 10px;
+}
+textarea{
+    width: 100%;
+    resize: none;
+    margin-bottom: 5px;
+    font-family: sans-serif;
+    padding: 5px;
+}
+#form-container input[type="submit"]{
+    height: 40px;
+}
+#form-container input[type="submit"]:hover{
+    height: 40px;
+    cursor: pointer;
+    color: red;
+}
+#label{
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+
+
+
+
+
