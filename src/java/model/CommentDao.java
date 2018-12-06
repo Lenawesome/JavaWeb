@@ -44,8 +44,8 @@ public class CommentDao {
         }
     }
     
-    public static List<Comment> listCommentNovel(String id){
-        String query = "Select * from comments where novel_id = ?";
+    public static List<Comment> listCommentNovel(String id,int limit){
+        String query = "Select * from comments where novel_id = ? ORDER BY id DESC limit ?";
         Comment comment = null;
         List<Comment> comments = new ArrayList<>();
         Connection connection = ConnectionManagement.getConnection();
@@ -53,6 +53,7 @@ public class CommentDao {
         try {
             stmt = connection.prepareStatement(query);
             stmt.setString(1, id);
+            stmt.setInt(2, limit);
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
                 comment = new Comment();

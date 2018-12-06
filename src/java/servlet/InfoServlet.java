@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Chap;
 import model.ChapDao;
 import model.Comment;
@@ -39,6 +40,15 @@ public class InfoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             String id = (String)request.getAttribute("id");
+            int limit = 0;
+            if(request.getAttribute("limit")==null){
+                limit = 2;
+                request.setAttribute("limit", limit);
+                System.out.println(limit);
+            }else{
+                limit = (int)request.getAttribute("limit");
+                System.out.println(limit);
+            }
             List<Novel> listNovelById = NovelDao.listBy("id", id);
             List<Novel> listNovelByAuthor = new ArrayList<>();
             List<Genre> listGenre = GenreDao.listGenreByIdNovel(id);
@@ -51,7 +61,7 @@ public class InfoServlet extends HttpServlet {
                     strGenre+=(listGenre.get(i).getName()+",");
             }
             List<Chap> listChap = ChapDao.listChap("novel_id",id);
-            List<Comment> listComment = CommentDao.listCommentNovel(id);
+            List<Comment> listComment = CommentDao.listCommentNovel(id,limit);
             listNovelByAuthor = NovelDao.listBy("author", listNovelById.get(0).getAuthor());
             for(int i =0; i < listNovelByAuthor.size();i++){
                 if(listNovelByAuthor.get(i).getId()==Integer.parseInt(id)){
