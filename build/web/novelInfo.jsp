@@ -85,7 +85,7 @@
         <div class="main-content">
 
             <div class="section-1">
-                <div class="title-list">Thông tin truyện</a></div>
+                <div class="title-list">*Thông tin truyện*</a></div>
                 <div class="left">
                     <%
                         
@@ -107,7 +107,7 @@
                 </div>
                 <%}%>
                 <div class="right">
-                    <div class="title-list">Truyện cùng tác giả</div>
+                    <div class="title-list">*Truyện cùng tác giả*</div>
                     <div class="related-novel">
                         <%
                             List<Novel> listNovelByAuthor = (List<Novel>)request.getAttribute("listNovelByAuthor");
@@ -133,7 +133,7 @@
                 </div>          
             </div>            
             <div class="section-3">
-                <div class="title-list">Bình luận truyện</div>
+                <div class="title-list">*Bình luận truyện*</div>
                 <div class="user-input">
                     <form action="dang-binh-luan" method="post">
                         <textarea required id="comment" name="comment" rows="2" placeholder="Thêm bình luận..."></textarea><br>
@@ -166,6 +166,25 @@
                 <a href="#top">@2018 By Team 5</a>
             </div>
         </div>
+                        <button id="button-top" onclick="backtop()">Về đầu trang</button>
+        <script type="text/javascript">
+            window.onscroll = function(){
+                scroll()
+            };
+            function scroll(){
+                if(document.body.scrollTop > 20||document.documentElement.scrollTop >20){
+                    document.getElementById('button-top').style.display = "block";
+                }else{
+                    document.getElementById('button-top').style.display = "none";
+
+                }
+            }
+            function backtop(){
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+            
+        </script>
     </body>
 </html>
 <%}

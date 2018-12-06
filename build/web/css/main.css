@@ -37,6 +37,7 @@ body {
     list-style: none;
     float: left;
     position: relative;
+    min-width: 125px;
 }
 
 #top ul li a {
@@ -51,11 +52,14 @@ body {
     background: white;
     position: absolute;
     border-radius: 0px 0px 4px 4px;
+    box-shadow: 0px 10px 16px 0px rgba(0,0,0,4);
+
 }
 
 #top ul li ul li {
     width: 100px;
     border-radius: 0px 0px 4px 4px;
+    min-width: 150px;
 }
 #top ul li ul li a{
     color: #333;
@@ -84,7 +88,10 @@ body {
     outline: none;
     padding: 0 10px;
 }
-
+#submit-button:hover{
+    background: #4d88ff;
+    font-style: italic;
+}
 .main-content{
     min-height: 700px;
 }
@@ -115,11 +122,36 @@ body {
     font-size: 12px;
 }
 .item:hover img{
--webkit-transform: scale(1.1);
+-moz-transition-duration: 500ms;
+-moz-transform: scale(1.1);
 -webkit-transition-timing-function: ease-out;
+-moz-transition-timing-function: ease-out;
+-webkit-transform: scale(1.1);
 -webkit-transition-duration: 500ms;
+box-shadow: 0px 10px 16px 10px rgba(0,0,0,0.5);
+
 }
-#mail {
+.right .list ul li:hover{
+    -webkit-transition-timing-function: ease-out;
+-moz-transition-timing-function: ease-out;
+-moz-transition-duration: 500ms;
+-moz-transform: scale(1.1);
+-webkit-transform: scale(1.1);
+-webkit-transition-duration: 500ms;
+	box-shadow: 0px 10px 16px 0px rgba(0,0,0,0.3);
+
+}
+#top ul li ul li:hover{
+    -webkit-transition-timing-function: ease-out;
+-moz-transition-timing-function: ease-out;
+    -moz-transition-duration: 500ms;
+-moz-transform: scale(1.1);
+-webkit-transform: scale(1.1);
+-webkit-transition-duration: 500ms;
+	box-shadow: 0px 10px 16px 0px rgba(0,0,0,0.3);
+
+}
+#mail { 
  	position: fixed;
  	right: 10px;
  	bottom: 20px;
@@ -161,7 +193,7 @@ body {
 	display: none;
 	position: fixed;
 	z-index: 99;
-	font-size: 18px;
+	font-size: 13px;
 	color: white;
 	cursor: pointer;
 	border: none;

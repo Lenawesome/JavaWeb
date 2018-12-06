@@ -5,7 +5,7 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
         <%
             List<Genre> listGenre = (List<Genre>)request.getAttribute("listGenre");
-            if(request.getAttribute("hotList")==null || request.getAttribute("finishedList")==null){
+            if(request.getAttribute("hotList")== null || request.getAttribute("finishedList")==null){
                 request.getRequestDispatcher("error.jsp").forward(request, response);
             }
         %>
@@ -75,7 +75,7 @@
                         <%}%>
         <div class="main-content">
             <div class="section-1">
-                <div class="title-list">Truyện hot</div>
+                <div class="title-list">*Truyện hot*</div>
                 
                      <%
                         List<Novel> novels = (List<Novel>)request.getAttribute("hotList");
@@ -92,7 +92,7 @@
             </div>
             <div class="section-2">
                 <div class="left">
-                    <div class="title-list">Truyện hoàn thành</div>
+                    <div class="title-list">*Truyện hoàn thành*</div>
                              <%
                     List<Novel> novels2= (List<Novel>) request.getAttribute("finishedList");
                     for(int i=0; i < 10;i++){
@@ -107,7 +107,7 @@
                         <%}%>
                 </div>
                 <div class="right">
-                    <div class="title-list">THỂ LOẠI TRUYỆN</div>
+                    <div class="title-list">*THỂ LOẠI TRUYỆN*</div>
                     <div class="list">
                         <ul>
                                                         <%
@@ -135,7 +135,7 @@
                     <span class="text left-tooltip">Góp ý</span> 
                 </a>
         </div>
-        <button id="button-top" onclick="backtop()">GoTop</button>
+                        <button id="button-top" onclick="backtop()" title=" về đầu trang">Về đầu trang</button>
         <script type="text/javascript">
             window.onscroll = function(){
                 scroll()

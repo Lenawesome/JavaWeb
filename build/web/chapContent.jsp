@@ -144,7 +144,7 @@
                 <a href="#top">@2018 By Team 5</a>
             </div>
         </div>
-        <button id="button-top" onclick="backtop()">GoTop</button>
+        <button id="button-top" onclick="backtop()">Về đầu trang</button>
         <script type="text/javascript">
             window.onscroll = function(){
                 scroll()

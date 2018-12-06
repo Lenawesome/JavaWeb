@@ -77,7 +77,7 @@
             <div id="section-1">
                 <div id="left">
                     <%List<Genre> genre = (List<Genre>) request.getAttribute("genre");%>
-                    <div class="title-list">TRUYỆN <%=genre.get(0).getName().toUpperCase() %> </a></div>
+                    <div class="title-list">*TRUYỆN <%=genre.get(0).getName().toUpperCase() %>*</a></div>
                     <div class="list">
                         <%
                             List<Novel> novels = (List<Novel>)request.getAttribute("listNovel");
@@ -94,7 +94,7 @@
                 </div>
                 <div class="genre-description"><%=genre.get(0).getDescription()%></div>
                 <div id="right">
-                    <div class="title-list">THỂ LOẠI TRUYỆN</div>
+                    <div class="title-list">*THỂ LOẠI TRUYỆN*</div>
                     <div class="list">
                         <ul>
                                                         <%
@@ -116,5 +116,24 @@
                 <a href="#top">@2018 By Team 5</a>
             </div>
         </div>
+                        <button id="button-top" onclick="backtop()">Về đầu trang</button>
+        <script type="text/javascript">
+            window.onscroll = function(){
+                scroll()
+            };
+            function scroll(){
+                if(document.body.scrollTop > 20||document.documentElement.scrollTop >20){
+                    document.getElementById('button-top').style.display = "block";
+                }else{
+                    document.getElementById('button-top').style.display = "none";
+
+                }
+            }
+            function backtop(){
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+            
+        </script>
     </body>
 </html>

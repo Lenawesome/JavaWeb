@@ -114,5 +114,24 @@
                 <a href="#top">@2018 By Team 5</a>
             </div>
         </div>
+                        <button id="button-top" onclick="backtop()">Về đầu trang</button>
+        <script type="text/javascript">
+            window.onscroll = function(){
+                scroll()
+            };
+            function scroll(){
+                if(document.body.scrollTop > 20||document.documentElement.scrollTop >20){
+                    document.getElementById('button-top').style.display = "block";
+                }else{
+                    document.getElementById('button-top').style.display = "none";
+
+                }
+            }
+            function backtop(){
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+            
+        </script>
     </body>
 </html>

@@ -76,6 +76,14 @@
 
 .list ul li a:hover{
     background-color: #bed2e7;
+    -moz-transition-duration: 500ms;
+-moz-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+-webkit-transition-timing-function: ease-out;
+-moz-transition-timing-function: ease-out;
+-webkit-transition-duration: 500ms;
+	box-shadow: 0px 10px 16px 0px rgba(0,0,0,0.3);
+
 }
 
 
