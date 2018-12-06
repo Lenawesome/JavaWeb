@@ -27,3 +27,34 @@
 .novel-name{
     margin-bottom: 15px;
 }
+.item:hover img{
+-webkit-transform: scale(1.1);
+-webkit-transition-timing-function: ease-out;
+-webkit-transition-duration: 500ms;
+}
+#gotop{
+	color: white;
+	background-color: #263B4D;
+	border: none;
+	margin: 5px 0;
+	cursor: pointer;
+}
+#button-top{
+	display: none;
+	position: fixed;
+	z-index: 99;
+	font-size: 18px;
+	color: white;
+	cursor: pointer;
+	border: none;
+ 	background: #444;
+	padding: 10px;
+	opacity: 0.7;
+	left: 10px;
+	bottom: 20px;
+	font-style: italic;
+	border-radius: 6px;
+}
+#button-top:hover{
+	opacity: 1;
+}

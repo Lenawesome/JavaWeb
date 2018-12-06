@@ -129,5 +129,30 @@
                 <a href="#top">@2018 By Team 5</a>
             </div>
         </div>
+        <div >
+                <a href="https://docs.google.com/forms/d/1EviWngyve5IE1tuxVpodrQUK2IViXpRTirRnrahY_ZY/edit" id="mail" title="Góp ý" rel="nofollow" class="tooltip" target="_blank">
+                    <img src="./images/mail.PNG" style="margin: 7px 5px 5px 5px ">
+                    <span class="text left-tooltip">Góp ý</span> 
+                </a>
+        </div>
+        <button id="button-top" onclick="backtop()">GoTop</button>
+        <script type="text/javascript">
+            window.onscroll = function(){
+                scroll()
+            };
+            function scroll(){
+                if(document.body.scrollTop > 20||document.documentElement.scrollTop >20){
+                    document.getElementById('button-top').style.display = "block";
+                }else{
+                    document.getElementById('button-top').style.display = "none";
+
+                }
+            }
+            function backtop(){
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+            
+        </script>
     </body>
 </html>
