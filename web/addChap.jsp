@@ -22,19 +22,13 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="">Quản lý chương</a>
-                        <ul>
-                            <li><a href="">Thêm chương</a></li>
-                            <li><a href="">Sửa chương</a></li>
-                            <li><a href="">Xóa chương</a></li>
-                        </ul>
+                        <a href="<%=request.getContextPath()%>/AdminControl?page=chapManagement">Quản lý chương</a>
                     </li>
                     <li>
                         <a href="">Quản lý thể loại</a>
                         <ul>
-                            <li><a href="">Thêm thể loại</a></li>
-                            <li><a href="">Sửa thể loại</a></li>
-                            <li><a href="">Xóa thể loại</a></li>
+                            <li><a href="<%=request.getContextPath()%>/AdminControl?page=addGenre">Thêm thể loại</a></li>
+                            <li><a href="<%=request.getContextPath()%>/AdminControl?page=listGenre">Sửa và xóa thể loại</a></li>
                         </ul>
                     </li>
                     <li>

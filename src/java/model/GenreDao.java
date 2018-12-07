@@ -58,6 +58,47 @@ public class GenreDao {
         }
         return genres;
     }
+    public static List<Genre> listBy(String type,String typeValue){
+        String query = "Select * from genre where "+type+"= ?";
+        Genre genre = null;
+        List<Genre> genres = new ArrayList<>();
+        Connection connection = ConnectionManagement.getConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement(query);
+            stmt.setString(1, typeValue);
+            ResultSet rs = stmt.executeQuery();
+            makeQuery(genre, rs, genres);
+        } catch (SQLException ex) {
+            Logger.getLogger(GenreDao.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+            connection.close();
+            stmt.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(GenreDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return genres;
+    }
+    public static void makeQuery(Genre genre, ResultSet rs,List<Genre> genres) {
+        try {
+            while(rs.next()){
+                genre = new Genre();
+                genre.setId(rs.getInt("id"));
+                genre.setName(rs.getString("name").trim());
+                if(rs.getString("description").isEmpty()){
+                    genre.setDescription("Chưa có mô tả  cho Thể loại này");
+                }else{
+                    genre.setDescription(rs.getString("description").trim());
+                }
+                genres.add(genre);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ChapDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
      public static List<Genre> listGenreByIdNovel(String typeValue){
         List<Genre> genres = new ArrayList<>();
         Connection connection =null;

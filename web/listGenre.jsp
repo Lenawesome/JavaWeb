@@ -1,8 +1,9 @@
 
 
-<%@page import="model.Chap"%>
+<%@page import="model.Genre"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Novel"%>
+<%@page import="model.Chap"%>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,7 +24,11 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="<%=request.getContextPath()%>/AdminControl?page=chapManagement">Quản lý chương</a>
+                        <a href="">Quản lý chương</a>
+                        <ul>
+                            <li><a href="">Thêm chương</a></li>
+                            <li><a href="">Sửa và xóa chap</a></li>
+                        </ul>
                     </li>
                     <li>
                         <a href="">Quản lý thể loại</a>
@@ -43,29 +48,29 @@
             </div>
         </div>
                             <%
-                                List<Chap> chaps = (List<Chap>)request.getAttribute("chaps");
-                                session.setAttribute("chaps", request.getAttribute("chaps"));
+                                List<Genre> genres = (List<Genre>)request.getAttribute("genres");
                             %>
         <div class="main-content">
             <div id="table-container">
-                <div id="table-name">Danh sách chuơng</div>
+                <div id="table-name">Danh sách Thể loại</div>
                 <table>
                     <thead>
-                        <th>ID Chương</th>
-                        <th>Số thứ tự chương </th>
-                        <th>Tên chương </th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
                         <th>Thao tác</th>
                     </thead>
                     <%
-                    for(int i=0;i<chaps.size();i++){
+                    for(int i=0;i<genres.size();i++){
                     %>
                     <tr>
-                        <td><%=chaps.get(i).getId()%></td>
-                        <td><%=chaps.get(i).getChap_numb()%></td>
-                        <td><%=chaps.get(i).getName()%></td>
+                        <td><%=genres.get(i).getId()%></td>
+                        <td><%=genres.get(i).getName()%></td>
+                        <td><%=genres.get(i).getDescription()%></td>
+
                         <td>
-                            <a href="<%=request.getContextPath()%>/AdminControl?page=updateChap&id=<%=chaps.get(i).getId()%>">Sửa</a>|
-                            <a href="<%=request.getContextPath()%>/AdminControl?page=deleteChap&id=<%=chaps.get(i).getId()%>">Xóa</a>
+                            <a href="<%=request.getContextPath()%>/AdminControl?page=updateGenre&id=<%=genres.get(i).getId()%>">Sửa</a>|
+                            <a href="<%=request.getContextPath()%>/AdminControl?page=deleteGenre&id=<%=genres.get(i).getId()%>">Xóa</a>
                         </td>
                     </tr>
                     <%}%>

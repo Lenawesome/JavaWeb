@@ -1,7 +1,5 @@
 
 
-<%@page import="java.util.List"%>
-<%@page import="model.Novel"%>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -47,29 +45,17 @@
                 <%if(session.getAttribute("succes")!=null){
                         if(session.getAttribute("succes").equals("false")){
                     %>
-                    <div id="caution">Tên truyện đã tồn tại!!!</div>
-                    <%}}else if(session.getAttribute("troll")!=null){
-                             if(session.getAttribute("troll").equals("true")){      
-                    %>
-                    <div id="caution">Chưa có mục nào được sửa!!!</div>
+                    <div id="caution"> Đã có thể loại này !!!</div>
+                    <%}else{%>
+                    <div id="caution">Thêm thể loại thành công</div>
                     <%}}%>
-                    <%
-                        List<Novel> listNovel = (List<Novel>)request.getAttribute("listNovel");
-                    %>
-                    <div id="title">Sửa truyện</div>
-                    <form action="sua-truyen" method="post">
-                        <div id="label">Tên truyện</div>
-                        <input type="text" name="name" value="<%=listNovel.get(0).getName()%>" required >
-                        <div id="label">Tên tác giả</div>
-                        <input type="text" name="author" value="<%=listNovel.get(0).getAuthor()%>" required>
-                        <div id="label">Đường dẫn ảnh</div>
-                        <input type="text" name="image" value="<%=listNovel.get(0).getImgLink()%>" required>
-                        <div id="label">Mô tả</div>
-                        <textarea required id="comment" name="description" rows="3" ><%=listNovel.get(0).getDescription()%></textarea><br>
-                        <div id="label">Trạng thái</div>
-                        <input type="text" name="status" value="<%=listNovel.get(0).getStatus()%>" required>
-                        <input type="hidden" name="id" value="<%=listNovel.get(0).getId()%>">
-                        <input type="submit" value="Sửa truyện">
+                    <div id="title">Thêm thể loại</div>
+                    <form action="them-genre" method="post">
+                        <div id="label">Tên thể loại</div>
+                        <input type="text" name="name" placeholder="Nhập tên thhể loại... " required>
+                        <div id="label">Mô tả thể loại</div>
+                        <textarea required id="comment" name="description" rows="3" placeholder="Nhập mô tả thể loại..."></textarea><br>
+                        <input type="submit" value="Thêm thể loại">
                     </form>                    
             </div>
 
@@ -83,5 +69,4 @@
 </html>
 <%
     session.removeAttribute("succes");
-    session.removeAttribute("troll");
 %>

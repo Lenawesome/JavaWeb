@@ -33,6 +33,8 @@ public class AdminControlServlet extends HttpServlet {
             throws ServletException, IOException {
             String page = request.getParameter("page");
             List<Novel> novels = NovelDao.listNovel();
+            List<Genre> genres = GenreDao.listAllGenres();
+            
             switch(page){
                 case "addNovel":
                     request.getRequestDispatcher("adminAddNovel.jsp").forward(request, response);
@@ -69,6 +71,24 @@ public class AdminControlServlet extends HttpServlet {
                 case "addChap":
                     request.setAttribute("listNovel", NovelDao.listBy("id", request.getParameter("id")));
                     request.getRequestDispatcher("addChap.jsp").forward(request, response);
+                    break;
+                   
+                 case"updateGenre":
+                    request.setAttribute("listGenre", GenreDao.listBy("id", request.getParameter("id")));
+                    request.getRequestDispatcher("updateGenreFrm.jsp").forward(request, response);
+                    break;
+                case "addGenre":
+                    request.getRequestDispatcher("adminAddGenre.jsp").forward(request, response);
+                    break;
+                
+                case "listGenre":
+                    request.setAttribute("genres", genres);
+                    request.getRequestDispatcher("listGenre.jsp").forward(request, response);
+                    break;
+                
+                case "deleteGenre":
+                    request.setAttribute("id", request.getParameter("id"));
+                    request.getRequestDispatcher("xoa-genre").forward(request, response);
                     break;
                 default:
                     request.getRequestDispatcher("error.jsp").forward(request, response);
