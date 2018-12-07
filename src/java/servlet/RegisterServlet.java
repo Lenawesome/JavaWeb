@@ -30,7 +30,7 @@ public class RegisterServlet extends HttpServlet {
         if(lengthCheck(userName)&&specialCharCheck(userName)){
             if(lengthCheck(password)){
                 if(password.equals(retypedPassword)){
-                    if(UserDao.registerCheck(userName)){
+                    if(UserDao.adminCheck(userName)&&UserDao.registerCheck(userName.toLowerCase())){
                         UserDao.addUser(userName, password);
                         session.setAttribute("succes", "true");
                     }else{

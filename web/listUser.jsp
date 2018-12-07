@@ -1,13 +1,15 @@
 
 
+<%@page import="model.User"%>
+<%@page import="java.util.List"%>
+<%@page import="model.Novel"%>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Admin Homepage </title>
+        <title> Danh sách người dùng </title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="stylesheet" type="text/css" href="css/main.css">
-        <link rel="stylesheet" type="text/css" href="css/adminAddNovel.css">
     </head>
     <body>
         <div id="top">
@@ -41,25 +43,32 @@
                 </ul>
             </div>
         </div>
+                            <%
+                                List<User> users = (List<User>)request.getAttribute("users");
+                            %>
         <div class="main-content">
-            <div id="form-container">
-                <%if(session.getAttribute("succes")!=null){
-                        if(session.getAttribute("succes").equals("false")){
+            <div id="table-container">
+                <div id="table-name">Danh sách người dùng</div>
+                <table>
+                    <thead>
+                        <th>Tên tài khoản</th>
+                        <th>Mật khẩu</th>
+                        <th>Thao tác</th>
+                    </thead>
+                    <%
+                    for(int i=0;i<users.size();i++){
                     %>
-                    <div id="caution"> Đã có thể loại này !!!</div>
-                    <%}else{%>
-                    <div id="caution">Thêm thể loại thành công</div>
-                    <%}}%>
-                    <div id="title">Thêm thể loại</div>
-                    <form action="them-genre" method="post">
-                        <div id="label">Tên thể loại</div>
-                        <input type="text" name="name" placeholder="Nhập tên thhể loại... " required>
-                        <div id="label">Mô tả thể loại</div>
-                        <textarea required id="comment" name="description" rows="3" placeholder="Nhập mô tả thể loại..."></textarea><br>
-                        <input type="submit" value="Thêm thể loại">
-                    </form>                    
+                    <tr>
+                        <td><%=users.get(i).getName()%></td>
+                        <td><%=users.get(i).getPass()%></td>
+                        <td>
+                            <a href="<%=request.getContextPath()%>/AdminControl?page=updateUser&userName=<%=users.get(i).getName()%>">Sửa</a>|
+                            <a href="<%=request.getContextPath()%>/AdminControl?page=deleteUser&userName=<%=users.get(i).getName()%>">Xóa</a>
+                        </td>
+                    </tr>
+                    <%}%>
+                </table>
             </div>
-
         </div>
         <div id="footer">
             <div id="footer-data">
@@ -68,6 +77,5 @@
         </div>
     </body>
 </html>
-<%
-    session.removeAttribute("succes");
-%>
+
+

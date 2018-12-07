@@ -1,5 +1,11 @@
 
 
+<%@page import="model.User"%>
+<%@page import="model.Chap"%>
+<%@page import="java.util.List"%>
+<%@page import="model.Novel"%>
+<%@page import="model.Genre"%>
+
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -46,17 +52,22 @@
                 <%if(session.getAttribute("succes")!=null){
                         if(session.getAttribute("succes").equals("false")){
                     %>
-                    <div id="caution"> Đã có thể loại này !!!</div>
-                    <%}else{%>
-                    <div id="caution">Thêm thể loại thành công</div>
+                    <div id="caution">Tên người dùng đã tồn tại!!!</div>
+                    <%}}else if(session.getAttribute("troll")!=null){
+                             if(session.getAttribute("troll").equals("true")){      
+                    %>
+                    <div id="caution">Chưa có mục nào được sửa!!!</div>
                     <%}}%>
-                    <div id="title">Thêm thể loại</div>
-                    <form action="them-genre" method="post">
-                        <div id="label">Tên thể loại</div>
-                        <input type="text" name="name" placeholder="Nhập tên thhể loại... " required>
-                        <div id="label">Mô tả thể loại</div>
-                        <textarea required id="comment" name="description" rows="3" placeholder="Nhập mô tả thể loại..."></textarea><br>
-                        <input type="submit" value="Thêm thể loại">
+                    <%
+                        List<User> listUser = (List<User>)request.getAttribute("users");
+                    %>
+                    <div id="title">Sửa tài khoản</div>
+                    <form action="sua-tai-khoan" method="post">
+                        <div id="label">Tên tài khoản</div>
+                        <input type="text" name="name" value="<%=listUser.get(0).getName()%>" required >
+                        <div id="label">Mật khẩu </div>
+                        <input type="text" name="pass" value="<%=listUser.get(0).getPass()%>" required >
+                        <input type="submit" value="Sửa">
                     </form>                    
             </div>
 
@@ -70,4 +81,5 @@
 </html>
 <%
     session.removeAttribute("succes");
+    session.removeAttribute("troll");
 %>

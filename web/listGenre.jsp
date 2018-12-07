@@ -17,6 +17,11 @@
             <div id="mix-menu">
                 <ul>
                     <li>
+                        <a href="<%=request.getContextPath()%>/Control?page=logout">
+                            Đăng xuất
+                        </a>
+                    </li>
+                    <li>
                         <a href="">Quản lý truyện</a>
                         <ul>
                             <li><a href="<%=request.getContextPath()%>/AdminControl?page=addNovel">Thêm truyện</a></li>
@@ -24,11 +29,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="">Quản lý chương</a>
-                        <ul>
-                            <li><a href="">Thêm chương</a></li>
-                            <li><a href="">Sửa và xóa chap</a></li>
-                        </ul>
+                        <a href="<%=request.getContextPath()%>/AdminControl?page=chapManagement">Quản lý chương</a>
                     </li>
                     <li>
                         <a href="">Quản lý thể loại</a>
@@ -38,11 +39,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="">Quản lý người dùng</a>
-                        <ul>
-                            <li><a href="">Thêm nguyời dùng</a></li>
-                            <li><a href="">Xóa người dùng</a></li>
-                        </ul>
+                        <a href="<%=request.getContextPath()%>/AdminControl?page=userManagement">Quản lý người dùng</a>
                     </li>
                 </ul>
             </div>

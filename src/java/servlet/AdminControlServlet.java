@@ -19,6 +19,8 @@ import model.Genre;
 import model.GenreDao;
 import model.Novel;
 import model.NovelDao;
+import model.User;
+import model.UserDao;
 
 /**
  *
@@ -34,7 +36,7 @@ public class AdminControlServlet extends HttpServlet {
             String page = request.getParameter("page");
             List<Novel> novels = NovelDao.listNovel();
             List<Genre> genres = GenreDao.listAllGenres();
-            
+            List<User> users = UserDao.listUsers();
             switch(page){
                 case "addNovel":
                     request.getRequestDispatcher("adminAddNovel.jsp").forward(request, response);
@@ -54,6 +56,18 @@ public class AdminControlServlet extends HttpServlet {
                 case "chapManagement":
                     request.setAttribute("novels", novels);
                     request.getRequestDispatcher("listNovelChap.jsp").forward(request, response);
+                    break;
+                case "userManagement":
+                    request.setAttribute("users", users);
+                    request.getRequestDispatcher("listUser.jsp").forward(request, response);
+                    break;
+                case "updateUser":
+                    request.setAttribute("users", UserDao.findUser(request.getParameter("userName")));
+                    request.getRequestDispatcher("updateUserFrm.jsp").forward(request, response);
+                    break;
+                case "deleteUser":
+                    UserDao.deleteUser(request.getParameter("userName"));
+                    request.getRequestDispatcher("AdminControl?page=userManagement").forward(request, response);
                     break;
                 case "listChap":
                     request.setAttribute("chaps", ChapDao.listChap("novel_id", request.getParameter("id")));
