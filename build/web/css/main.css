@@ -127,7 +127,19 @@ body {
 -webkit-transition-duration: 500ms;
 box-shadow: 5px -5px 16px 2px rgba(0,0,0,0.5);
 }
-
+.right .list a:hover{
+    -moz-transition-duration: 100ms;
+-webkit-transition-timing-function: ease-out;
+-moz-transition-timing-function: ease-out;
+-webkit-transition-duration: 100ms;
+box-shadow: 0px 0px 100px 3px rgba(0,0,0,0.5);
+}
+#top ul li ul li:hover{
+       -webkit-transition-timing-function: ease-out;
+-moz-transition-timing-function: ease-out;
+-webkit-transition-duration: 100ms;
+box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5);
+}
 #mail { 
  	position: fixed;
  	right: 10px;
