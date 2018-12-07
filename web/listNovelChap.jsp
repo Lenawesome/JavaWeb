@@ -1,23 +1,19 @@
 
 
+<%@page import="java.util.List"%>
+<%@page import="model.Novel"%>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Admin Homepage </title>
+        <title> Danh sách truyện </title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="stylesheet" type="text/css" href="css/main.css">
-        <link rel="stylesheet" type="text/css" href="css/adminAddNovel.css">
     </head>
     <body>
         <div id="top">
             <div id="mix-menu">
                 <ul>
-                    <li>
-                        <a href="<%=request.getContextPath()%>/Control?page=home">
-                            Trang chủ
-                        </a>
-                    </li>
                     <li>
                         <a href="">Quản lý truyện</a>
                         <ul>
@@ -46,31 +42,36 @@
                 </ul>
             </div>
         </div>
+                            <%
+                                List<Novel> novels = (List<Novel>)request.getAttribute("novels");
+                            %>
         <div class="main-content">
-            <div id="form-container">
-                <%if(session.getAttribute("succes")!=null){
-                        if(session.getAttribute("succes").equals("false")){
+            <div id="table-container">
+                <div id="table-name">Danh sách truyện</div>
+                <table>
+                    <thead>
+                        <th>ID</th>
+                        <th>Tên truyện</th>
+                        <th>Tên tác giả</th>
+                        <th>Trạng thái</th>
+                        <th>Thao tác</th>
+                    </thead>
+                    <%
+                    for(int i=0;i<novels.size();i++){
                     %>
-                    <div id="caution">Truyện đã tồn tại!!!</div>
-                    <%}else{%>
-                    <div id="caution">Thêm truyện thành công</div>
-                    <%}}%>
-                    <div id="title">Thêm truyện</div>
-                    <form action="them-truyen" method="post">
-                        <div id="label">Tên truyện</div>
-                        <input type="text" name="name" placeholder="Nhập tên truyện... " required>
-                        <div id="label">Tên tác giả</div>
-                        <input type="text" name="author" placeholder="Nhập tên tác giả... " required>
-                        <div id="label">Đường dẫn ảnh</div>
-                        <input type="text" name="image" placeholder="Nhập đường dẫn..."  required>
-                        <div id="label">Mô tả</div>
-                        <textarea required id="comment" name="description" rows="3" placeholder="Nhập mô tả..."></textarea><br>
-                        <div id="label">Trạng thái</div>
-                        <input type="text" name="status" placeholder="Nhập trạng thái... " required>
-                        <input type="submit" value="Thêm truyện">
-                    </form>                    
+                    <tr>
+                        <td><%=novels.get(i).getId()%></td>
+                        <td><%=novels.get(i).getName()%></td>
+                        <td><%=novels.get(i).getAuthor()%></td>
+                        <td><%=novels.get(i).getStatus()%></td>
+                        <td>
+                            <a href="<%=request.getContextPath()%>/AdminControl?page=listChap&id=<%=novels.get(i).getId()%>">Sửa, xóa chương</a>|
+                            <a href="<%=request.getContextPath()%>/AdminControl?page=addChap&id=<%=novels.get(i).getId()%>">Thêm chương</a>
+                        </td>
+                    </tr>
+                    <%}%>
+                </table>
             </div>
-
         </div>
         <div id="footer">
             <div id="footer-data">
@@ -79,6 +80,4 @@
         </div>
     </body>
 </html>
-<%
-    session.removeAttribute("succes");
-%>
+

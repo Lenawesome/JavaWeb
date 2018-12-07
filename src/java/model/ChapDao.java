@@ -21,7 +21,95 @@ import java.util.logging.Logger;
  */
 public class ChapDao {
     
-    
+    public static void updateChap(String name,String content,String id){
+        String query = "Update chap set name=?,content=?"
+                + "where id = ?";
+        Connection connection = ConnectionManagement.getConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement(query);
+            stmt.setString(1, name);
+            stmt.setString(2, content);
+            stmt.setString(3, id);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+            connection.close();
+            stmt.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+     public static void deleteChap(String id){
+        String query = "Delete from chap where id = ?";
+        Connection connection = ConnectionManagement.getConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement(query);
+            stmt.setString(1, id);
+            stmt.executeUpdate();
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+            connection.close();
+            stmt.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+     public static void addChap(int novelId,int numbChap,String name,String content){
+        String query = "Insert Into chap (novel_id,numb_chap,name,content) values (?,?,?,?)";
+        Connection connection = ConnectionManagement.getConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement(query);
+            stmt.setInt(1, novelId);
+            stmt.setInt(2, numbChap);
+            stmt.setString(3, name);
+            stmt.setString(4, content);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+            connection.close();
+            stmt.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+    }
+     
+     public static boolean numbChapCheck(int numbChap){
+        String query = "Select * from chap where numb_chap = ?";
+        Connection connection = ConnectionManagement.getConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement(query);
+            stmt.setInt(1, numbChap);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                return false;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+            connection.close();
+            stmt.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return true;
+    }
     public static List<Chap> listChap(String type,String typeValue){
         String query = "Select * from chap where "+type+"=?";
         List<Chap> chaps = new ArrayList<>();

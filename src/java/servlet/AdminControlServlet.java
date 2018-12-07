@@ -13,6 +13,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Chap;
+import model.ChapDao;
 import model.Genre;
 import model.GenreDao;
 import model.Novel;
@@ -46,6 +48,27 @@ public class AdminControlServlet extends HttpServlet {
                 case "deleteNovel":
                     request.setAttribute("id", request.getParameter("id"));
                     request.getRequestDispatcher("xoa-truyen").forward(request, response);
+                    break;
+                case "chapManagement":
+                    request.setAttribute("novels", novels);
+                    request.getRequestDispatcher("listNovelChap.jsp").forward(request, response);
+                    break;
+                case "listChap":
+                    request.setAttribute("chaps", ChapDao.listChap("novel_id", request.getParameter("id")));
+                    request.getRequestDispatcher("listChap.jsp").forward(request, response);
+                    break;
+                case "updateChap":
+                    request.setAttribute("chaps", ChapDao.listChap("id", request.getParameter("id")));
+                    request.getRequestDispatcher("updateChapFrm.jsp").forward(request, response);
+                    break;
+                case "deleteChap":
+                    request.setAttribute("chaps", ChapDao.listChap("novel_id", request.getParameter("id")));
+                    request.setAttribute("id", request.getParameter("id"));
+                    request.getRequestDispatcher("xoa-chuong").forward(request, response);
+                    break;
+                case "addChap":
+                    request.setAttribute("listNovel", NovelDao.listBy("id", request.getParameter("id")));
+                    request.getRequestDispatcher("addChap.jsp").forward(request, response);
                     break;
                 default:
                     request.getRequestDispatcher("error.jsp").forward(request, response);

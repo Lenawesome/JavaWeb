@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.AdminDao;
 import model.Genre;
 import model.GenreDao;
 import model.Novel;
@@ -44,10 +45,12 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("userName", userName);
                     response.sendRedirect("Control?page=home");
                 }
+            }else if(AdminDao.loginAdminCheck(userName, password)){
+                session.setAttribute("userName", userName);
+                response.sendRedirect("AdminControl?page=addNovel");
             }else{
                 session.setAttribute("isValid", "false");
                 response.sendRedirect("Control?page=login");
-
             }
         }else{
             response.sendRedirect("error.jsp");

@@ -37,7 +37,7 @@ body {
     list-style: none;
     float: left;
     position: relative;
-    min-width: 125px;
+    width: 150px;
 }
 
 #top ul li a {
