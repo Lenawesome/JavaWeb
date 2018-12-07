@@ -4,6 +4,12 @@
 <%@page import="java.util.List"%>
 <%@page import="model.Novel"%>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+<%
+    response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+    if(session.getAttribute("adminName")==null){
+        response.sendRedirect("login.jsp");
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>

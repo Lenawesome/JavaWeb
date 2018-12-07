@@ -123,11 +123,11 @@
             <div class="section-2">
                 <div class="title-list">Danh sách chương</div>            
                 <div class="chap-list">
-                     <%
+                    <%
                         for(int j=0; j<listChaps.size();j++){
                     %>
                     <a href="<%=request.getContextPath()%>/Control?page=chap-info&id=<%=listChaps.get(j).getId()%>">
-                        <%=listChaps.get(j).getName()%><br>
+                        Chap <%=listChaps.get(j).getChap_numb()%>: <%=listChaps.get(j).getName()%><br>
                     </a>
                     <%}%>
                 </div>          

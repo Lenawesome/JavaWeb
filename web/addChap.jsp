@@ -3,6 +3,12 @@
 <%@page import="java.util.List"%>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
+<%
+    response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
+    if(session.getAttribute("adminName")==null){
+        response.sendRedirect("login.jsp");
+    }
+%>
 <html>
     <head>
         <title> Admin Homepage </title>
@@ -11,6 +17,7 @@
         <link rel="stylesheet" type="text/css" href="css/adminAddNovel.css">
     </head>
     <body>
+        
         <div id="top">
             <div id="mix-menu">
                 <ul>
@@ -42,6 +49,7 @@
                 </ul>
             </div>
         </div>
+                    
         <div class="main-content">
             <div id="form-container">
                 

@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet {
                     response.sendRedirect("Control?page=home");
                 }
             }else if(AdminDao.loginAdminCheck(userName, password)){
-                session.setAttribute("userName", userName);
+                session.setAttribute("adminName", userName);
                 response.sendRedirect("AdminControl?page=addNovel");
             }else{
                 session.setAttribute("isValid", "false");

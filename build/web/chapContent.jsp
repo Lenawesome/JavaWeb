@@ -48,9 +48,6 @@
                     nextbuttons[i].disabled="true";
                 }
             }
-            var options = document.getElementsByClassName("<%=chaps.get(0).getName()%>");
-            for(var i = 0; i< options.length;i++)
-                   options[i].selected="true";
         }
         window.onload = disabled;
     </script>
@@ -106,6 +103,7 @@
                             href='<%=request.getContextPath()%>/Control?page=chap-info&id=<%=request.getAttribute("previousChapId")%>'"
                             type="button" value="Chương trước">
                 <select  class="drop-down" onchange="location = this.value">
+                    <option disabled selected > -- Chọn chương -- </option>
                     <%
                         for(int i=0; i < listChap.size();i++){
                     %>
@@ -126,6 +124,7 @@
                             href='<%=request.getContextPath()%>/Control?page=chap-info&id=<%=request.getAttribute("previousChapId")%>'"
                             type="button" value="Chương trước">
                 <select  class="drop-down" onchange="location = this.value">
+                    <option disabled selected value> -- Chọn chương -- </option>
                     <%
                         for(int i=0; i < listChap.size();i++){
                     %>
