@@ -82,7 +82,7 @@
                         for(int i=0; i < 10;i++){
                             
                     %>
-                    <div class="item">
+                    <div class="item " >
                         <a href="<%=request.getContextPath() %>/Control?page=view-info&id=<%=novels.get(i).getId()%>">
                             <img src=<%=novels.get(i).getImgLink()%> class="image" alt="<%=novels.get(i).getName()%>">
                             <div class="book-name"> <%=novels.get(i).getName() %> </div>
@@ -140,6 +140,7 @@
             window.onscroll = function(){
                 scroll()
             };
+            
             function scroll(){
                 if(document.body.scrollTop > 20||document.documentElement.scrollTop >20){
                     document.getElementById('button-top').style.display = "block";

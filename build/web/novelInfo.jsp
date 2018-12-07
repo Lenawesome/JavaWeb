@@ -154,7 +154,7 @@
                 <form action="them-binh-luan" method="get">
                     <input type="hidden" value="<%=request.getAttribute("limit")%>" name="add">
                         <input type="hidden" name="idNovel" value="<%=novels.get(0).getId()%>">
-                        <input type="submit" value="Thêm bình luận">
+                        <input type="submit" value="Tải thêm bình luận">
                 </form>
                 
             </div>

@@ -77,11 +77,6 @@ textarea{
     width: 100%;
     resize: none;
 }
-input[type="submit"]{
-   padding:5px;
-   min-width: 75px;
-}
-
 .comment-list{
     margin-top: 20px;
     padding: 5px;

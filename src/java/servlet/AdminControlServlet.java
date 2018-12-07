@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.AdminGenreDao;
 import model.Chap;
 import model.ChapDao;
 import model.Genre;
@@ -101,8 +102,11 @@ public class AdminControlServlet extends HttpServlet {
                     break;
                 
                 case "deleteGenre":
-                    request.setAttribute("id", request.getParameter("id"));
-                    request.getRequestDispatcher("xoa-genre").forward(request, response);
+                    AdminGenreDao.deleteGenre(request.getParameter("id"));
+                    request.getRequestDispatcher("AdminControl?page=listGenre").forward(request, response);
+//                    request.setAttribute("listGenre", GenreDao.listBy("id", request.getParameter("id")));
+//                    request.setAttribute("id",request.getParameter("id"));
+//                    request.getRequestDispatcher("xoa-genre").forward(request, response);
                     break;
                 default:
                     request.getRequestDispatcher("error.jsp").forward(request, response);

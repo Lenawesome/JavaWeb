@@ -39,22 +39,3 @@
 	margin: 5px 0;
 	cursor: pointer;
 }
-#button-top{
-	display: none;
-	position: fixed;
-	z-index: 99;
-	font-size: 18px;
-	color: white;
-	cursor: pointer;
-	border: none;
- 	background: #444;
-	padding: 10px;
-	opacity: 0.7;
-	left: 10px;
-	bottom: 20px;
-	font-style: italic;
-	border-radius: 6px;
-}
-#button-top:hover{
-	opacity: 1;
-}
