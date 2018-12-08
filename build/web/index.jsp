@@ -82,9 +82,10 @@
                         for(int i=0; i < 10;i++){
                             
                     %>
-                    <div class="item " >
-                        <a href="<%=request.getContextPath() %>/Control?page=view-info&id=<%=novels.get(i).getId()%>">
+                    <div class="item"  >
+                        <a class="show tooltip" href="<%=request.getContextPath() %>/Control?page=view-info&id=<%=novels.get(i).getId()%>">
                             <img src=<%=novels.get(i).getImgLink()%> class="image" alt="<%=novels.get(i).getName()%>">
+                            <span class="text showdescription">Tác giả:<%=novels.get(i).getAuthor() %></span> 
                             <div class="book-name"> <%=novels.get(i).getName() %> </div>
                         </a>
                     </div>
@@ -99,8 +100,10 @@
 
                 %>
                         <div class="item">
-                            <a href="<%=request.getContextPath() %>/Control?page=view-info&id=<%=novels2.get(i).getId()%>">
+                            <a class="show tooltip" href="<%=request.getContextPath() %>/Control?page=view-info&id=<%=novels2.get(i).getId()%>">
                                 <img src=<%=novels2.get(i).getImgLink()%> class="image" alt="<%=novels2.get(i).getName()%>">
+                                <span class="text showdescription">Tác giả:<%=novels.get(i).getAuthor() %></span> 
+
                                 <div class="book-name"> <%=novels2.get(i).getName() %> </div>
                             </a>
                         </div>
@@ -130,7 +133,7 @@
             </div>
         </div>
         <div >
-                <a href="https://docs.google.com/forms/d/1EviWngyve5IE1tuxVpodrQUK2IViXpRTirRnrahY_ZY/edit" id="mail" title="Góp ý" rel="nofollow" class="tooltip" target="_blank">
+                <a href="https://docs.google.com/forms/d/1EviWngyve5IE1tuxVpodrQUK2IViXpRTirRnrahY_ZY/edit"  title="Góp ý" rel="nofollow" class="tooltip mail" target="_blank">
                     <img src="./images/mail.PNG" style="margin: 7px 5px 5px 5px ">
                     <span class="text left-tooltip">Góp ý</span> 
                 </a>

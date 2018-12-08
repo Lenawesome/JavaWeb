@@ -119,6 +119,8 @@ body {
     font-size: 12px;
 }
 .item:hover img{
+    border-radius: 20px;
+    position: relative;
     margin-bottom: 30px;
 -moz-transition-duration: 500ms;
 -moz-transform: scale(1.1);
@@ -128,6 +130,7 @@ body {
 -webkit-transition-duration: 500ms;
 box-shadow: 5px -5px 16px 2px rgba(0,0,0,0.5);
 }
+
 .right .list a:hover{
     -moz-transition-duration: 100ms;
 -webkit-transition-timing-function: ease-out;
@@ -141,7 +144,7 @@ box-shadow: 0px 0px 100px 3px rgba(0,0,0,0.5);
 -webkit-transition-duration: 100ms;
 box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5);
 }
-#mail { 
+.mail { 
  	position: fixed;
  	right: 10px;
  	bottom: 20px;
@@ -152,10 +155,34 @@ box-shadow: 0px 0px 50px 1px rgba(0,0,0,0.5);
 	box-shadow: 0px 10px 16px 0px rgba(0,0,0,1);
 	border-radius: 4px;
 }
-#mail:hover {
+.mail:hover {
  	background: #444;
  	opacity: 1;
 }
+.show{
+     	position: relative;
+}
+.showdescription{
+    position: absolute;
+    width: 70px;
+    height: 100px;
+    font-style: italic;
+    padding: 2px;
+    opacity: 0.7;
+    background: #ccc;
+     	bottom: 0px;
+        right: -75px;
+        z-index: 99;
+
+}
+.showdescription:hover{
+      text-shadow: 1px 1px 2px #427388;
+    opacity: 1;
+    -webkit-transform: scale(1.1);
+    -webkit-transition-duration: 100ms;
+    border-radius: 20px;
+}
+
 .tooltip .text{display:none ;text-align: center;}
 .tooltip:hover .text{display:inline-block}
 .left-tooltip {
