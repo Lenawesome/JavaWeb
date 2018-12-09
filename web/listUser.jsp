@@ -53,7 +53,13 @@
                                 List<User> users = (List<User>)request.getAttribute("users");
                             %>
         <div class="main-content">
+            <form action="admin-search" method="get">
+                    <input name="input-user" required type="text" placeholder="Tìm tài khoản,...">
+                    <input name="from" type="hidden" value="listUser">
+                    <input type="submit" value="Tìm kiếm">
+                </form>
             <div id="table-container">
+                  
                 <div id="table-name">Danh sách người dùng</div>
                 <table>
                     <thead>

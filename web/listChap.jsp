@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Danh sách truyện </title>
+        <title> Quản lý chương </title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
@@ -54,12 +54,20 @@
                                 session.setAttribute("chaps", request.getAttribute("chaps"));
                             %>
         <div class="main-content">
+            <form action="admin-search" method="get">
+                    <input name="search-input"required type="text" placeholder="Tìm truyện, tác giả...">
+                    <select name="option-input"id="dropdown-list">
+                        <option value="numb">STT</option>
+                        <option value="name">Tên chương</option>
+                    </select>
+                    <input type="hidden" name="from" value="listChap">
+                    <input type="submit" value="Search">
+                </form>
             <div id="table-container">
                 <div id="table-name">Danh sách chuơng</div>
                 <table>
                     <thead>
-                        <th>ID Chương</th>
-                        <th>Số thứ tự chương </th>
+                        <th>STT </th>
                         <th>Tên chương </th>
                         <th>Thao tác</th>
                     </thead>
@@ -67,7 +75,6 @@
                     for(int i=0;i<chaps.size();i++){
                     %>
                     <tr>
-                        <td><%=chaps.get(i).getId()%></td>
                         <td><%=chaps.get(i).getChap_numb()%></td>
                         <td><%=chaps.get(i).getName()%></td>
                         <td>

@@ -16,7 +16,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Admin Homepage </title>
+        <title> Quản lý người dùng </title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <link rel="stylesheet" type="text/css" href="css/adminAddNovel.css">
@@ -67,12 +67,14 @@
                     <%
                         List<User> listUser = (List<User>)request.getAttribute("users");
                     %>
+                     
                     <div id="title">Sửa tài khoản</div>
-                    <form action="sua-tai-khoan" method="post">
+                    <form action="sua-tai-khoan" method="get">
                         <div id="label">Tên tài khoản</div>
                         <input type="text" name="name" value="<%=listUser.get(0).getName()%>" required >
                         <div id="label">Mật khẩu </div>
                         <input type="text" name="pass" value="<%=listUser.get(0).getPass()%>" required >
+                        <input type="hidden" name="userName" value="<%=listUser.get(0).getName()%>">
                         <input type="submit" value="Sửa">
                     </form>                    
             </div>

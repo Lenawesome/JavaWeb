@@ -14,7 +14,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Danh sách truyện </title>
+        <title> Quản lý thể loại </title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>

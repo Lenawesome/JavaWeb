@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Admin Homepage </title>
+        <title> Quản lý chương </title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <link rel="stylesheet" type="text/css" href="css/adminAddNovel.css">

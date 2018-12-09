@@ -45,5 +45,5 @@
     </body>
 </html>
 <%
-    session.removeAttribute("valid");
+    session.removeAttribute("isValid");
 %>

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static model.ChapDao.makeQuerry;
 
 /**
  *
@@ -41,7 +42,7 @@ public class UserDao {
         }
 
     }
-   public static void updateUser(String name,String pass){
+   public static void updateUser(String name,String pass,String userName){
         String query = "Update user set name=?,password=?"
                 + "where name=?";
         Connection connection = ConnectionManagement.getConnection();
@@ -50,7 +51,7 @@ public class UserDao {
             stmt = connection.prepareStatement(query);
             stmt.setString(1, name);
             stmt.setString(2, pass);
-            stmt.setString(3, name);
+            stmt.setString(3, userName);
             stmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -209,6 +210,30 @@ public class UserDao {
             }
         }
         return true;
+    }
+     
+      public static List<User> listUserBySearching(String input){
+        String query = "Select * from user where name like ?";
+        List<User> users = new ArrayList<>();
+        User user = null;
+        Connection connection = ConnectionManagement.getConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement(query);
+            stmt.setString(1,"%"+ input+"%");
+            ResultSet rs = stmt.executeQuery();
+            makeQuerry(rs, user, users);
+        } catch (SQLException ex) {
+            Logger.getLogger(ChapDao.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+             try {
+            connection.close();
+            stmt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        return users;
     }
     
 }

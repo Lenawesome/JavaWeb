@@ -133,6 +133,29 @@ public class ChapDao {
         }
         return chaps;
     }
+     public static List<Chap> listChapBySearch(String input){
+        String query = "Select * from chap where name like ?";
+        List<Chap> chaps = new ArrayList<>();
+        Chap chap = null;
+        Connection connection = ConnectionManagement.getConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement(query);
+            stmt.setString(1,"%"+ input+"%");
+            ResultSet rs = stmt.executeQuery();
+            makeQuerry(rs,chap, chaps);
+        } catch (SQLException ex) {
+            Logger.getLogger(ChapDao.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+             try {
+            connection.close();
+            stmt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        return chaps;
+    }
     public static void makeQuerry(ResultSet rs,Chap chap,List<Chap> chaps){
         try {
             while(rs.next()){

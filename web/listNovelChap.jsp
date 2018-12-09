@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Danh sách truyện </title>
+        <title> Quản lý chương </title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
@@ -52,6 +52,11 @@
                                 List<Novel> novels = (List<Novel>)request.getAttribute("novels");
                             %>
         <div class="main-content">
+            <form action="admin-search?name=listNovelChap" method="get">
+                    <input name="input-novel" required type="text" placeholder="Tìm truyện,...">
+                    <input name="from" type="hidden" value="listNovelChap">
+                    <input type="submit" value="Tìm kiếm">
+            </form>
             <div id="table-container">
                 <div id="table-name">Danh sách truyện</div>
                 <table>
