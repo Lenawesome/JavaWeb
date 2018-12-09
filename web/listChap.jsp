@@ -54,7 +54,8 @@
                                 session.setAttribute("chaps", request.getAttribute("chaps"));
                             %>
         <div class="main-content">
-            <form action="admin-search" method="get">
+            <div class="search-admin">
+                <form action="admin-search" method="get" >
                     <input name="search-input"required type="text" placeholder="Tìm truyện, tác giả...">
                     <select name="option-input"id="dropdown-list">
                         <option value="numb">STT</option>
@@ -63,6 +64,8 @@
                     <input type="hidden" name="from" value="listChap">
                     <input type="submit" value="Search">
                 </form>
+            </div>
+            
             <div id="table-container">
                 <div id="table-name">Danh sách chuơng</div>
                 <table>

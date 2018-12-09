@@ -84,8 +84,9 @@
                             for(int i=0; i < novels.size();i++){
                         %>
                         <div class="item">
-                            <a href="<%=request.getContextPath() %>/Control?page=view-info&id=<%=novels.get(i).getId()%>">
+                            <a class="show tooltip" href="<%=request.getContextPath() %>/Control?page=view-info&id=<%=novels.get(i).getId()%>">
                                 <img src=<%=novels.get(i).getImgLink()%> class="image" alt="<%=novels.get(i).getName()%>">
+                                <span class="text showdescription"><b>Tác giả:</b>  <%=novels.get(i).getAuthor() %></span>
                                 <div class="book-name"> <%=novels.get(i).getName() %> </div>
                             </a>
                         </div>

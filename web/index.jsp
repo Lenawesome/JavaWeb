@@ -85,7 +85,7 @@
                     <div class="item"  >
                         <a class="show tooltip" href="<%=request.getContextPath() %>/Control?page=view-info&id=<%=novels.get(i).getId()%>">
                             <img src=<%=novels.get(i).getImgLink()%> class="image" alt="<%=novels.get(i).getName()%>">
-                            <span class="text showdescription">Tác giả:<%=novels.get(i).getAuthor() %></span> 
+                            <span class="text showdescription"><b>Tác giả:</b>  <%=novels.get(i).getAuthor() %></span> 
                             <div class="book-name"> <%=novels.get(i).getName() %> </div>
                         </a>
                     </div>
@@ -102,7 +102,7 @@
                         <div class="item">
                             <a class="show tooltip" href="<%=request.getContextPath() %>/Control?page=view-info&id=<%=novels2.get(i).getId()%>">
                                 <img src=<%=novels2.get(i).getImgLink()%> class="image" alt="<%=novels2.get(i).getName()%>">
-                                <span class="text showdescription">Tác giả:<%=novels.get(i).getAuthor() %></span> 
+                                <span class="text showdescription"><b>Tác giả:</b>  <%=novels2.get(i).getAuthor() %></span> 
 
                                 <div class="book-name"> <%=novels2.get(i).getName() %> </div>
                             </a>

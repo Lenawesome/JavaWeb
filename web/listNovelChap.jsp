@@ -52,11 +52,14 @@
                                 List<Novel> novels = (List<Novel>)request.getAttribute("novels");
                             %>
         <div class="main-content">
-            <form action="admin-search?name=listNovelChap" method="get">
+            <div class="search-admin">
+                <form action="admin-search?name=listNovelChap" method="get">
                     <input name="input-novel" required type="text" placeholder="Tìm truyện,...">
                     <input name="from" type="hidden" value="listNovelChap">
                     <input type="submit" value="Tìm kiếm">
-            </form>
+                </form>
+            </div>
+            
             <div id="table-container">
                 <div id="table-name">Danh sách truyện</div>
                 <table>
