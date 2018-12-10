@@ -75,7 +75,7 @@
                         <div id="label">Mô tả</div>
                         <textarea required id="comment" name="description" rows="3" ><%=listNovel.get(0).getDescription()%></textarea><br>
                         <div id="label">Rating</div>
-                        <input type="text" name="rating" value="<%=listNovel.get(0).getRating()%>" required>
+                        <input type="number" min="1" max="10" name="rating" value="<%=listNovel.get(0).getRating()%>" required>
                         <div id="label">Trạng thái</div>
                         <input type="text" name="status" value="<%=listNovel.get(0).getStatus()%>" required>
                         <input type="hidden" name="id" value="<%=listNovel.get(0).getId()%>">

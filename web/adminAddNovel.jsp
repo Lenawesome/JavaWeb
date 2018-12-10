@@ -67,7 +67,7 @@
                         <div id="label">Mô tả</div>
                         <textarea required id="comment" name="description" rows="3" placeholder="Nhập mô tả..."></textarea><br>
                         <div id="label">Rating</div>
-                        <input type="text" name="rating" placeholder="Nhập số rating.. " required>
+                        <input type="number" max="10" min="1" name="rating" placeholder="Nhập số rating.. " required>
                         <div id="label">Trạng thái</div>
                         <input type="text" name="status" placeholder="Nhập trạng thái... " required>
                         <input type="submit" value="Thêm truyện">
