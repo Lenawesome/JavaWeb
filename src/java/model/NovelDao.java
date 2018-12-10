@@ -127,7 +127,28 @@ public class NovelDao {
         }
         return novels;
     }
-    
+    public static List<Novel> listNovelHot(){
+        Novel novel = null;
+        List<Novel> novels = new ArrayList<>();
+        Connection connection = ConnectionManagement.getConnection();
+        Statement stmt = null;
+        try {
+            stmt = connection.createStatement();
+            String query = "SELECT * FROM novel ORDER BY rating DESC LIMIT 6";
+            ResultSet rs = stmt.executeQuery(query);
+            makeQuery(novel, rs, novels);
+        } catch (SQLException ex) {
+            Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            try {            
+                connection.close();
+                stmt.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return novels;
+    }
    
     public static void makeQuery(Novel novel, ResultSet rs,List<Novel> novels) {
         try {
@@ -143,6 +164,7 @@ public class NovelDao {
                 }
                 novel.setAuthor(rs.getString("author").trim());
                 novel.setStatus(rs.getString("status").trim());
+                novel.setRating(rs.getFloat("rating"));
                 novels.add(novel);
             }
         } catch (SQLException ex) {

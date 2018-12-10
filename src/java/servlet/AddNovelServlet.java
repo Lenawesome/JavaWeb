@@ -31,9 +31,10 @@ public class AddNovelServlet extends HttpServlet {
         String image = request.getParameter("image");
         String description = request.getParameter("description");
         String status = request.getParameter("status");
+        String rating = request.getParameter("rating");
         HttpSession session = request.getSession();
         if(AdminNovelDao.novelNameCheck(name.trim().toLowerCase())){
-            AdminNovelDao.addNovel(name, author, image, description, status);
+            AdminNovelDao.addNovel(name, author, image, description, status,rating);
             session.setAttribute("succes", "true");
             response.sendRedirect("AdminControl?page=addNovel");
         }else{

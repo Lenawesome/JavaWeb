@@ -32,7 +32,7 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            List<Novel> hotList = NovelDao.listNovel();
+            List<Novel> hotList = NovelDao.listNovelHot();
             List<Novel> finishedList = NovelDao.listBy("status","Full");
             if(hotList.isEmpty()||finishedList.isEmpty()){
                 request.getRequestDispatcher("error.jsp").forward(request, response);

@@ -16,15 +16,27 @@ public class Novel {
     private String status;
     private String description;
     private String author;
+    private float rating;
 
-    public Novel(int id, String name, String imgLink, String status, String description, String author) {
+    public Novel(int id, String name, String imgLink, String status, String description, String author, float rating) {
         this.id = id;
         this.name = name;
         this.imgLink = imgLink;
         this.status = status;
         this.description = description;
         this.author = author;
+        this.rating = rating;
     }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
+    
 
     public String getAuthor() {
         return author;

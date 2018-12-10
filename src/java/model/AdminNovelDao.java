@@ -18,8 +18,8 @@ import static model.ChapDao.makeQuerry;
  * @author MyPC
  */
 public class AdminNovelDao {
-    public static void addNovel(String name,String author,String image, String description,String status){
-        String query = "Insert Into novel (name,author,image,description,status) values (?,?,?,?,?)";
+    public static void addNovel(String name,String author,String image, String description,String status,String rating){
+        String query = "Insert Into novel (name,author,image,description,status,rating) values (?,?,?,?,?,?)";
         Connection connection = ConnectionManagement.getConnection();
         PreparedStatement stmt = null;
         try {
@@ -29,6 +29,7 @@ public class AdminNovelDao {
             stmt.setString(3, image);
             stmt.setString(4, description);
             stmt.setString(5, status);
+            stmt.setString(6, rating);
             stmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -66,8 +67,8 @@ public class AdminNovelDao {
         return true;
     }
      
-     public static void updateNovel(String name,String author,String image,String description,String status,String id){
-        String query = "Update novel set name=?,author=?,image=?,description=?,status=?"
+     public static void updateNovel(String name,String author,String image,String description,String status,String rating,String id){
+        String query = "Update novel set name=?,author=?,image=?,description=?,status=?,rating=?"
                 + "where id = ?";
         Connection connection = ConnectionManagement.getConnection();
         PreparedStatement stmt = null;
@@ -78,7 +79,8 @@ public class AdminNovelDao {
             stmt.setString(3, image);
             stmt.setString(4, description);
             stmt.setString(5, status);
-            stmt.setString(6, id);
+            stmt.setString(6, rating);
+            stmt.setString(7, id);
             stmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);

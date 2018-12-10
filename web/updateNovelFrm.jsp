@@ -51,6 +51,7 @@
         </div>
         <div class="main-content">
             <div id="form-container">
+                
                 <%if(session.getAttribute("succes")!=null){
                         if(session.getAttribute("succes").equals("false")){
                     %>
@@ -73,6 +74,8 @@
                         <input type="text" name="image" value="<%=listNovel.get(0).getImgLink()%>" required>
                         <div id="label">Mô tả</div>
                         <textarea required id="comment" name="description" rows="3" ><%=listNovel.get(0).getDescription()%></textarea><br>
+                        <div id="label">Rating</div>
+                        <input type="text" name="rating" value="<%=listNovel.get(0).getRating()%>" required>
                         <div id="label">Trạng thái</div>
                         <input type="text" name="status" value="<%=listNovel.get(0).getStatus()%>" required>
                         <input type="hidden" name="id" value="<%=listNovel.get(0).getId()%>">

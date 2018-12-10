@@ -66,7 +66,9 @@
                         <th>ID</th>
                         <th>Tên truyện</th>
                         <th>Tên tác giả</th>
+                        <th>Rating</th>
                         <th>Trạng thái</th>
+                        
                         <th>Thao tác</th>
                     </thead>
                     <%
@@ -76,7 +78,9 @@
                         <td><%=novels.get(i).getId()%></td>
                         <td><%=novels.get(i).getName()%></td>
                         <td><%=novels.get(i).getAuthor()%></td>
+                        <td><%=novels.get(i).getRating() %></td>
                         <td><%=novels.get(i).getStatus()%></td>
+                        
                         <td>
                             <a href="<%=request.getContextPath()%>/AdminControl?page=updateNovel&id=<%=novels.get(i).getId()%>">Sửa</a>|
                             <a href="<%=request.getContextPath()%>/AdminControl?page=deleteNovel&id=<%=novels.get(i).getId()%>">Xóa</a>

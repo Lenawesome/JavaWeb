@@ -79,7 +79,7 @@
                 
                      <%
                         List<Novel> novels = (List<Novel>)request.getAttribute("hotList");
-                        for(int i=0; i < 10;i++){
+                        for(int i=0; i < 6;i++){
                             
                     %>
                     <div class="item"  >
