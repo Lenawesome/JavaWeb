@@ -130,6 +130,7 @@ b{
     width: 40%;
     height: 180px;
     border: 1px solid black;
+    float: left;
 }
 .genre-description{
     display: none;
@@ -150,8 +151,9 @@ b{
     font-weight: bold;
 }
 .info-wraper{
-    float: right;
+    float: left;
     width: 55%;
+    margin-left: 12px;
 }
 
 }
