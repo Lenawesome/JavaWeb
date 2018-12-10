@@ -96,3 +96,102 @@ textarea{
 .chap-list a:hover{
     text-decoration: underline;
 }
+
+@media (max-width:600px){
+    .main-content{
+    width: 100%;
+    clear:left;
+}
+
+.title-list{
+    
+    margin-bottom: 0;
+}
+.section-1{
+    clear: left;
+    padding: 0;
+
+}
+.left{
+    width: 100%;
+    min-height: 200px;
+    float:none;
+}
+
+.novel {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+}
+.image {
+    display: block;
+    margin: 0 auto;
+    border: 1px solid black;
+    width: 50%;
+    height: 260px;
+}
+.novel-info {
+    margin: 0;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.middle{
+    width: 100%;
+    float: none;
+}
+.novel-name {
+    font-size: 17px;
+    text-align: center;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.right {
+   display: none;
+}
+
+.related-novel{
+    padding: 5px;
+}
+.related-novel a{
+    text-decoration: none;
+    display: block;
+    margin-bottom: 5px;
+    color:black;
+}
+.related-novel a:hover{
+    color: blue;
+}
+
+.section-3{
+    margin-top: 20px;
+}
+textarea{
+    margin-top: 8px;
+    width: 100%;
+    resize: none;
+}
+.comment-list{
+    margin-top: 5px;
+    padding: 5px;
+    font-weight: bold;
+}
+.time{
+    font-size: 12px;
+    font-style: italic;
+    font-weight: normal;
+}
+.chap-list a{
+    margin-left: 10px;
+    text-decoration: none;
+    margin-top:3px;
+    color: black;
+    font-weight: normal;
+}
+#load-comments{
+    display: block;
+    margin: 0 auto;
+}
+.chap-list a:hover{
+    text-decoration: underline;
+}
+}

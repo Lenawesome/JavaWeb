@@ -39,3 +39,41 @@
 	margin: 5px 0;
 	cursor: pointer;
 }
+@media(max-width: 600px){
+.main-content{
+    width: 100%;
+    clear:left;
+}
+.chap-content{
+    font-size: 15px;
+    width: 100%;
+    padding: 4px;
+}
+
+
+.chap-info,.button-group{
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.next,.previous,.drop-down{
+    padding: 5px;
+    margin-bottom: 20px;
+}
+.novel-name{
+    margin-bottom: 15px;
+}
+.item:hover img{
+-webkit-transform: scale(1.1);
+-webkit-transition-timing-function: ease-out;
+-webkit-transition-duration: 500ms;
+}
+#gotop{
+	color: white;
+	background-color: #263B4D;
+	border: none;
+	margin: 5px 0;
+	cursor: pointer;
+}
+}

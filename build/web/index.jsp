@@ -14,9 +14,11 @@
     <head>
         <title> Trang chủ </title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <link rel="stylesheet" type="text/css" href="css/home.css">
          <script type="text/javascript">
+             
             function disabled(){
                 var userName = "<%=(String)session.getAttribute("userName")%>";
                 var x = document.getElementById("login");
@@ -29,10 +31,18 @@
                 }
             }
             window.onload = disabled;
+            function myFunction() {
+              var x = document.getElementById("top");
+              if (x.className === "top") {
+                x.className += " responsive";
+              } else {
+                x.className = "top";
+              }
+            }
         </script>
     </head>
     <body>
-        <div id="top">
+        <div id="top" class="top">
             <div id="mix-menu">
                 <ul>
                     <li><a href="<%=request.getContextPath() %>/Control?page=home">Trang chủ</a></li>
@@ -67,6 +77,7 @@
                     <input id="submit-button" type="submit" value="Search">
                 </form>
             </div>
+                        <a class="menu-button" href="javascritp:void(0)" onclick="myFunction()">Menu</a>
         </div>
                         <%
                             if(session.getAttribute("userName")!=null){
@@ -96,7 +107,7 @@
                     <div class="title-list">*Truyện hoàn thành*</div>
                              <%
                     List<Novel> novels2= (List<Novel>) request.getAttribute("finishedList");
-                    for(int i=0; i < 10;i++){
+                    for(int i=0; i < 9;i++){
 
                 %>
                         <div class="item">

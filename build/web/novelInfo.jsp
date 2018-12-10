@@ -20,6 +20,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" type="text/css" href="css/novelInfo.css">
         <title><%=novels.get(0).getName()%></title>
         <script type="text/javascript">
             function disabled(){
@@ -33,15 +36,19 @@
                     y.style.display = "block";
                 }
             }
+             function myFunction() {
+              var x = document.getElementById("top");
+              if (x.className === "top") {
+                x.className += " responsive";
+              } else {
+                x.className = "top";
+              }
+            }
             window.onload = disabled;
         </script>
     </head>
     <body>
-        <link rel="stylesheet" type="text/css" href="css/main.css">
-        <link rel="stylesheet" type="text/css" href="css/novelInfo.css">
-    </head>
-    <body>
-        <div id="top">
+        <div id="top" class="top">
             <div id="mix-menu">
                 <ul>
                     <li><a href="<%=request.getContextPath() %>/Control?page=home">Trang chủ</a></li>
@@ -76,6 +83,7 @@
                     <input id="submit-button" type="submit" value="Search">
                 </form>
             </div>
+                        <a class="menu-button" href="javascritp:void(0)" onclick="myFunction()">Menu</a>
         </div>
                         <%
                             if(session.getAttribute("userName")!=null){
@@ -154,7 +162,7 @@
                 <form action="them-binh-luan" method="get">
                     <input type="hidden" value="<%=request.getAttribute("limit")%>" name="add">
                         <input type="hidden" name="idNovel" value="<%=novels.get(0).getId()%>">
-                        <input type="submit" value="Tải thêm bình luận">
+                        <input type="submit" id="load-comments"value="Tải thêm bình luận">
                 </form>
                 
             </div>

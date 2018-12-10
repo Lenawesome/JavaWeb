@@ -17,6 +17,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title></title>
     </head>
     <body>
@@ -49,10 +50,18 @@
                 }
             }
         }
+         function myFunction() {
+              var x = document.getElementById("top");
+              if (x.className === "top") {
+                x.className += " responsive";
+              } else {
+                x.className = "top";
+              }
+            }
         window.onload = disabled;
     </script>
     <body>
-        <div id="top">
+        <div id="top" class="top">
             <div id="mix-menu">
                 <ul>
                     <li><a href="<%=request.getContextPath() %>/Control?page=home">Trang chủ</a></li>
@@ -87,6 +96,7 @@
                     <input id="submit-button" type="submit" value="Search">
                 </form>
             </div>
+                         <a class="menu-button" href="javascritp:void(0)" onclick="myFunction()">Menu</a>
         </div>
                         <%
                             if(session.getAttribute("userName")!=null){
@@ -96,7 +106,7 @@
         <div class="main-content">
             <div class="chap-info">
                 <div class="novel-name"><%=novels.get(0).getName()%></div>
-                <div class="chap-name"><%=chaps.get(0).getName()%></div>
+                <div class="chap-name">Chap <%=chaps.get(0).getChap_numb()%>: <%=chaps.get(0).getName()%></div>
             </div>
             <div class="button-group" name="button-group">
                 <input class="previous" onclick="window.location.

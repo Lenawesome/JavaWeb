@@ -12,6 +12,7 @@
     <head>
         <title> Tìm kiếm </title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <link rel="stylesheet" type="text/css" href="css/searchList.css">
         <script type="text/javascript">
@@ -26,11 +27,19 @@
                     y.style.display = "block";
                 }
             }
+            function myFunction() {
+              var x = document.getElementById("top");
+              if (x.className === "top") {
+                x.className += " responsive";
+              } else {
+                x.className = "top";
+              }
+            }
             window.onload = disabled;
         </script>
     </head>
     <body>
-        <div id="top">
+        <div id="top" class="top">
             <div id="mix-menu">
                 <ul>
                     <li><a href="<%=request.getContextPath() %>/Control?page=home">Trang chủ</a></li>
@@ -65,6 +74,7 @@
                         <input id="submit-button" type="submit" value="Search">
                     </form>
             </div>
+                        <a class="menu-button" href="javascritp:void(0)" onclick="myFunction()">Menu</a>
         </div>
                         <%
                             if(session.getAttribute("userName")!=null){
@@ -85,7 +95,9 @@
                             <div class="item">
                                 <a href="<%=request.getContextPath() %>/Control?page=view-info&id=<%=novels.get(i).getId()%>">
                                     <img src=<%=novels.get(i).getImgLink()%> class="image" alt="<%=novels.get(i).getName()%>">
-                                    <div class="book-name"> <%=novels.get(i).getName() %> </div>
+                                    <div class="info-wraper"> <p class="name"><%=novels.get(i).getName() %> </p>
+                                    <p class="book-info"><b>Tác giả:<br></b><%=novels.get(i).getAuthor()%><b><br>Rating:<br></b><%=novels.get(i).getRating()%></p>
+                                    </div>
                                 </a>
                             </div>
                         <%}%>
