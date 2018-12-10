@@ -65,7 +65,7 @@
                     <%
                         List<Genre> listGenre = (List<Genre>)request.getAttribute("listGenre");
                     %>
-                    <div id="title">Sửa truyện</div>
+                    <div id="title">Sửa thể loại</div>
                     <form action="sua-genre" method="post">
                         <div id="label">Tên thể loại</div>
                         <input type="text" name="name" value="<%=listGenre.get(0).getName()%>" required >
