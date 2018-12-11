@@ -49,26 +49,26 @@ public class InfoServlet extends HttpServlet {
                 limit = (int)request.getAttribute("limit");
                 System.out.println(limit);
             }
-            List<Novel> listNovelById = NovelDao.listBy("id", id);
-            List<Novel> listNovelByAuthor = new ArrayList<>();
-            List<Genre> listGenre = GenreDao.listGenreByIdNovel(id);
-            List<Genre> listAllGenres = GenreDao.listAllGenres();
-            String strGenre = "";
-            for(int i =0; i<listGenre.size();i++){
-                if(i==listGenre.size()-1)
-                    strGenre+=listGenre.get(i).getName();
-                else
-                    strGenre+=(listGenre.get(i).getName()+",");
-            }
-            List<Chap> listChap = ChapDao.listChap("novel_id",id);
-            List<Comment> listComment = CommentDao.listCommentNovel(id,limit);
-            listNovelByAuthor = NovelDao.listBy("author", listNovelById.get(0).getAuthor());
-            for(int i =0; i < listNovelByAuthor.size();i++){
-                if(listNovelByAuthor.get(i).getId()==Integer.parseInt(id)){
-                    listNovelByAuthor.remove(i);
-                }
-            }
+                List<Novel> listNovelById = NovelDao.listBy("id", id);
                 if(!listNovelById.isEmpty()){
+                    List<Novel> listNovelByAuthor = new ArrayList<>();
+                    List<Genre> listGenre = GenreDao.listGenreByIdNovel(id);
+                    List<Genre> listAllGenres = GenreDao.listAllGenres();
+                    String strGenre = "";
+                    for(int i =0; i<listGenre.size();i++){
+                        if(i==listGenre.size()-1)
+                            strGenre+=listGenre.get(i).getName();
+                        else
+                            strGenre+=(listGenre.get(i).getName()+",");
+                    }
+                    List<Chap> listChap = ChapDao.listChap("novel_id",id);
+                    List<Comment> listComment = CommentDao.listCommentNovel(id,limit);
+                    listNovelByAuthor = NovelDao.listBy("author", listNovelById.get(0).getAuthor());
+                    for(int i =0; i < listNovelByAuthor.size();i++){
+                        if(listNovelByAuthor.get(i).getId()==Integer.parseInt(id)){
+                            listNovelByAuthor.remove(i);
+                        }
+                    }
                     request.setAttribute("listComments", listComment);
                     request.setAttribute("listNovelById",listNovelById);
                     request.setAttribute("listChap",listChap);
@@ -77,6 +77,8 @@ public class InfoServlet extends HttpServlet {
                     request.setAttribute("listAllGenres", listAllGenres);
                     request.setAttribute("strGenre", strGenre);
                     request.getRequestDispatcher("novelInfo.jsp").forward(request, response);
+                }else{
+                     response.sendRedirect("error.jsp");
                 }
         }
 
