@@ -35,10 +35,14 @@ public class CategoryServlet extends HttpServlet {
             throws ServletException, IOException {
             String genreId = (String)request.getAttribute("id");
             List<Genre> genre = GenreDao.listGenreByIdGenre(genreId);
-            List<Novel> novels = NovelDao.listNovelByGenreId(genreId);
-            request.setAttribute("listNovel", novels);
-            request.setAttribute("genre", genre);
-            request.getRequestDispatcher("category.jsp").forward(request, response);
+            if(!genre.isEmpty()){
+                List<Novel> novels = NovelDao.listNovelByGenreId(genreId);
+                request.setAttribute("listNovel", novels);
+                request.setAttribute("genre", genre);
+                request.getRequestDispatcher("category.jsp").forward(request, response);
+            }else{
+                response.sendRedirect("error.jsp");
+            }
         
     }
 
