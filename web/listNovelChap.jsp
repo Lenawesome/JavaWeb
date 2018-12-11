@@ -17,7 +17,7 @@
         <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
     <body>
-        <div id="top">
+        <div id="top" class="top">
             <div id="mix-menu">
                 <ul>
                     <li>
