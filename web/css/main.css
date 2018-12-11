@@ -258,6 +258,10 @@ input[type="submit"]:hover{
     min-height: 200px;
     right:  70px;
 }
+.search-admin input[type="text"],#dropdown-list{
+    height: 29px;
+}
+
 .user-input{
     min-height: 70px;
 }
