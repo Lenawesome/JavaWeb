@@ -56,7 +56,7 @@
         <div class="main-content">
             <div class="search-admin">
                 <form action="admin-search" method="get" >
-                    <input name="search-input"required type="text" placeholder="Tìm truyện, tác giả...">
+                    <input name="search-input"required type="text" placeholder="Tìm chương,...">
                     <select name="option-input"class="dropdown-list">
                         <option value="numb">STT</option>
                         <option value="name">Tên chương</option>

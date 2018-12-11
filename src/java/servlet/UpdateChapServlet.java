@@ -36,14 +36,18 @@ public class UpdateChapServlet extends HttpServlet {
         String content = request.getParameter("content");
         String id = request.getParameter("id");
         List<Chap> chaps = ChapDao.listChap("id", id);
-        HttpSession session = request.getSession();
-            if(chaps.get(0).getName().equals(name)
-                    &&chaps.get(0).getContent().equals(content)){
-                session.setAttribute("troll","true");
-                response.sendRedirect("AdminControl?page=updateChap&id="+id);
-            }else{
-                ChapDao.updateChap(name, content, id);
-                response.sendRedirect("AdminControl?page=listChap&id="+request.getParameter("idNovel"));
-            }
+        if(!chaps.isEmpty()){
+            HttpSession session = request.getSession();
+                if(chaps.get(0).getName().equals(name)
+                        &&chaps.get(0).getContent().equals(content)){
+                    session.setAttribute("troll","true");
+                    response.sendRedirect("AdminControl?page=updateChap&id="+id);
+                }else{
+                    ChapDao.updateChap(name, content, id);
+                    response.sendRedirect("AdminControl?page=listChap&id="+request.getParameter("idNovel"));
+                }
+        }else{
+            response.sendRedirect("adminAddNovel.jsp");
+        }
         }
     }

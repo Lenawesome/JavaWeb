@@ -48,7 +48,11 @@ public class AdminControlServlet extends HttpServlet {
                     break;
                 case "updateNovel":
                     request.setAttribute("listNovel", NovelDao.listBy("id", request.getParameter("id")));
-                    request.getRequestDispatcher("updateNovelFrm.jsp").forward(request, response);
+                    if( !NovelDao.listBy("id", request.getParameter("id")).isEmpty()){
+                        request.getRequestDispatcher("updateNovelFrm.jsp").forward(request, response);
+                    }else{
+                        response.sendRedirect("adminAddNovel.jsp");
+                    }
                     break;
                 case "deleteNovel":
                     request.setAttribute("id", request.getParameter("id"));
@@ -64,7 +68,11 @@ public class AdminControlServlet extends HttpServlet {
                     break;
                 case "updateUser":
                     request.setAttribute("users", UserDao.findUser(request.getParameter("userName")));
-                    request.getRequestDispatcher("updateUserFrm.jsp").forward(request, response);
+                    if(!UserDao.findUser(request.getParameter("userName")).isEmpty()){
+                        request.getRequestDispatcher("updateUserFrm.jsp").forward(request, response);
+                    }else{
+                        response.sendRedirect("adminAddNovel.jsp");
+                    }
                     break;
                 case "deleteUser":
                     UserDao.deleteUser(request.getParameter("userName"));
@@ -72,25 +80,46 @@ public class AdminControlServlet extends HttpServlet {
                     break;
                 case "listChap":
                     request.setAttribute("chaps", ChapDao.listChap("novel_id", request.getParameter("id")));
-                    request.getRequestDispatcher("listChap.jsp").forward(request, response);
+                    if( !ChapDao.listChap("novel_id", request.getParameter("id")).isEmpty()){
+                        request.getRequestDispatcher("listChap.jsp").forward(request, response);
+                    }else{
+                        response.sendRedirect("adminAddNovel.jsp");
+                    }
                     break;
                 case "updateChap":
                     request.setAttribute("chaps", ChapDao.listChap("id", request.getParameter("id")));
-                    request.getRequestDispatcher("updateChapFrm.jsp").forward(request, response);
+                    if( !ChapDao.listChap("novel_id", request.getParameter("id")).isEmpty()){
+                        request.getRequestDispatcher("updateChapFrm.jsp").forward(request, response);
+                    }else{
+                        response.sendRedirect("adminAddNovel.jsp");
+                    }
+                   
                     break;
                 case "deleteChap":
                     request.setAttribute("chaps", ChapDao.listChap("novel_id", request.getParameter("id")));
-                    request.setAttribute("id", request.getParameter("id"));
-                    request.getRequestDispatcher("xoa-chuong").forward(request, response);
+                      if( !ChapDao.listChap("novel_id", request.getParameter("id")).isEmpty()){
+                        request.setAttribute("id", request.getParameter("id"));
+                        request.getRequestDispatcher("xoa-chuong").forward(request, response);
+                      }else{
+                          response.sendRedirect("adminAddNovel.jsp");
+                      }
                     break;
                 case "addChap":
                     request.setAttribute("listNovel", NovelDao.listBy("id", request.getParameter("id")));
-                    request.getRequestDispatcher("addChap.jsp").forward(request, response);
+                    if(!NovelDao.listBy("id", request.getParameter("id")).isEmpty()){
+                        request.getRequestDispatcher("addChap.jsp").forward(request, response);
+                    }else{
+                        response.sendRedirect("adminAddNovel.jsp");
+                    }
                     break;
                    
                  case"updateGenre":
                     request.setAttribute("listGenre", GenreDao.listBy("id", request.getParameter("id")));
-                    request.getRequestDispatcher("updateGenreFrm.jsp").forward(request, response);
+                    if(!GenreDao.listBy("id", request.getParameter("id")).isEmpty()){
+                        request.getRequestDispatcher("updateGenreFrm.jsp").forward(request, response);
+                    }else{
+                        response.sendRedirect("adminAddNovel.jsp");
+                    }
                     break;
                 case "addGenre":
                     request.getRequestDispatcher("adminAddGenre.jsp").forward(request, response);
