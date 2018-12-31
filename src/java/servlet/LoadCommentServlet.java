@@ -23,13 +23,18 @@ public class LoadCommentServlet extends HttpServlet {
 
   
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int limit = Integer.parseInt(request.getParameter("add"));
-        limit = limit+2;
-        request.setAttribute("limit", limit);
+        HttpSession session = request.getSession();
+        int add = Integer.parseInt(request.getParameter("add"));
+        session.setAttribute("add", add);
+        int limit = (int)session.getAttribute("limit");
+        limit = limit+add;
+        session.setAttribute("limit", limit);
         String idNovel = request.getParameter("idNovel");
-        request.getRequestDispatcher("Control?page=view-info&id="+idNovel).forward(request, response);
+//        request.getRequestDispatcher("Control?page=view-info&id="+idNovel).forward(request, response);
+        response.sendRedirect("Control?page=view-info&id="+idNovel);
+        
     }
 
 }

@@ -23,7 +23,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <link rel="stylesheet" type="text/css" href="css/novelInfo.css">
-
         <title><%=novels.get(0).getName()%></title>
         <script type="text/javascript">
             function disabled(){
@@ -109,94 +108,7 @@
                     </div>
                 </div>
                 <div class="middle">
-                    <%
-                            if((session.getAttribute("userName")!=null)&&(session.getAttribute("point")==null)){
-                                
-                        %>
-                        <div>
-                            <form class="rating" action="danh-gia" method="post"><span><b id="star-b">Hãy đánh giá truyện này:</b></span>
-                                <input id="btnUp1" type="image" src="./images/star-off-big.png" title="như cẹc" name="star" value="1" onmouseover="change1() " onmouseout="changeback1()"/>
-                                <input id="btnUp2" type="image" src="./images/star-off-big.png" title="bình thường" name="star" value="2" onmouseover="change1(),change2()" onmouseout="changeback2(),changeback1()"/>
-                                <input id="btnUp3" type="image" src="./images/star-off-big.png" title="tạm được" name="star" value="3" onmouseover="change1(),change2(),change3()" onmouseout="changeback3(),changeback2(),changeback1()"/>
-                                <input id="btnUp4" type="image" src="./images/star-off-big.png" title="hay đó" name="star" value="4"onmouseover="change1(),change2(),change3(),change4()" onmouseout="changeback4(),changeback3(),changeback2(),changeback1()"/>
-                                <input id="btnUp5" type="image" src="./images/star-off-big.png" title="tuyệt vời" name="star" value="5" onmouseover="change1(),change2(),change3(),change4(),change5()" onmouseout="changeback5(),changeback4(),changeback3(),changeback2(),changeback1()"/>
-                            </form>
-                        </div>
-                        <%}%>
-                    <%
-                            if((session.getAttribute("userName")!=null)&&(session.getAttribute("point")!=null)){
-                        %>
-                        <div class="rating">
-                            <span><b id="star-b">Đánh giá truyện:</b></span>
-                                <%
-                                if (true) {
-                                %>
-                                <img src="./images/star-half-big.png"  />
-                                <img src="./images/star-off-big.png"  />
-                                <img src="./images/star-off-big.png"  />
-                                <img src="./images/star-off-big.png" />
-                                <img src="./images/star-off-big.png"  />
-                                <%
-                                    }%><%--
-                                if(true){
-                                    %>
-                                <img src="./images/star-on-big.png"  />
-                                <img src="./images/star-off-big.png"  />
-                                <img src="./images/star-off-big.png"  />
-                                <img src="./images/star-off-big.png" />
-                                <img src="./images/star-off-big.png"  />
-                                <%
-                                    }
-                                 if (true) {
-                                  %>
-                                <img src="./images/star-on-big.png"  />
-                                <img src="./images/star-half-big.png"  />
-                                <img src="./images/star-off-big.png"  />
-                                <img src="./images/star-off-big.png" />
-                                <img src="./images/star-off-big.png"  />
-                                <%
-                                }
-                                if (true) {
-                                  %>
-                                <img src="./images/star-on-big.png"  />
-                                <img src="./images/star-on-big.png"  />
-                                <img src="./images/star-off-big.png"  />
-                                <img src="./images/star-off-big.png" />
-                                <img src="./images/star-off-big.png"  />
-                                <%
-                                }
-                                if (true) {
-                                  %>
-                                <img src="./images/star-on-big.png"  />
-                                <img src="./images/star-half-big.png"  />
-                                <img src="./images/star-off-big.png"  />
-                                <img src="./images/star-off-big.png" />
-                                <img src="./images/star-off-big.png"  />
-                                <%
-                                }
-                                if (true) {
-                                  %>
-                                <img src="./images/star-on-big.png"  />
-                                <img src="./images/star-half-big.png"  />
-                                <img src="./images/star-off-big.png"  />
-                                <img src="./images/star-off-big.png" />
-                                <img src="./images/star-off-big.png"  />
-                                <%
-                                }
-                                if (true) {
-                                  %>
-                                <img src="./images/star-on-big.png"  />
-                                <img src="./images/star-half-big.png"  />
-                                <img src="./images/star-off-big.png"  />
-                                <img src="./images/star-off-big.png" />
-                                <img src="./images/star-off-big.png"  />
-                                <%
-                                }
-                        --%>
-                        </div>
-                        <%}%>
                     <div class="novel-name"><%=novels.get(i).getName()%></div>
-                    
                     <div class="novel-description">
                         <%=novels.get(i).getDescription()%>
                     </div>
@@ -247,8 +159,8 @@
                     </div>
                     <%}%>
                 </div>
-                <form action="them-binh-luan" method="get">
-                    <input type="hidden" value="<%=request.getAttribute("limit")%>" name="add">
+                <form action="them-binh-luan" method="post">
+                    <input type="hidden" value="2" name="add">
                         <input type="hidden" name="idNovel" value="<%=novels.get(0).getId()%>">
                         <input type="submit" id="load-comments"value="Tải thêm bình luận">
                 </form>
@@ -280,35 +192,7 @@
                 document.documentElement.scrollTop = 0;
             }
             
-            function change1(){ 
-document.getElementById("btnUp1").src= "./images/star-on-big.png"; 
-} 
-function change2(){ 
-document.getElementById("btnUp2").src= "./images/star-on-big.png"; 
-} 
-function change3(){ 
-document.getElementById("btnUp3").src= "./images/star-on-big.png"; 
-} function change4(){ 
-document.getElementById("btnUp4").src= "./images/star-on-big.png"; 
-} 
-function change5(){ 
-document.getElementById("btnUp5").src= "./images/star-on-big.png"; 
-}
-function changeback1(){ 
-document.getElementById("btnUp1").src= "./images/star-off-big.png"; 
-} 
-function changeback2(){ 
-document.getElementById("btnUp2").src= "./images/star-off-big.png"; 
-} 
-function changeback3(){ 
-document.getElementById("btnUp3").src= "./images/star-off-big.png"; 
-} 
-function changeback4(){ 
-document.getElementById("btnUp4").src= "./images/star-off-big.png"; 
-} 
-function changeback5(){ 
-document.getElementById("btnUp5").src= "./images/star-off-big.png"; 
-} 
+            
         </script>
     </body>
 </html>

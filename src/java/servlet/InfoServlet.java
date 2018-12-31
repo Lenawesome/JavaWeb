@@ -26,7 +26,6 @@ import model.Genre;
 import model.GenreDao;
 import model.Novel;
 import model.NovelDao;
-import model.RatingDao;
 
 /**
  *
@@ -41,15 +40,16 @@ public class InfoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             HttpSession session = request.getSession();
-            HttpSession session1 = request.getSession();
             String id = (String)request.getAttribute("id");
             int limit = 0;
-            if(request.getAttribute("limit")==null){
+            if(session.getAttribute("add")==null){
                 limit = 2;
-                request.setAttribute("limit", limit);
+                session.setAttribute("limit", limit);
+//                session.invalidate();
                 System.out.println(limit);
             }else{
-                limit = (int)request.getAttribute("limit");
+                limit = (int)session.getAttribute("limit");
+                session.removeAttribute("add");
                 System.out.println(limit);
             }
                 List<Novel> listNovelById = NovelDao.listBy("id", id);
@@ -71,15 +71,6 @@ public class InfoServlet extends HttpServlet {
                         if(listNovelByAuthor.get(i).getId()==Integer.parseInt(id)){
                             listNovelByAuthor.remove(i);
                         }
-                    }
-                    if (session.getAttribute("userName")!=null) {
-                        String userName = (String)session.getAttribute("userName");
-                        int idnovel = Integer.parseInt(id);
-                        if(RatingDao.ratingCheck(idnovel, userName)!=0){
-                            int point = RatingDao.ratingCheck(idnovel, userName);
-                            session1.setAttribute("point", point);
-                        }
-                        
                     }
                     request.setAttribute("listComments", listComment);
                     request.setAttribute("listNovelById",listNovelById);
