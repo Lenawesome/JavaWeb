@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Genre;
 import model.GenreDao;
 import model.Novel;
@@ -20,6 +21,7 @@ public class ControlServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            HttpSession session = request.getSession();
             String page = request.getParameter("page");
             page = page.toLowerCase();
             request.setCharacterEncoding("UTF-8");
@@ -30,9 +32,11 @@ public class ControlServlet extends HttpServlet {
                     request.getRequestDispatcher("home").forward(request, response);
                     break;
                 case "logout":
+                    
                     request.getRequestDispatcher("logout").forward(request, response);
                     break;
                 case "login":
+                    
                     request.setAttribute("listGenre", listGenre);
                     request.getRequestDispatcher("login.jsp").forward(request, response);
                     break;
@@ -40,7 +44,9 @@ public class ControlServlet extends HttpServlet {
                     request.getRequestDispatcher("register.jsp").forward(request, response);
                     break;
                 case "view-info":
-                    String novelId= request.getParameter("id");
+                    
+                    String novelId = request.getParameter("id");
+                    session.setAttribute("novelId", ""+novelId);
                     if(novelId!=null){
                         request.setAttribute("id", novelId);
                         request.setAttribute("listGenre", listGenre);

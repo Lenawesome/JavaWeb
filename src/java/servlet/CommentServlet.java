@@ -41,7 +41,7 @@ public class CommentServlet extends HttpServlet {
             CommentDao.addComment(userName, comment, date, idNovel);
             response.sendRedirect("Control?page=view-info&id="+request.getParameter("idNovel"));
         }else{
-            session.setAttribute("novelId", ""+idNovel);
+//            session.setAttribute("novelId", ""+idNovel);
             response.sendRedirect("commentError.jsp");
         }
     }

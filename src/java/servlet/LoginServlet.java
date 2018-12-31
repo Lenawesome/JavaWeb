@@ -19,6 +19,7 @@ import model.Genre;
 import model.GenreDao;
 import model.Novel;
 import model.NovelDao;
+import model.RatingDao;
 import model.UserDao;
 
 
@@ -34,14 +35,27 @@ public class LoginServlet extends HttpServlet {
         String userName = request.getParameter("username");
         String password = request.getParameter("password");
         HttpSession session = request.getSession();
+        HttpSession session1 = request.getSession();
+
         if(session.getAttribute("userName")==null){
             if(UserDao.loginCheck(userName, password)){
-                if(session.getAttribute("novelId")!=null){
+                if(session.getAttribute("novelId")!= null){
                     String id = (String)session.getAttribute("novelId");
-                    session.removeAttribute("novelId");
-                    session.setAttribute("userName", userName);
-                    response.sendRedirect("Control?page=view-info&id="+id);
+                    int idnovel = Integer.parseInt(id);
+                    if(RatingDao.ratingCheck(idnovel, userName)!=0){
+                        int point = RatingDao.ratingCheck(idnovel, userName);
+                        session.setAttribute("userName", userName);
+                        session.removeAttribute("novelId");
+                        session1.setAttribute("point", point);
+                        response.sendRedirect("Control?page=view-info&id="+id);
+                    }else{
+                        session.setAttribute("userName", userName);
+                        session.removeAttribute("novelId");
+                        response.sendRedirect("Control?page=view-info&id="+id);
+                    }
+                    
                 }else{
+                    
                     session.setAttribute("userName", userName);
                     response.sendRedirect("Control?page=home");
                 }
