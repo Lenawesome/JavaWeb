@@ -111,25 +111,34 @@
                     <div class="rating">
                             <span><b id="star-b">Đánh giá truyện:</b></span>
                                 <%
-                                if (true) {
+                                if (novels.get(0).getRating()<0.25) {
                                 %>
-                                <img src="./images/star-half-big.png"  />
                                 <img src="./images/star-off-big.png"  />
-                                <img src="./images/star-off-big.png"  />
-                                <img src="./images/star-off-big.png" />
-                                <img src="./images/star-off-big.png"  />
-                                <%
-                                    }%><%--
-                                if(true){
-                                    %>
-                                <img src="./images/star-on-big.png"  />
                                 <img src="./images/star-off-big.png"  />
                                 <img src="./images/star-off-big.png"  />
                                 <img src="./images/star-off-big.png" />
                                 <img src="./images/star-off-big.png"  />
                                 <%
                                     }
-                                 if (true) {
+                                if(novels.get(0).getRating()>=0.25&&novels.get(0).getRating()<0.75){
+                                    %>
+                                <img src="./images/star-half-big.png"  />
+                                <img src="./images/star-off-big.png"  />
+                                <img src="./images/star-off-big.png"  />
+                                <img src="./images/star-off-big.png" />
+                                <img src="./images/star-off-big.png"  />
+                                <%
+                                    }
+                                 if (novels.get(0).getRating()>=0.75&&novels.get(0).getRating()<1.25) {
+                                  %>
+                                <img src="./images/star-on-big.png"  />
+                                <img src="./images/star-off-big.png"  />
+                                <img src="./images/star-off-big.png"  />
+                                <img src="./images/star-off-big.png" />
+                                <img src="./images/star-off-big.png"  />
+                                <%
+                                }
+                                if (novels.get(0).getRating()>=1.25&&novels.get(0).getRating()<1.75) {
                                   %>
                                 <img src="./images/star-on-big.png"  />
                                 <img src="./images/star-half-big.png"  />
@@ -138,7 +147,7 @@
                                 <img src="./images/star-off-big.png"  />
                                 <%
                                 }
-                                if (true) {
+                                if (novels.get(0).getRating()>=1.75&&novels.get(0).getRating()<2.25) {
                                   %>
                                 <img src="./images/star-on-big.png"  />
                                 <img src="./images/star-on-big.png"  />
@@ -147,34 +156,62 @@
                                 <img src="./images/star-off-big.png"  />
                                 <%
                                 }
-                                if (true) {
+                                if (novels.get(0).getRating()>=2.25&&novels.get(0).getRating()<2.75) {
                                   %>
+                                <img src="./images/star-on-big.png"  />
                                 <img src="./images/star-on-big.png"  />
                                 <img src="./images/star-half-big.png"  />
-                                <img src="./images/star-off-big.png"  />
                                 <img src="./images/star-off-big.png" />
                                 <img src="./images/star-off-big.png"  />
                                 <%
                                 }
-                                if (true) {
+                                if (novels.get(0).getRating()>=2.75&&novels.get(0).getRating()<3.25) {
                                   %>
                                 <img src="./images/star-on-big.png"  />
-                                <img src="./images/star-half-big.png"  />
-                                <img src="./images/star-off-big.png"  />
+                                <img src="./images/star-on-big.png"  />
+                                <img src="./images/star-on-big.png"  />
                                 <img src="./images/star-off-big.png" />
                                 <img src="./images/star-off-big.png"  />
                                 <%
                                 }
-                                if (true) {
+                                if (novels.get(0).getRating()>=3.25&&novels.get(0).getRating()<3.75) {
                                   %>
                                 <img src="./images/star-on-big.png"  />
-                                <img src="./images/star-half-big.png"  />
-                                <img src="./images/star-off-big.png"  />
-                                <img src="./images/star-off-big.png" />
+                                <img src="./images/star-on-big.png"  />
+                                <img src="./images/star-on-big.png"  />
+                                <img src="./images/star-half-big.png" />
                                 <img src="./images/star-off-big.png"  />
                                 <%
                                 }
-                        --%>
+                                if (novels.get(0).getRating()>=3.75&&novels.get(0).getRating()<4.25) {
+                                  %>
+                                <img src="./images/star-on-big.png"  />
+                                <img src="./images/star-on-big.png"  />
+                                <img src="./images/star-on-big.png"  />
+                                <img src="./images/star-on-big.png" />
+                                <img src="./images/star-off-big.png"  />
+                                <%
+                                }
+                                if (novels.get(0).getRating()>=4.25&&novels.get(0).getRating()<4.75) {
+                                  %>
+                                <img src="./images/star-on-big.png"  />
+                                <img src="./images/star-on-big.png"  />
+                                <img src="./images/star-on-big.png"  />
+                                <img src="./images/star-on-big.png" />
+                                <img src="./images/star-half-big.png"  />
+                                <%
+                                }
+                                if (novels.get(0).getRating()>=4.75) {
+                                  %>
+                                <img src="./images/star-on-big.png"  />
+                                <img src="./images/star-on-big.png"  />
+                                <img src="./images/star-on-big.png"  />
+                                <img src="./images/star-on-big.png" />
+                                <img src="./images/star-on-big.png"  />
+                                <%
+                                }
+                                %>
+                                <span><b id="star-b">~~~<b id="point"><%=novels.get(0).getRating()%></b>/5~~~</b></span>
                         </div>
                        
                     <%
@@ -182,14 +219,19 @@
                                 
                         %>
                         <div>
-                            <form class="rating" action="danh-gia" method="post"><span><b id="star-b">Hãy đánh giá truyện này:</b></span>
-                                <input id="btnUp1" type="image" src="./images/star-off-big.png" title="như cẹc" name="star" value="1" onmouseover="change1() " onmouseout="changeback1()"/>
-                                <input id="btnUp2" type="image" src="./images/star-off-big.png" title="bình thường" name="star" value="2" onmouseover="change1(),change2()" onmouseout="changeback2(),changeback1()"/>
-                                <input id="btnUp3" type="image" src="./images/star-off-big.png" title="tạm được" name="star" value="3" onmouseover="change1(),change2(),change3()" onmouseout="changeback3(),changeback2(),changeback1()"/>
-                                <input id="btnUp4" type="image" src="./images/star-off-big.png" title="hay đó" name="star" value="4"onmouseover="change1(),change2(),change3(),change4()" onmouseout="changeback4(),changeback3(),changeback2(),changeback1()"/>
-                                <input id="btnUp5" type="image" src="./images/star-off-big.png" title="tuyệt vời" name="star" value="5" onmouseover="change1(),change2(),change3(),change4(),change5()" onmouseout="changeback5(),changeback4(),changeback3(),changeback2(),changeback1()"/>
+                            <form class="rating" action="danh-gia" method="post"><span><b id="star-b">Bạn chưa đánh giá truyện này:</b></span>
+                                <input id="btnUp1" type="image" src="./images/star-off-big.png" title="Chán" name="star" value="1" onmouseover="change1() " onmouseout="changeback1()"/>
+                                <input id="btnUp2" type="image" src="./images/star-off-big.png" title="Hơi chán" name="star" value="2" onmouseover="change1(),change2()" onmouseout="changeback2(),changeback1()"/>
+                                <input id="btnUp3" type="image" src="./images/star-off-big.png" title="Tạm được" name="star" value="3" onmouseover="change1(),change2(),change3()" onmouseout="changeback3(),changeback2(),changeback1()"/>
+                                <input id="btnUp4" type="image" src="./images/star-off-big.png" title="Hay phết" name="star" value="4"onmouseover="change1(),change2(),change3(),change4()" onmouseout="changeback4(),changeback3(),changeback2(),changeback1()"/>
+                                <input id="btnUp5" type="image" src="./images/star-off-big.png" title="Tuyệt vời" name="star" value="5" onmouseover="change1(),change2(),change3(),change4(),change5()" onmouseout="changeback5(),changeback4(),changeback3(),changeback2(),changeback1()"/>
                             </form>
                         </div>
+                        <%}if (session.getAttribute("point")!=null) {%>
+                        <div class="rating">
+                            <span><b id="star-b">Bạn đã đánh giá truyện này:~~~<b id="point"><%=session.getAttribute("point")%></b>/5 điểm~~~</b></span>
+                        </div>
+                                
                         <%}%>
                     <div class="novel-name"><%=novels.get(i).getName()%></div>
                     <div class="novel-description">

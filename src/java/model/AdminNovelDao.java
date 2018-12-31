@@ -18,8 +18,8 @@ import static model.ChapDao.makeQuerry;
  * @author MyPC
  */
 public class AdminNovelDao {
-    public static void addNovel(String name,String author,String image, String description,String status,String rating){
-        String query = "Insert Into novel (name,author,image,description,status,rating) values (?,?,?,?,?,?)";
+    public static void addNovel(String name,String author,String image, String description,String status){
+        String query = "Insert Into novel (name,author,image,description,status,rating) values (?,?,?,?,?)";
         Connection connection = ConnectionManagement.getConnection();
         PreparedStatement stmt = null;
         try {
@@ -29,7 +29,6 @@ public class AdminNovelDao {
             stmt.setString(3, image);
             stmt.setString(4, description);
             stmt.setString(5, status);
-            stmt.setString(6, rating);
             stmt.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(NovelDao.class.getName()).log(Level.SEVERE, null, ex);

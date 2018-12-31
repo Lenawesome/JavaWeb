@@ -349,3 +349,6 @@ input[type="submit"]:hover{
 		animation: none !important;
 	}
 }
+#point{
+    font-weight: bold;
+}
