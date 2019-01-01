@@ -54,7 +54,8 @@ public class InfoServlet extends HttpServlet {
                 limit = (int)session.getAttribute("limit");
                 session.removeAttribute("add");
                 System.out.println(limit);
-            }
+            }   
+                
                 List<Novel> listNovelById = NovelDao.listBy("id", id);
                 if(!listNovelById.isEmpty()){
                     List<Novel> listNovelByAuthor = new ArrayList<>();
@@ -75,15 +76,19 @@ public class InfoServlet extends HttpServlet {
                             listNovelByAuthor.remove(i);
                         }
                     }
+                    
                     if (session.getAttribute("userName")!=null) {
                         String userName = (String)session.getAttribute("userName");
                         int idnovel = Integer.parseInt(id);
                         if(RatingDao.ratingCheck(idnovel, userName)!=0){
+                            
                             int point = RatingDao.ratingCheck(idnovel, userName);
                             session1.setAttribute("point", point);
                         }
                         
                     }
+                    int count = RatingDao.countRating(id);
+                    request.setAttribute("count", ""+count);
                     request.setAttribute("listComments", listComment);
                     request.setAttribute("listNovelById",listNovelById);
                     request.setAttribute("listChap",listChap);

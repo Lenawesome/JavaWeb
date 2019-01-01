@@ -149,7 +149,7 @@ public class NovelDao {
         }
         return novels;
     }
-   
+    
     public static void makeQuery(Novel novel, ResultSet rs,List<Novel> novels) {
         try {
             while(rs.next()){

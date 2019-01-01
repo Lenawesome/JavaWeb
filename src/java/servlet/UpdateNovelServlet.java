@@ -42,7 +42,7 @@ public class UpdateNovelServlet extends HttpServlet {
         HttpSession session = request.getSession();
         if(!listNovel.get(0).getName().equals(name)){
             if(AdminNovelDao.novelNameCheck(name.trim().toLowerCase())){
-                AdminNovelDao.updateNovel(name, author, image, description,status,rating,id);
+                AdminNovelDao.updateNovel(name, author, image, description,status,id);
                 response.sendRedirect("AdminControl?page=listNovel");
             }else{
                 session.setAttribute("succes", "false");
@@ -51,11 +51,11 @@ public class UpdateNovelServlet extends HttpServlet {
             
         }else{
             if(listNovel.get(0).getAuthor().equals(author)&&listNovel.get(0).getImgLink().equals(image)
-                    &&listNovel.get(0).getDescription().equals(description)&&listNovel.get(0).getStatus().equals(status)&&checkrating.equals(rating)){
+                    &&listNovel.get(0).getDescription().equals(description)&&listNovel.get(0).getStatus().equals(status)){
                 session.setAttribute("troll","true");
                 response.sendRedirect("AdminControl?page=updateNovel&id="+id);
             }else{
-                AdminNovelDao.updateNovel(name, author, image, description,status,rating,id);
+                AdminNovelDao.updateNovel(name, author, image, description,status,id);
                 response.sendRedirect("AdminControl?page=listNovel");
             }
         }

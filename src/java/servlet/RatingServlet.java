@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.RatingDao;
 
 /**
  *
@@ -27,9 +28,14 @@ public class RatingServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        int idNovel = Integer.parseInt(request.getParameter("idNovel"));
+        String idNovel = (String)session.getAttribute("novelId");
         int point = Integer.parseInt(request.getParameter("star"));
         String userName = (String)session.getAttribute("userName");
+        RatingDao.addRating(point, idNovel, userName);
+        float rating = RatingDao.avgRating(idNovel);
+        int count = RatingDao.countRating(idNovel);
+        RatingDao.updateRating(idNovel, rating);
+        response.sendRedirect("Control?page=view-info&id="+idNovel);
     }
 
    

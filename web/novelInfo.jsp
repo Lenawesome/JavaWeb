@@ -13,6 +13,7 @@
     List<Genre> listAllGenres = (List<Genre>)request.getAttribute("listAllGenres");
     String strGenre = (String) request.getAttribute("strGenre");
     List<Comment> listComments = (List<Comment>) request.getAttribute("listComments");
+    String count = (String)request.getAttribute("count");
     if(novels!=null){
 %>
 
@@ -211,22 +212,31 @@
                                 <%
                                 }
                                 %>
-                                <span><b id="star-b">~~~<b id="point"><%=novels.get(0).getRating()%></b>/5~~~</b></span>
+                                <span><b id="star-b">~~~<b id="point"><%=novels.get(0).getRating()%></b>/5~~~với tổng <%=count%> đánh giá</b></span>
                         </div>
                        
                     <%
                             if((session.getAttribute("userName")!=null)&&(session.getAttribute("point")==null)){
                                 
                         %>
+                        
                         <div>
                             <form class="rating" action="danh-gia" method="post"><span><b id="star-b">Bạn chưa đánh giá truyện này:</b></span>
-                                <input id="btnUp1" type="image" src="./images/star-off-big.png" title="Chán" name="star" value="1" onmouseover="change1() " onmouseout="changeback1()"/>
-                                <input id="btnUp2" type="image" src="./images/star-off-big.png" title="Hơi chán" name="star" value="2" onmouseover="change1(),change2()" onmouseout="changeback2(),changeback1()"/>
-                                <input id="btnUp3" type="image" src="./images/star-off-big.png" title="Tạm được" name="star" value="3" onmouseover="change1(),change2(),change3()" onmouseout="changeback3(),changeback2(),changeback1()"/>
-                                <input id="btnUp4" type="image" src="./images/star-off-big.png" title="Hay phết" name="star" value="4"onmouseover="change1(),change2(),change3(),change4()" onmouseout="changeback4(),changeback3(),changeback2(),changeback1()"/>
-                                <input id="btnUp5" type="image" src="./images/star-off-big.png" title="Tuyệt vời" name="star" value="5" onmouseover="change1(),change2(),change3(),change4(),change5()" onmouseout="changeback5(),changeback4(),changeback3(),changeback2(),changeback1()"/>
+                                <label for="submit1" ><img class="rate" id="btnUp1"  src="./images/star-off-big.png" title="Chán"  onmouseover="change1() " onmouseout="changeback1()"/></label>
+                                <input id="submit1" class="hidden" type="submit" name="star" value="1"/>
+                                <label for="submit2" ><img  class="rate" id="btnUp2"  src="./images/star-off-big.png" title="Hơi chán" onmouseover="change1(),change2()" onmouseout="changeback2(),changeback1()"/></label>
+                                <input id="submit2" class="hidden" type="submit" name="star" value="2" />
+                                <label for="submit3" ><img class="rate" id="btnUp3"  src="./images/star-off-big.png" title="Tạm được"  onmouseover="change1(),change2(),change3()" onmouseout="changeback3(),changeback2(),changeback1()"/></label>
+                                <input id="submit3" class="hidden" type="submit" name="star" value="3"/>
+                                <label for="submit4" ><img class="rate" id="btnUp4" src="./images/star-off-big.png" title="Hay phết" onmouseover="change1(),change2(),change3(),change4()" onmouseout="changeback4(),changeback3(),changeback2(),changeback1()"/></label>
+                                <input id="submit4" class="hidden" type="submit" name="star" value="4" />
+                                <label for="submit5" ><img class="rate" id="btnUp5"  src="./images/star-off-big.png" title="Tuyệt vời"  onmouseover="change1(),change2(),change3(),change4(),change5()" onmouseout="changeback5(),changeback4(),changeback3(),changeback2(),changeback1()"/></label>
+                                <input id="submit5" class="hidden" type="submit" name="star" value="5"/>
+                                <em id="star-hiden"></em>
                             </form>
+                            
                         </div>
+                        
                         <%}if (session.getAttribute("point")!=null) {%>
                         <div class="rating">
                             <span><b id="star-b">Bạn đã đánh giá truyện này:~~~<b id="point"><%=session.getAttribute("point")%></b>/5 điểm~~~</b></span>
@@ -318,32 +328,42 @@
             }
 function change1(){ 
 document.getElementById("btnUp1").src= "./images/star-on-big.png"; 
+document.getElementById("star-hiden").innerHTML="~~Chán~~";
 } 
 function change2(){ 
-document.getElementById("btnUp2").src= "./images/star-on-big.png"; 
+document.getElementById("btnUp2").src= "./images/star-on-big.png";
+document.getElementById("star-hiden").innerHTML="~~Hơi chán~~";
 } 
 function change3(){ 
-document.getElementById("btnUp3").src= "./images/star-on-big.png"; 
+document.getElementById("btnUp3").src= "./images/star-on-big.png";
+document.getElementById("star-hiden").innerHTML="~~Tạm được~~";
 } function change4(){ 
-document.getElementById("btnUp4").src= "./images/star-on-big.png"; 
+document.getElementById("btnUp4").src= "./images/star-on-big.png";
+document.getElementById("star-hiden").innerHTML="~~Hay đó~~";
 } 
 function change5(){ 
-document.getElementById("btnUp5").src= "./images/star-on-big.png"; 
+document.getElementById("btnUp5").src= "./images/star-on-big.png";
+document.getElementById("star-hiden").innerHTML="~~Tuyệt vời~~";
 }
 function changeback1(){ 
-document.getElementById("btnUp1").src= "./images/star-off-big.png"; 
+document.getElementById("btnUp1").src= "./images/star-off-big.png";
+document.getElementById("star-hiden").innerHTML="";
 } 
 function changeback2(){ 
-document.getElementById("btnUp2").src= "./images/star-off-big.png"; 
+document.getElementById("btnUp2").src= "./images/star-off-big.png";
+document.getElementById("star-hiden").innerHTML="";
 } 
 function changeback3(){ 
-document.getElementById("btnUp3").src= "./images/star-off-big.png"; 
+document.getElementById("btnUp3").src= "./images/star-off-big.png";
+document.getElementById("star-hiden").innerHTML="";
 } 
 function changeback4(){ 
-document.getElementById("btnUp4").src= "./images/star-off-big.png"; 
+document.getElementById("btnUp4").src= "./images/star-off-big.png";
+document.getElementById("star-hiden").innerHTML="";
 } 
 function changeback5(){ 
-document.getElementById("btnUp5").src= "./images/star-off-big.png"; 
+document.getElementById("btnUp5").src= "./images/star-off-big.png";
+document.getElementById("star-hiden").innerHTML="";
 } 
             
         </script>
@@ -353,4 +373,5 @@ document.getElementById("btnUp5").src= "./images/star-off-big.png";
 else{
     response.sendRedirect("error.jsp");
 }
+session.removeAttribute("point");
 %>

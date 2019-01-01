@@ -93,12 +93,14 @@
                             for(int i=0; i < novels.size();i++){
                         %>
                             <div class="item">
-                                <a href="<%=request.getContextPath() %>/Control?page=view-info&id=<%=novels.get(i).getId()%>">
-                                    <img src=<%=novels.get(i).getImgLink()%> class="image" alt="<%=novels.get(i).getName()%>">
-                                    <div class="info-wraper"> <p class="name"><%=novels.get(i).getName() %> </p>
+                            <a class="show tooltip" href="<%=request.getContextPath() %>/Control?page=view-info&id=<%=novels.get(i).getId()%>">
+                                <img src=<%=novels.get(i).getImgLink()%> class="image" alt="<%=novels.get(i).getName()%>">
+                                <span class="text showdescription"><b>Tác giả:<br></b><%=novels.get(i).getAuthor()%><b><br>Rating:<br></b><%=novels.get(i).getRating()%></span>
+                                <div class="info-wraper"> <p class="name"><%=novels.get(i).getName() %> </p>
                                     <p class="book-info"><b>Tác giả:<br></b><%=novels.get(i).getAuthor()%><b><br>Rating:<br></b><%=novels.get(i).getRating()%></p>
-                                    </div>
-                                </a>
+                                </div>
+                                
+                            </a>
                             </div>
                         <%}%>
                     </div>

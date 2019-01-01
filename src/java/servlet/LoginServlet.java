@@ -45,12 +45,10 @@ public class LoginServlet extends HttpServlet {
                     if(RatingDao.ratingCheck(idnovel, userName)!=0){
                         int point = RatingDao.ratingCheck(idnovel, userName);
                         session.setAttribute("userName", userName);
-                        session.removeAttribute("novelId");
                         session1.setAttribute("point", point);
                         response.sendRedirect("Control?page=view-info&id="+id);
                     }else{
                         session.setAttribute("userName", userName);
-                        session.removeAttribute("novelId");
                         response.sendRedirect("Control?page=view-info&id="+id);
                     }
                     
